@@ -15,6 +15,7 @@ class Crud extends CI_Controller{
 
 	function tambah(){
 		$this->load->view('user_view');
+		$data['tbl_users'] = $this->user_models->tampil_data()->result();
 	}
 
 	function tambah_aksi(){

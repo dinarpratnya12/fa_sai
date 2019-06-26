@@ -8,10 +8,10 @@
 <body>
   <div class="container">
     <div class="row">
-      <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <img class="navbar-brand" src="<?php echo base_url('assets/yasaki.png');?>" >
+            <img class="navbar-brand" src="<?php echo base_url('assets/logo_putih.png');?>" >
             <!-- <a class="navbar-brand" href="">LOGO</a> -->
           </div>
           <div id="navbar" class="navbar-collapse collapse">
@@ -35,8 +35,35 @@
             <div class="col-md-8 col-md-offset-2">
             <br>
             <center><h1>Data User</h1>
-              <?php echo anchor('crud/tambah','Tambah Data'); ?>
+            <br>
+
+              <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+              Tambah Data
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
             </center>
+            <br>
               <table class="table" style="margin:20px auto;" >
                 <tr>
                   <th>No</th>
@@ -52,10 +79,10 @@
                   <td><?php echo $no++ ?></td>
                   <td><?php echo $u->user_name ?></td>
                   <td><?php echo $u->user_email ?></td>
-                  <!-- <td>
-                      <?php echo anchor('crud/edit/'.$u->id,'Edit'); ?>
-                      <?php echo anchor('crud/hapus/'.$u->id,'Hapus'); ?>
-                  </td> -->
+                  <td>
+                      <?php echo anchor('crud/edit/'.$u->user_id,'Edit',['class'=>'btn btn-primary']); ?>
+                      <?php echo anchor('crud/hapus/'.$u->user_id,'Hapus',['class'=>'btn btn-warning']); ?>
+                  </td>
                 </tr>
                 <?php } ?>
               </table>

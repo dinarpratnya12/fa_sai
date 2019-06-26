@@ -48,10 +48,10 @@
 <body>
     <div class="container">
         <div class="row">
-            <nav class="navbar navbar-default">
+        <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <img class="navbar-brand" src="<?php echo base_url('assets/yasaki.png');?>" >
+                        <img class="navbar-brand" src="<?php echo base_url('assets/logo_putih.png');?>" >
                         <!-- <a class="navbar-brand" href="">LOGO</a> -->
                         </div>
                         <div id="navbar" class="navbar-collapse collapse">
@@ -136,11 +136,12 @@
                             if(isset($_POST['preview'])){ // Jika user menekan tombol Preview pada form
                                 if(isset($upload_error)){ // Jika proses upload gagal
                                     echo "<div style='color: red;'>".$upload_error."</div>"; // Muncul pesan error upload
-                                    die; // stop skrip
+
                                 }
                                 echo "<form method='post' action='".site_url("Import/import")."'>";
                         ?>
-                        <div class="table-responsive-sm">
+                        <?php if(isset($sheet)){?>
+                            <div class="table-responsive-sm">
                             <table class="table table-bordered text" cellpadding="" id="example">
                                 <thead>
                                     <th>Buppin Number</th>
@@ -198,24 +199,29 @@
                             }
                                 ?>
                         </div>
-                    <!-- </div> -->
+                        <?php } ?>
                 </div>
+                <?php if(!isset($_POST['preview'])){ ?>
+</div>
+                <?php } ?>
+
 
                     <!-- Form penawaran -->
                 <div class="col-lg-6">
                     <div style="background-color: #f2f2f2; padding: 10px">
-                        <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format</a>
+                        <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format 2</a>
                         <br>
                         <br>
                         <br>
-                        <form method="post" action="<?php echo site_url("Import_penawaran/form"); ?>" enctype="multipart/form-data">
+                        <form method="post" action="<?php echo site_url("Import/form2"); ?>" enctype="multipart/form-data">
                             <input type="file" name="file">
                             <br>
                             <br>
-                            <button type="submit" class="btn btn-primary" name="preview2" value="Preview">Preview</button>
+                            <button type="submit" class="btn btn-primary" name="preview2" value="Preview2">Preview</button>
                         </form>
                         <br>
                         <br>
+                        <?php if(!isset($_POST['preview2'])): ?>
                         <div class="table-responsive-sm">
                             <table class="table table-striped table-bordered text2" cellpadding="" id="example2" style="width:100%">
                                 <thead>
@@ -242,13 +248,14 @@
                                 ?>
                             </table>
                         </div>
+                        <?php endif ?>
                         <?php
                             if(isset($_POST['preview2'])){ // Jika user menekan tombol Preview pada form
                                 if(isset($upload_error)){ // Jika proses upload gagal
                                     echo "<div style='color: red;'>".$upload_error."</div>"; // Muncul pesan error upload
                                     die; // stop skrip
                                 }
-                                echo "<form method='post' action='".site_url("Import_penawaran/import")."'>";
+                                echo "<form method='post' action='".site_url("Import/import2")."'>";
                         ?>
                         <div class="table-responsive-sm">
                             <table class="table table-bordered text2" cellpadding="" id="example2">
@@ -297,7 +304,7 @@
                                             // Buat sebuah tombol untuk mengimport data ke database
                                             echo "<button class='btn btn-primary' type='submit' name='import'>Import</button>";
                                             echo "&nbsp&nbsp&nbsp&nbsp&nbsp";
-                                            echo "<a href='".site_url("Import_penawaran/index")."' class='btn btn-default'>Cancel</a>";
+                                            echo "<a href='".site_url("Import/index")."' class='btn btn-default'>Cancel</a>";
                                         }
                                         echo "</form>";
                                     }

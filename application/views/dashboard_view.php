@@ -5,22 +5,14 @@
     <meta charset="utf-8">
     <title>SAI</title>
     <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
-    <style>
-      .navbar-inverse {
-      background-color: #f4d081;
-      font-size:14px;
-      font color:
-      }
-    </style>
-    </style>
   </head>
   <body>
     <div class="container">
       <div class="row">
-      <nav class="navbar navbar-inverse" style="navbar-inverse">
+      <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
-              <img class="navbar-brand" src="<?php echo base_url('assets/yasaki.png');?>" >
+              <img class="navbar-brand" src="<?php echo base_url('assets/logo_putih.png');?>" >
               <!-- <a class="navbar-brand" href="">LOGO</a> -->
             </div>
             <div id="navbar" class="navbar-collapse collapse">
