@@ -48,7 +48,8 @@ class Import extends CI_Controller {
 
 		$excelreader = new PHPExcel_Reader_Excel2007();
 		$loadexcel = $excelreader->load('excel/'.$this->filename.'.xlsx'); // Load file yang telah diupload ke folder excel
-		$sheet = $loadexcel->getSheet(0)->toArray(null, true, true ,true);
+		// $sheet = $loadexcel->getSheet(0)->toArray(null, true, true ,true);
+		$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 
 		// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
 		$data = array();
@@ -85,6 +86,8 @@ class Import extends CI_Controller {
 
 		redirect("Import"); // Redirect ke halaman awal (ke controller siswa fungsi index)
 	}
+
+
 
 
 }

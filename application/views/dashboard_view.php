@@ -25,7 +25,7 @@
                   <li><a href="<?php echo site_url('crud/index');?>">Manage People</a></li>
                 <!--ACCESS MENUS FOR STAFF-->
                 <?php elseif($this->session->userdata('level')==='2'):?>
-                  <li class="active"><a href="#">Dashboard</a></li>
+                  <li class="active"><a href="<?php echo site_url('page/staff');?>">Dashboard</a></li>
                   <li><a href="<?php echo site_url('import/index');?>">Import Data</a></li>
                   <li><a href="#">List Data</a></li>
                 <!--ACCESS MENUS FOR AUTHOR-->

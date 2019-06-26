@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 26 Jun 2019 pada 04.02
+-- Waktu pembuatan: 26 Jun 2019 pada 06.27
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `data_invoice` (
-  `id_invoice` int(100) NOT NULL,
+  `id_` int(11) NOT NULL,
   `invoice_number` varchar(100) NOT NULL,
   `invoice_date` varchar(100) NOT NULL,
   `buppin_number` varchar(100) NOT NULL,
@@ -129,6 +129,12 @@ INSERT INTO `tbl_users` (`user_id`, `user_name`, `user_email`, `user_password`, 
 --
 
 --
+-- Indeks untuk tabel `data_invoice`
+--
+ALTER TABLE `data_invoice`
+  ADD PRIMARY KEY (`id_`);
+
+--
 -- Indeks untuk tabel `data_penawaran`
 --
 ALTER TABLE `data_penawaran`
@@ -143,6 +149,12 @@ ALTER TABLE `tbl_users`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `data_invoice`
+--
+ALTER TABLE `data_invoice`
+  MODIFY `id_` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `data_penawaran`

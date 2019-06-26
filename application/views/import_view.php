@@ -3,7 +3,8 @@
 	<title>Form Import</title>
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 	<!-- Load File jquery.min.js yang ada difolder js -->
-	<script src="<?php echo base_url('js/jquery.min.js'); ?>"></script>
+
+
 
 	<script>
 	$(document).ready(function(){
@@ -11,7 +12,9 @@
 		$("#kosong").hide();
 	});
 	</script>
-    <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
+
     <style>
         .table-condensed{
             font-size: 10px;
@@ -26,7 +29,19 @@
         }
         .text2{
             font-family:Verdana;
-            font-size:10px;
+            font-size:12px;
+        }
+        table.dataTable thead .sorting:after,
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting_asc:after,
+        table.dataTable thead .sorting_asc:before,
+        table.dataTable thead .sorting_asc_disabled:after,
+        table.dataTable thead .sorting_asc_disabled:before,
+        table.dataTable thead .sorting_desc:after,
+        table.dataTable thead .sorting_desc:before,
+        table.dataTable thead .sorting_desc_disabled:after,
+        table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
         }
     </style>
 </head>
@@ -49,7 +64,7 @@
                             <li><a href="<?php echo site_url('crud/index');?>">Manage People</a></li>
                         <!--ACCESS MENUS FOR STAFF-->
                         <?php elseif($this->session->userdata('level')==='2'):?>
-                            <li><a href="<?php echo site_url('page/index');?>">Dashboard</a></li>
+                            <li><a href="<?php echo site_url('page/staff');?>">Dashboard</a></li>
                             <li class="active"><a href="<?php echo site_url('import/index');?>">Import Data</a></li>
                             <li><a href="#">List Data</a></li>
                         <!--ACCESS MENUS FOR AUTHOR-->
@@ -73,7 +88,7 @@
                     <!-- Form invoice -->
                     <div class="col-lg-6">
                     <div style="background-color: #f2f2f2; padding: 10px">
-                    <br>
+
                     <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format</a>
                     <br>
                     <br>
@@ -86,15 +101,14 @@
                     </form>
                     <br>
                     <br>
-                    <div id="table1">
                         <?php if(!isset($_POST['preview'])): ?>
                             <div class="table-responsive-sm">
-                                <table class="table table table-striped table-bordered table-sm text" cellpadding="">
-                                    <thead class="thead-dark">
+                                <table class="table table-striped table-bordered text" cellpadding="" id="example" style="width:100%">
+                                    <thead>
                                         <tr>
                                             <th>Buppin Number</th>
                                             <th>Supplier</th>
-                                            <th>Price Invoice (@1)</th>
+                                            <th>Price Invoice(@1)</th>
                                             <th>Periode</th>
                                         </tr>
                                     </thead>
@@ -115,7 +129,6 @@
                                 </table>
                             </div>
                             <?php endif ?>
-                            </div>
                             <?php
                                 if(isset($_POST['preview'])){ // Jika user menekan tombol Preview pada form
                                     if(isset($upload_error)){ // Jika proses upload gagal
@@ -125,8 +138,8 @@
                                     echo "<form method='post' action='".site_url("Import/import")."'>";
                                     ?>
                                     <div class="table-responsive-sm">
-                                        <table class="table table-bordered text" cellpadding="">
-                                            <thead class="thead-dark">
+                                        <table class="table table-bordered text" cellpadding="" id="example">
+                                            <thead>
                                                 <th>Buppin Number</th>
                                                 <th>Supplier</th>
                                                 <th>Price Invoice (@1)</th>
@@ -174,8 +187,9 @@
                                                     echo "<hr>";
 
                                                     // Buat sebuah tombol untuk mengimport data ke database
-                                                    echo "<button class='btn btn-default-sm' type='submit' name='import'>Import</button>";
-                                                    echo "<a href='".site_url("Import/index")."'>Cancel</a>";
+                                                    echo "<button class='btn btn-primary' type='submit' name='import'>Import</button>";
+                                                    echo "&nbsp&nbsp&nbsp&nbsp&nbsp";
+                                                    echo "<a href='".site_url("Import/index")."' class='btn btn-default'>Cancel</a>";
                                                 }
                                                 echo "</form>";
                                             }
@@ -186,7 +200,6 @@
                     <!-- Form penawaran -->
                     <div class="col-lg-6">
                         <div style="background-color: #f2f2f2; padding: 10px">
-                            <div style="background-color: #f2f2f2; padding: 10px">
                                 <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format</a>
                                 <br>
                                 <br>
@@ -199,9 +212,9 @@
                                 </form>
                                 <br>
                                 <br>
-                                <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                                    <table class="table table-striped table-bordered table-sm text2" width="100%" cellpadding="">
-                                        <thead class="thead-dark">
+                                <div class="table-responsive-sm">
+                                <table class="table table-striped table-bordered text2" cellpadding="" id="example2" style="width:100%">
+                                        <thead>
                                             <tr>
                                                 <th class="th-sm">Buppin Number</th>
                                                 <th class="th-sm">Supplier</th>
@@ -234,8 +247,8 @@
                                         echo "<form method='post' action='".site_url("Import_penawaran/import")."'>";
                                         ?>
                                         <div class="table-responsive-sm">
-                                            <table class="table table-bordered text2" cellpadding="">
-                                                <thead class="thead-dark">
+                                            <table class="table table-bordered text2" cellpadding="" id="example2">
+                                                <thead>
                                                     <th>Buppin Number</th>
                                                     <th>Supplier</th>
                                                     <th>Price Penawaran(@1)</th>
@@ -280,15 +293,46 @@
                                                         echo "<hr>";
 
                                                         // Buat sebuah tombol untuk mengimport data ke database
-                                                        echo "<button class='btn btn-default-sm' type='submit' name='import'>Import</button>";
-                                                        echo "<a href='".site_url("Import_penawaran/index")."'>Cancel</a>";
+                                                        echo "<button class='btn btn-primary' type='submit' name='import'>Import</button>";
+                                                        echo "&nbsp&nbsp&nbsp&nbsp&nbsp";
+                                                        echo "<a href='".site_url("Import_penawaran/index")."' class='btn btn-default'>Cancel</a>";
+
                                                     }
                                                         echo "</form>";
                                                 }
                                                 ?>
                     </div>
                 </div>
+        </div>
+        <div class= "container">
+            <div class="row">
+                <div class="form-group">
+                    <!-- <label for="exampleFormControlSelect1">Pilih Periode</label> -->
+                    <select class="form-control" name="periode">
+                        <option class="hidden" selected disabled>Pilih Periode</option>
+                        <?php
+                            $periode = $this->db->select('*')->from('data_penawaran')->group_by('PERIOD')->get()->result();
+                            foreach($periode as $row) {?>
+                            <option value="<?= $row->PERIOD;?>" ><?= $row->PERIOD;?></option>
+                        <?php } ?>
+                    </select>
+                </div>
             </div>
         </div>
+
+        <script src="<?php echo base_url('assets/jquery-1.12.4.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
+        <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            } );
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#example2').DataTable();
+            } );
+        </script>
     </body>
 </html>
