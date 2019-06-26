@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 25 Jun 2019 pada 10.59
+-- Waktu pembuatan: 26 Jun 2019 pada 04.02
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `data_invoice` (
-  `id` int(11) NOT NULL,
+  `id_invoice` int(100) NOT NULL,
   `invoice_number` varchar(100) NOT NULL,
   `invoice_date` varchar(100) NOT NULL,
   `buppin_number` varchar(100) NOT NULL,
@@ -53,6 +53,7 @@ CREATE TABLE `data_invoice` (
 --
 
 CREATE TABLE `data_penawaran` (
+  `id_penawaran` int(100) NOT NULL,
   `GCT_COMP_NO` varchar(100) NOT NULL,
   `OW_ID` varchar(100) NOT NULL,
   `PRICE_ID` varchar(100) NOT NULL,
@@ -86,16 +87,6 @@ CREATE TABLE `data_penawaran` (
   `PERIOD` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `data_penawaran`
---
-
-INSERT INTO `data_penawaran` (`GCT_COMP_NO`, `OW_ID`, `PRICE_ID`, `PriceIdDesc`, `EFFECT_DT`, `EXPIRE_DT`, `TENTATIVE_FL`, `CLASS_CD`, `FIS_PRICE`, `kljhi`, `FIS_CRCY`, `BASE_PRICE`, `BASE_CRCY`, `BASE_UOM`, `SHT_NO`, `szdb`, `SPPLY_ID`, `SPPLY_NM`, `CNTRY_CD`, `INCO`, `DUTY_FL`, `CU_BASE_QUOTE`, `CU_BASE_UOM`, `CU_BASE_CRCY`, `TOOL_COST_FL`, `ONLY_TEST_FL`, `MARK1`, `MARK2`, `MARK3`, `NOTE`, `PERIOD`) VALUES
-('18000004550', 'SAI', '2019A', '2019A Jan-Jun Price for SAI', '2018/11/16', '9999/12/31', 'F', '001', '0.6175', '', 'USD', '0.6175', 'USD', 'M', '14264', '', '1339', 'PEMI', 'IDN', 'DAP', '1', '6.8000', 'KG', 'USD', 'N', 'T', '', '', '', 'Batch uploaded', 'Dec 2018 - May 2019'),
-('18001404630', 'SAI', '2019A', '2019A Jan-Jun Price for SAI', '2018/11/15', '9999/12/31', 'F', '001', '1.3761', '', 'USD', '1.3761', 'USD', 'M', '7360', '', '28246', 'PT INDOWIRE PRIMA INDUSTRINDO', 'IDN', 'DAP', '1', '6.8000', 'KG', 'USD', 'N', 'T', '', '', '', 'Batch uploaded', 'Dec 2018 - May 2019'),
-('18005604530', 'SAI', '2019A', '2019A Jan-Jun Price for SAI', '2018/11/15', '9999/12/31', 'F', '001', '0.7345', '', 'USD', '0.7140', 'USD', 'M', '6151', '', '13021', 'YGP PTE. LTD.', 'SGP', 'CIF&I', '1', '6.8000', 'KG', 'USD', 'N', 'T', '', '', '', 'Batch uploaded', 'Dec 2018 - May 2019'),
-('18005604534', 'SAI', '2019A', '2019A Jan-Jun Price for SAI', '2018/12/04', '9999/12/31', 'F', '001', '0.7345', '', 'USD', '0.7140', 'USD', 'M', '17124', '', '13021', 'YGP PTE. LTD.', 'SGP', 'CIF&I', '1', '6.8000', 'KG', 'USD', 'N', 'T', '', '', '', 'Batch uploaded', 'Dec 2018 - May 2019');
-
 -- --------------------------------------------------------
 
 --
@@ -103,6 +94,7 @@ INSERT INTO `data_penawaran` (`GCT_COMP_NO`, `OW_ID`, `PRICE_ID`, `PriceIdDesc`,
 --
 
 CREATE TABLE `hasil` (
+  `id_hasil` int(11) NOT NULL,
   `kode_barang` int(1) NOT NULL,
   `periode` varchar(30) NOT NULL,
   `price_quotation` int(1) NOT NULL,
@@ -137,10 +129,10 @@ INSERT INTO `tbl_users` (`user_id`, `user_name`, `user_email`, `user_password`, 
 --
 
 --
--- Indeks untuk tabel `data_invoice`
+-- Indeks untuk tabel `data_penawaran`
 --
-ALTER TABLE `data_invoice`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `data_penawaran`
+  ADD PRIMARY KEY (`id_penawaran`);
 
 --
 -- Indeks untuk tabel `tbl_users`
@@ -153,10 +145,10 @@ ALTER TABLE `tbl_users`
 --
 
 --
--- AUTO_INCREMENT untuk tabel `data_invoice`
+-- AUTO_INCREMENT untuk tabel `data_penawaran`
 --
-ALTER TABLE `data_invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `data_penawaran`
+  MODIFY `id_penawaran` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_users`
