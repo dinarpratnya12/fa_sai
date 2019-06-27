@@ -4,8 +4,6 @@
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 	<!-- Load File jquery.min.js yang ada difolder js -->
 
-
-
 	<script>
 	$(document).ready(function(){
 		// Sembunyikan alert validasi kosong
@@ -46,43 +44,18 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-        <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <img class="navbar-brand" src="<?php echo base_url('assets/logo_putih.png');?>" >
-                        <!-- <a class="navbar-brand" href="">LOGO</a> -->
-                        </div>
-                        <div id="navbar" class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav">
-                            <!--ACCESS MENUS FOR ADMIN-->
-                            <?php if($this->session->userdata('level')==='1'):?>
-                                <li><a href="<?php echo site_url('page/index');?>">Dashboard</a></li>
-                                <li class="active"><a href="<?php echo site_url('import/index');?>">Import Data</a></li>
-                                <li><a href="#">List Data</a></li>
-                                <li><a href="<?php echo site_url('crud/index');?>">Manage People</a></li>
-                            <!--ACCESS MENUS FOR STAFF-->
-                            <?php elseif($this->session->userdata('level')==='2'):?>
-                                <li><a href="<?php echo site_url('page/staff');?>">Dashboard</a></li>
-                                <li class="active"><a href="<?php echo site_url('import/index');?>">Import Data</a></li>
-                                <li><a href="#">List Data</a></li>
-                            <!--ACCESS MENUS FOR AUTHOR-->
-                            <?php else:?>
-                                <li class=""><a href="<?php echo site_url('page/index');?>">Dashboard</a></li>
-                                <li><a href="#">List Data</a></li>
-                            <?php endif;?>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="<?php echo site_url('login/logout');?>">Sign Out</a></li>
-                            </ul>
-                        </div><!--/.nav-collapse -->
+<link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
+<script>
+	$(document).ready(function(){
+		// Sembunyikan alert validasi kosong
+		$("#kosong").hide();
+	});
+	</script>
+    <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
+</head>
+<body>
 
-                </div><!--/.container-fluid -->
-            </nav>
-        </div>
-    </div>
-</div>
 <div class="container">
     <div class="row">
         <div class="container-fluid">
@@ -92,9 +65,9 @@
                 <!-- Form invoice -->
                 <div class="col-lg-6">
                     <div style="background-color: #f2f2f2; padding: 10px">
-                        <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format</a>
+                        <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format Invoice</a>
                         <br>
-                        <br>
+
                         <br>
                         <form method="post" action="<?php echo site_url("Import/form"); ?>" enctype="multipart/form-data">
                             <input type="file" name="file">
@@ -103,7 +76,7 @@
                             <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
                         </form>
                         <br>
-                        <br>
+
                         <?php if(!isset($_POST['preview'])): ?>
                         <div class="table-responsive-sm">
                             <table class="table table-striped table-bordered text" cellpadding="" id="example" style="width:100%">
@@ -141,7 +114,7 @@
                                 echo "<form method='post' action='".site_url("Import/import")."'>";
                         ?>
                         <?php if(isset($sheet)){?>
-                            <div class="table-responsive-sm">
+                        <div class="table-responsive-sm">
                             <table class="table table-bordered text" cellpadding="" id="example">
                                 <thead>
                                     <th>Buppin Number</th>
@@ -202,16 +175,16 @@
                         <?php } ?>
                 </div>
                 <?php if(!isset($_POST['preview'])){ ?>
-</div>
+                </div>
                 <?php } ?>
 
 
-                    <!-- Form penawaran -->
+                <!-- Form penawaran -->
                 <div class="col-lg-6">
                     <div style="background-color: #f2f2f2; padding: 10px">
-                        <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format 2</a>
+                        <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format Penawaran</a>
                         <br>
-                        <br>
+
                         <br>
                         <form method="post" action="<?php echo site_url("Import/form2"); ?>" enctype="multipart/form-data">
                             <input type="file" name="file">
@@ -220,7 +193,7 @@
                             <button type="submit" class="btn btn-primary" name="preview2" value="Preview2">Preview</button>
                         </form>
                         <br>
-                        <br>
+
                         <?php if(!isset($_POST['preview2'])): ?>
                         <div class="table-responsive-sm">
                             <table class="table table-striped table-bordered text2" cellpadding="" id="example2" style="width:100%">
@@ -315,8 +288,12 @@
         </div>
     </div>
 </div>
+<div class="row">
+<br>
 <div class= "container">
-    <div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+    <div style="background-color: #f2f2f2; padding: 10px">
         <div class="form-group">
             <select class="form-control" name="periode">
                 <option class="hidden" selected disabled>Pilih Periode</option>
@@ -326,22 +303,44 @@
                 <option value="<?= $row->PERIOD;?>" ><?= $row->PERIOD;?></option>
                 <?php } ?>
             </select>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            
         </div>
     </div>
+    </div>
+</div>
 </div>
 
-<script src="<?php echo base_url('assets/jquery-1.12.4.js'); ?>"></script>
+<script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script>
 <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
 
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#example').DataTable(
+            {
+                "scrollY": "200px",
+                "scrollCollapse": true,
+                "paging": false
+            }
+        );
+
     } );
 </script>
 <script>
     $(document).ready(function() {
-        $('#example2').DataTable();
+        $('#example2').DataTable(
+            {
+                "scrollY": "200px",
+                "scrollCollapse": true,
+                "paging": false
+            }
+        );
     } );
 </script>
 </body>

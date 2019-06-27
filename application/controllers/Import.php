@@ -11,9 +11,11 @@ class Import extends CI_Controller {
 	}
 
 	public function index(){
+		$this->load->view('Header/header');
 		$data['data_penawaran'] = $this->db->get('data_penawaran')->result();
 		$data['data_invoice'] = $this->Invoice_models->view();
 		$this->load->view('import_view', $data);
+
 	}
 
 	public function form(){

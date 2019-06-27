@@ -9,6 +9,7 @@ class Page extends CI_Controller{
 
   function index(){
     //Allowing akses to admin only
+    $this->load->view('Header/header');
       if($this->session->userdata('level')==='1'){
           $this->load->view('dashboard_view');
       }else{
@@ -19,6 +20,7 @@ class Page extends CI_Controller{
 
   function staff(){
     //Allowing akses to staff only
+    $this->load->view('Header/header');
     if($this->session->userdata('level')==='2'){
       $this->load->view('dashboard_view');
     }else{
@@ -28,6 +30,7 @@ class Page extends CI_Controller{
 
   function author(){
     //Allowing akses to author only
+    $this->load->view('Header/header');
     if($this->session->userdata('level')==='3'){
       $this->load->view('dashboard_view');
     }else{
