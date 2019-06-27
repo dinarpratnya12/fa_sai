@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <nav class="navbar navbar-inverse" style="position:fixed;z-index:1000;width:90%">
+            <nav class="navbar navbar-inverse" style="position:fixed;z-index:1000;width:91.5%">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <img class="navbar-brand" src="<?php echo base_url('assets/logo_putih.png');?>" >

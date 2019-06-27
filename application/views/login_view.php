@@ -81,18 +81,30 @@
             display: block;
             margin-top: 10px;
         }
+        .rounded{
+            margin-top: 20px;
+            padding: 40px 0px 20px 0px;
+            background-color: #f4d081;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0px 0px 100px 0px rgba(0,0,0,0.56);
+            -moz-box-shadow: 0px 0px 100px 0px rgba(0,0,0,0.56);
+            box-shadow: 0px 0px 100px 0px rgba(0,0,0,0.56);
+        }
     </style>
   </head>
     <!-- <title>Sign In</title>
     <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
   </head> -->
   <body>
+  <br>
   <img src="<?php echo base_url('assets/bg2.jpeg');?>" id="bg" alt="" style="position:fixed; top:0; left:0; min-width:100%; min-height:100%;">
 
     <div class="container" style="margin-top: 50px;">
       <div class="row">
         <div class="col-md-4 col-md-offset-4">
-          <div class="account-wall">
+          <div class="rounded">
             <img class="profile-img" src="<?php echo base_url('assets/yasaki.png');?>" alt="">
               <form class="form-signin" action="<?php echo site_url('login/auth');?>" method="post">
                 <h2 class="form-signin-heading">Please Sign In</h2>

@@ -8,6 +8,7 @@ class Crud extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->library(array('form_validation'));
 		$this->load->helper(array('url','form'));
+
 	}
 
 	function index(){
@@ -54,5 +55,17 @@ class Crud extends CI_Controller{
 			);
 		$this->user_models->input_data($data,'tbl_users');
 		redirect('crud/index');
+	}
+
+	function edit(){
+
+		$data['tbl_users'] = $this->user_models->tampil_data()->result();
+		$user_name = $this->input->post('nama');
+		$user_email = $this->input->post('email');
+		$user_password = $this->input->post('password');
+
+		$this->user_models->edit($user_name,$user_email,$user_password);
+
+		redirect('crud');
 	}
 }

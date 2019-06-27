@@ -41,10 +41,13 @@
             </nav>
         </div>
     </div>
+
         <div class="container">
+        <hr>
           <div class="row">
             <div class="col-md-8 col-md-offset-2">
             <br>
+
             <center><h1>Data User</h1>
             <br>
 
@@ -104,13 +107,12 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="reset" class="btn btn-info">Reset</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                   </div>
                   <?php echo form_close();?>
               </div>
             </div>
-
-
             </center>
             <br>
               <table class="table" style="margin:20px auto;" >
@@ -134,6 +136,7 @@
                   </td>
                 </tr>
                 <?php } ?>
+
               </table>
             </div>
           </div>
@@ -142,8 +145,10 @@
 <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
+<?php if(validation_errors() != null){ ?>
 <script>
   $('#exampleModalCenter').modal('show');
 </script>
+<?php } ?>
 </body>
 </html>
