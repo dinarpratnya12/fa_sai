@@ -57,8 +57,8 @@ class Import extends CI_Controller {
 				// Load plugin PHPExcel nya
 				include APPPATH.'third_party/PHPExcel/PHPExcel.php';
 
-				$excelreader = new PHPExcel_Reader_Excel2007();
-				$loadexcel = $excelreader2->load('excel/'.$this->filename.'.xlsx'); // Load file yang tadi diupload ke folder excel
+				$excelreader2 = new PHPExcel_Reader_Excel2007();
+				$loadexcel2 = $excelreader2->load('excel/'.$this->filename.'.xlsx'); // Load file yang tadi diupload ke folder excel
 				$sheet = $loadexcel2->getActiveSheet()->toArray(null, true, true ,true);
 
 				// Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php

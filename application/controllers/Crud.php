@@ -43,29 +43,30 @@ class Crud extends CI_Controller{
 		}
 	}
 
-	function tambah_aksi(){
-		$user_name = $this->input->post('nama');
-		$user_email = $this->input->post('email');
-		$user_password = $this->input->post('password');
-
-		$data = array(
-			'nama' => $user_name,
-			'email' => $user_email,
-			'password' => $user_password
-			);
-		$this->user_models->input_data($data,'tbl_users');
-		redirect('crud/index');
-	}
-
 	function edit(){
 
-		$data['tbl_users'] = $this->user_models->tampil_data()->result();
-		$user_name = $this->input->post('nama');
-		$user_email = $this->input->post('email');
-		$user_password = $this->input->post('password');
+		$data['tbl_users']='Update Data User';
+        $this->load->model('user_models');
+        $data['edit']=$this->user_models->edit_user($user_id);
+        $this->load->view('user_view', $data);
+	}
 
-		$this->user_models->edit($user_name,$user_email,$user_password);
+	function simpan_edit_user()
+    {
+        $user_id = $this->input->post('user_id');
+        $user_name = $this->input->post('user_name$user_name');
+        $user_email = $this->input->post('user_email');
+        $user_password = $this->input->post('user_password');
 
-		redirect('crud');
+        $data['tbl_users'] = 'Update Data User';
+        $this->load->model('user_model');
+        $data['edit'] = $this->user_model->simpan_edit_user($user_id, $user_name, $user_email, $user_password);
+        $data['notifikasi'] = 'Data telah berhasil disimpan';
+        $this->load->view('notifikasi', $data);
+    }
+
+	function hapus(){
+		$this->db->delete('tbl_users', array('user_id'=>$id));
+		redirect('crud/index');
 	}
 }

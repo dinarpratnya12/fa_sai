@@ -294,7 +294,11 @@
     <div class="col-lg-4"></div>
     <div class="col-lg-4">
     <div style="background-color: #f2f2f2; padding: 10px">
+    <br>
+    <center>Pilih periode yang akan anda compare :</center>
+    <br>
         <div class="form-group">
+        <br>
             <select class="form-control" name="periode">
                 <option class="hidden" selected disabled>Pilih Periode</option>
                 <?php
@@ -305,10 +309,11 @@
             </select>
             <br>
             <br>
+            <center><button class="btn btn-success">Submit</button></center>
             <br>
             <br>
             <br>
-            <br>
+
 
         </div>
     </div>
