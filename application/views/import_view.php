@@ -75,16 +75,16 @@
                             <br>
                             <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
                         </form>
-                        <br>
-
                         <?php if(!isset($_POST['preview'])): ?>
+                        <center><h4>Data Invoice</h4></center>
+                        <br>
                         <div class="table-responsive-sm">
                             <table class="table table-striped table-bordered text" cellpadding="" id="example" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Buppin Number</th>
                                         <th>Supplier</th>
-                                        <th>Price Invoice(@1)</th>
+                                        <th>Price(@1)</th>
                                         <th>Periode</th>
                                     </tr>
                                 </thead>
@@ -92,7 +92,9 @@
                                     if( ! empty($data_invoice)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
                                         foreach($data_invoice as $data){ // Lakukan looping pada variabel siswa dari controller
                                             echo "<tr>";
-                                            echo "<td>".$data->buppin_number."</td>";
+                                            $str = $data->buppin_number;
+                                            $str2 = str_replace("-","",$str);
+                                            echo "<td>".$str2."</td>";
                                             echo "<td>".$data->supplier."</td>";
                                             echo "<td>".$data->price_invoicesatu."</td>";
                                             echo "<td>".$data->periode."</td>";
@@ -119,7 +121,7 @@
                                 <thead>
                                     <th>Buppin Number</th>
                                     <th>Supplier</th>
-                                    <th>Price Invoice (@1)</th>
+                                    <th>Price(@1)</th>
                                     <th>Periode</th>
                                 </thead>
                                 <?php
@@ -132,7 +134,7 @@
                                         $buppin_number = $row['C'];
                                         $supplier = $row['E'];
                                         $price_invoicesatu = $row['H'];
-                                        $periode = $row['N'];
+                                        $periode = $row['I'];
 
                                         if($numrow > 1){
                                             if($row['C'] != "" || $row['C'] != null){
@@ -192,16 +194,16 @@
                             <br>
                             <button type="submit" class="btn btn-primary" name="preview2" value="Preview2">Preview</button>
                         </form>
-                        <br>
-
                         <?php if(!isset($_POST['preview2'])): ?>
+                        <center><h4>Data Penawaran</h4></center>
+                        <br>
                         <div class="table-responsive-sm">
                             <table class="table table-striped table-bordered text2" cellpadding="" id="example2" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th class="th-sm">Buppin Number</th>
                                         <th class="th-sm">Supplier</th>
-                                        <th class="th-sm">Price Penawaran(@1)</th>
+                                        <th class="th-sm">Price(@1)</th>
                                         <th class="th-sm">Periode</th>
                                     </tr>
                                 </thead>
@@ -235,7 +237,7 @@
                                 <thead>
                                     <th>Buppin Number</th>
                                     <th>Supplier</th>
-                                    <th>Price Penawaran(@1)</th>
+                                    <th>Price(@1)</th>
                                     <th>Periode</th>
                                 </thead>
                                 <?php
