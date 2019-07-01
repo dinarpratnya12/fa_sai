@@ -84,7 +84,7 @@
                                     <tr>
                                         <th>Buppin Number</th>
                                         <th>Supplier</th>
-                                        <th>Price(@1)</th>
+                                        <th>Price</th>
                                         <th>Periode</th>
                                     </tr>
                                 </thead>
@@ -96,7 +96,7 @@
                                             $str2 = str_replace("-","",$str);
                                             echo "<td>".$str2."</td>";
                                             echo "<td>".$data->supplier."</td>";
-                                            echo "<td>".$data->price_invoicesatu."</td>";
+                                            echo "<td>".$data->price_total."</td>";
                                             echo "<td>".$data->periode."</td>";
                                             echo "</tr>";
                                         }
@@ -121,7 +121,8 @@
                                 <thead>
                                     <th>Buppin Number</th>
                                     <th>Supplier</th>
-                                    <th>Price(@1)</th>
+                                    <th>Price
+                                    </th>
                                     <th>Periode</th>
                                 </thead>
                                 <?php
@@ -130,11 +131,15 @@
                                     unset($sheet[1]);
 
                                     foreach($sheet as $row){
+                                        $qty_int = (int)$row['D'];
+                                        $perseribu_int = (int)$row['G'];
+                                        $total =  $perseribu_int/1000*$qty_int;
+
                                     // Ambil data pada excel sesuai Kolom
                                         $buppin_number = $row['C'];
                                         $supplier = $row['E'];
-                                        $price_invoicesatu = $row['H'];
-                                        $periode = $row['I'];
+                                        $price_total = $total;
+                                        // $periode = $row['I'];
 
                                         if($numrow > 1){
                                             if($row['C'] != "" || $row['C'] != null){
@@ -142,8 +147,8 @@
                                                 echo "<tr>";
                                                 echo "<td>".$buppin_number."</td>";
                                                 echo "<td>".$supplier."</td>";
-                                                echo "<td>".$price_invoicesatu."</td>";
-                                                echo "<td>".$periode."</td>";
+                                                echo "<td>".$price_total."</td>";
+                                                // echo "<td>".$periode."</td>";
                                                 echo "</tr>";
                                             }
                                         }
@@ -203,7 +208,7 @@
                                     <tr>
                                         <th class="th-sm">Buppin Number</th>
                                         <th class="th-sm">Supplier</th>
-                                        <th class="th-sm">Price(@1)</th>
+                                        <th class="th-sm">Price</th>
                                         <th class="th-sm">Periode</th>
                                     </tr>
                                 </thead>
@@ -214,7 +219,7 @@
                                             echo "<td>".$data->GCT_COMP_NO."</td>";
                                             echo "<td>".$data->SPPLY_NM."</td>";
                                             echo "<td>".$data->FIS_PRICE."</td>";
-                                            echo "<td>".$data->PERIOD."</td>";
+                                            // echo "<td>".$data->PERIOD."</td>";
                                             echo "</tr>";
                                         }
                                     }else{ // Jika data tidak ada
@@ -249,14 +254,14 @@
                                         $GCT_COMP_NO = $row['A'];
                                         $SPPLY_NM = $row['P'];
                                         $FIS_PRICE = $row['I'];
-                                        $PERIOD = $row['AC'];
+                                        // $PERIOD = $row['AC'];
 
                                         if($numrow > 1){
                                             echo "<tr>";
                                             echo "<td>".$GCT_COMP_NO."</td>";
                                             echo "<td>".$SPPLY_NM."</td>";
                                             echo "<td>".$FIS_PRICE."</td>";
-                                            echo "<td>".$PERIOD."</td>";
+                                            // echo "<td>".$PERIOD."</td>";
                                             echo "</tr>";
                                         }
                                         $numrow++; // Tambah 1 setiap kali looping

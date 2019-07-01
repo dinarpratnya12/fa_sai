@@ -87,25 +87,31 @@ class Import extends CI_Controller {
 		unset($sheet[1]);
 		unset($sheet[2]);
 
-		echo count($sheet);
+		//echo count($sheet);
 
 		foreach($sheet as $row){
 				if($row['A'] != "" || $row['A'] != null){
+					// $date = $row['B'];
+					// var_dump($row['B']);exit();
+					$tanggal = date('d-m-y',strtotime($row['B']));
+					//echo $tanggal;
+					$persatu = $row['G']/1000;
+					$total =  $row['G']/1000*$row['D'];
 					array_push($data, array(
-						'invoice_number' => $row['A'], // Ambil data NIS
-						'invoice_date' => $row['B'], // Ambil data nama
-						'buppin_number' => $row['C'], // Ambil data jenis kelamin
-						'qty_invoice' => $row['D'], // Ambil data alamat
-						'supplier' => $row['E'], // Ambil data alamat
-						'kind' => $row['F'], // Ambil data alamat
-						'price_invoiceseribu' => $row['G'], // Ambil data alamat
-						'price_invoicesatu' => $row['H'], // Ambil data alamat
-						'amount_invoice' => $row['I'], // Ambil data alamat
-						'price_quotsatu' => $row['J'], // Ambil data alamat
-						'amount_quot' => $row['K'], // Ambil data alamat
-						'diff_amount' => $row['L'], // Ambil data alamat
-						'diff_percentage' => $row['M'], // Ambil data alamat
-						'periode' => $row['N'], // Ambil data alamat
+						'invoice_number' => $row['A'], // Ambil data invoice number
+						'invoice_date' => $tanggal, // Ambil data invoice date
+						'buppin_number' => $row['C'], // Ambil data bummpin number
+						'qty_invoice' => $row['D'], // Ambil data qty invoice
+						'supplier' => $row['E'], // Ambil data supplier
+						'kind' => $row['F'], // Ambil data kind
+						'price_invoiceseribu' => $row['G'], // Ambil data price perseribu
+						'price_invoicesatu' => $persatu, // Ambil data price persatu
+						'price_total' => $total // Ambil data price total
+						// 'price_quotsatu' => $row['J'], // Ambil data
+						// 'amount_quot' => $row['K'], // Ambil data
+						// 'diff_amount' => $row['L'], // Ambil data
+						// 'diff_percentage' => $row['M'], // Ambil data
+						// 'periode' => $row['N'], // Ambil data
 					));
 				}
 			//$numrow++; // Tambah 1 setiap kali looping
@@ -135,35 +141,35 @@ class Import extends CI_Controller {
 
 				if($row2['A'] != ""){
 					array_push($data2, array(
-						'GCT_COMP_NO' => $row2['A'], // Ambil data NIS
-						'OW_ID' => $row2['B'], // Ambil data nama
-						'PRICE_ID' => $row2['C'], // Ambil data jenis kelamin
-						'PriceIdDesc' => $row2['D'], // Ambil data alamat
-						'EFFECT_DT' => $row2['E'], // Ambil data alamat
-						'EXPIRE_DT' => $row2['F'], // Ambil data alamat
-						'TENTATIVE_FL' => $row2['G'], // Ambil data alamat
-						'CLASS_CD' => $row2['H'], // Ambil data alamat
-						'FIS_PRICE' => $row2['I'], // Ambil data alamat
-						'FIS_CRCY' => $row2['J'], // Ambil data alamat
-						'BASE_PRICE' => $row2['K'], // Ambil data alamat
-						'BASE_CRCY' => $row2['L'], // Ambil data alamat
-						'BASE_UOM' => $row2['M'], // Ambil data alamat
-						'SHT_NO' => $row2['N'], // Ambil data alamat
-						'SPPLY_ID' => $row2['O'], // Ambil data alamat
-						'SPPLY_NM' => $row2['P'], // Ambil data alamat
-						'CNTRY_CD' => $row2['Q'], // Ambil data alamat
-						'INCO' => $row2['R'], // Ambil data alamat
-						'DUTY_FL' => $row2['S'], // Ambil data alamat
-						'CU_BASE_QUOTE' => $row2['T'], // Ambil data alamat
-						'CU_BASE_UOM' => $row2['U'], // Ambil data alamat
-						'CU_BASE_CRCY' => $row2['V'], // Ambil data alamat
-						'TOOL_COST_FL' => $row2['W'], // Ambil data alamat
-						'ONLY_TEST_FL' => $row2['X'], // Ambil data alamat
-						'MARK1' => $row2['Y'], // Ambil data alamat
-						'MARK2' => $row2['Z'], // Ambil data alamat
-						'MARK3' => $row2['AA'], // Ambil data alamat
-						'NOTE' => $row2['AB'], // Ambil data alamat
-						'PERIOD' => $row2['AC'], // Ambil data alamat
+						'GCT_COMP_NO' => $row2['A'], // Ambil data nomor
+						'OW_ID' => $row2['B'], // Ambil data ow id
+						'PRICE_ID' => $row2['C'], // Ambil data price id
+						'PriceIdDesc' => $row2['D'], // Ambil data periode desc
+						'EFFECT_DT' => $row2['E'], // Ambil data effect dt
+						'EXPIRE_DT' => $row2['F'], // Ambil data expire dt
+						'TENTATIVE_FL' => $row2['G'], // Ambil data tentative el
+						'CLASS_CD' => $row2['H'], // Ambil data class cd
+						'FIS_PRICE' => $row2['I'], // Ambil data fis price
+						'FIS_CRCY' => $row2['J'], // Ambil data fis crcy
+						'BASE_PRICE' => $row2['K'], // Ambil data base price
+						'BASE_CRCY' => $row2['L'], // Ambil data base crcy
+						'BASE_UOM' => $row2['M'], // Ambil data base uom
+						'SHT_NO' => $row2['N'], // Ambil data sht no
+						'SPPLY_ID' => $row2['O'], // Ambil data sppl id
+						'SPPLY_NM' => $row2['P'], // Ambil data sppl nm
+						'CNTRY_CD' => $row2['Q'], // Ambil data cntry cd
+						'INCO' => $row2['R'], // Ambil data inco
+						'DUTY_FL' => $row2['S'], // Ambil data duty fl
+						'CU_BASE_QUOTE' => $row2['T'], // Ambil data cu base quote
+						'CU_BASE_UOM' => $row2['U'], // Ambil data cu base uom
+						'CU_BASE_CRCY' => $row2['V'], // Ambil data cu base crcy
+						'TOOL_COST_FL' => $row2['W'], // Ambil data tool cost fl
+						'ONLY_TEST_FL' => $row2['X'], // Ambil data only test fl
+						'MARK1' => $row2['Y'], // Ambil data mark1
+						'MARK2' => $row2['Z'], // Ambil data mark2
+						'MARK3' => $row2['AA'], // Ambil data mark3
+						'NOTE' => $row2['AB'], // Ambil data note
+						// 'PERIOD' => $row2['AC'], // Ambil data
 					));
 				}
 
