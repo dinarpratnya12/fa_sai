@@ -295,14 +295,15 @@
 <div class="row">
 <br>
 <div class= "container">
-    <div class="col-lg-4"></div>
-    <div class="col-lg-4">
+    <div class="col-lg-12"></div>
+    <div class="col-lg-12">
     <div style="background-color: #f2f2f2; padding: 10px">
     <br>
     <center>Pilih periode yang akan anda compare :</center>
     <br>
         <div class="form-group">
         <br>
+            <form method="post">
             <select class="form-control" name="periode">
                 <option class="hidden" selected disabled>Pilih Periode</option>
                 <?php
@@ -313,10 +314,55 @@
             </select>
             <br>
             <br>
-            <center><button class="btn btn-success">Submit</button></center>
+            <input type="hidden" name="compare" value="Compare">
+            <center><button type="submit" class="btn btn-success">Submit</button></center>
+            </form>
             <br>
             <br>
             <br>
+
+            <?php if(isset($_POST['compare'])){ ?>
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Buppin Number Invoice</th>
+                        <th>Price Invoice</th>
+                        <th>Buppin Number Penawaran</th>
+                        <th>Price Penawaran</th>
+                        <th>Ket</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                    $no = 0;
+                    foreach ($data_komper as $row):
+                    $no++ ?>
+                        <tr>
+                            <td><?=$no?>
+                            <td><?=$row->buppin_number ?></td>
+                            <td><?=$row->price_invoicesatu ?></td>
+                            <td><?=$row->GCT_COMP_NO ?></td>
+                            <td><?=$row->BASE_PRICE ?></td>
+                            <td>
+                                <?php
+                                $sisa = $row->price_invoicesatu - $row->BASE_PRICE;
+                                $str3 = str_replace("-","",$sisa);
+                                if($sisa > 0){
+                                    echo "Lebih Mahal ".$sisa;
+                                }else if($sisa < 0){
+                                    echo "Lebih Murah ".$str3;
+                                }else{
+                                    echo "Sama";
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <tbody>
+            </table>
+            <?php } ?>
 
 
         </div>

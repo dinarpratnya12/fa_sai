@@ -8,12 +8,16 @@ class Import extends CI_Controller {
 
 		$this->load->model('Invoice_models');
 		$this->load->model('Penawaran_models');
+		$this->load->model(array('Komper_model'));
 	}
 
 	public function index(){
 		$this->load->view('Header/header');
 		$data['data_penawaran'] = $this->db->get('data_penawaran')->result();
 		$data['data_invoice'] = $this->Invoice_models->view();
+		if(isset($_POST['compare'])){
+			$data['data_komper'] = $this->Komper_model->get_by_role();
+		}
 		$this->load->view('import_view', $data);
 
 	}
@@ -181,6 +185,14 @@ class Import extends CI_Controller {
 
 		redirect("Import"); // Redirect ke halaman awal (ke controller siswa fungsi index)
 	}
+
+	// public function komper(){
+
+	// 	$this->db->select('data_invoice.buppin_number, data_invoice.price_invoicesatu, data_penawaran.GCT_COMP_NO, data_penawaran.BASE_PRICE from data_invoice inner join data_penawaran on data_invoice.buppin_number = data_penawaran.GCT_COMP_NO');
+	// 	$query = $this->db->get();
+ 	// 	return $query->result();
+
+	// }
 
 
 
