@@ -10,8 +10,8 @@ class Invoice_models extends CI_Model {
 		$this->load->library('upload'); // Load librari upload
 
 		$config['upload_path'] = './excel/';
-		$config['allowed_types'] = 'xlsx';
-		$config['max_size']	= '2048';
+		$config['allowed_types'] = 'xls|xlsx';
+		$config['max_size']	= '100000';
 		$config['overwrite'] = true;
 		$config['file_name'] = $filename;
 

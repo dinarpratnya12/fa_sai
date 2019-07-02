@@ -77,7 +77,7 @@ class Import extends CI_Controller {
 		include APPPATH.'third_party/PHPExcel/PHPExcel.php';
 
 		$excelreader = new PHPExcel_Reader_Excel2007();
-		$loadexcel = $excelreader->load('excel/'.$this->filename.'.xlsx'); // Load file yang telah diupload ke folder excel
+		$loadexcel = PHPExcel_IOFactory::load('excel/'.$this->filename.'.xlsx'); // Load file yang telah diupload ke folder excel
 		// $sheet = $loadexcel->getSheet(0)->toArray(null, true, true ,true);
 		$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 
@@ -85,7 +85,6 @@ class Import extends CI_Controller {
 		$data = array();
 		//$numrow = 1;
 		unset($sheet[1]);
-		unset($sheet[2]);
 
 		//echo count($sheet);
 
@@ -100,7 +99,7 @@ class Import extends CI_Controller {
 					array_push($data, array(
 						'invoice_number' => $row['A'], // Ambil data invoice number
 						'invoice_date' => $tanggal, // Ambil data invoice date
-						'buppin_number' => $row['C'], // Ambil data bummpin number
+						'buppin_number' => str_replace('-','',$row['C']), // Ambil data bummpin number
 						'qty_invoice' => $row['D'], // Ambil data qty invoice
 						'supplier' => $row['E'], // Ambil data supplier
 						'kind' => $row['F'], // Ambil data kind
@@ -133,9 +132,9 @@ class Import extends CI_Controller {
 
 		// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
 		$data2 = array();
-		$numrow = 1;
+		$numrow = 0;
 		unset($sheet2[1]);
-		unset($sheet2[2]);
+		// unset($sheet2[2]);
 
 		foreach($sheet2 as $row2){
 

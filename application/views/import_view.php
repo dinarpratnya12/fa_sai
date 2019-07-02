@@ -45,14 +45,12 @@
 </head>
 <body>
 <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
-<script>
-	$(document).ready(function(){
-		// Sembunyikan alert validasi kosong
-		$("#kosong").hide();
-	});
-	</script>
+
     <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
+
+
+<script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script>
 </head>
 <body>
 
@@ -121,14 +119,13 @@
                                 <thead>
                                     <th>Buppin Number</th>
                                     <th>Supplier</th>
-                                    <th>Price
-                                    </th>
-                                    <th>Periode</th>
+                                    <th>Price</th>
+                                    <!-- <th>Periode</th> -->
                                 </thead>
                                 <?php
                                     $numrow = 1;
                                     $kosong = 0;
-                                    unset($sheet[1]);
+                                    // unset($sheet[1]);
 
                                     foreach($sheet as $row){
                                         $qty_int = (int)$row['D'];
@@ -209,7 +206,7 @@
                                         <th class="th-sm">Buppin Number</th>
                                         <th class="th-sm">Supplier</th>
                                         <th class="th-sm">Price</th>
-                                        <th class="th-sm">Periode</th>
+                                        <!-- <th class="th-sm">Periode</th> -->
                                     </tr>
                                 </thead>
                                 <?php
@@ -248,7 +245,7 @@
                                 <?php
                                     $numrow = 1;
                                     $kosong = 0;
-                                    unset($sheet[1]);
+                                    // unset($sheet[1]);
                                     foreach($sheet as $row){
                                         // Ambil data pada excel sesuai Kolom
                                         $GCT_COMP_NO = $row['A'];
@@ -328,10 +325,15 @@
 </div>
 </div>
 
-<script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script>
 <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
 
+<script>
+	$(document).ready(function(){
+		// Sembunyikan alert validasi kosong
+		$("#kosong").hide();
+	});
+	</script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable(
