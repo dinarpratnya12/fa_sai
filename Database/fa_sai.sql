@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 26 Jun 2019 pada 06.27
+-- Waktu pembuatan: 05 Jul 2019 pada 05.55
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -31,18 +31,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `data_invoice` (
   `id_` int(11) NOT NULL,
   `invoice_number` varchar(100) NOT NULL,
-  `invoice_date` varchar(100) NOT NULL,
+  `invoice_date` date NOT NULL,
   `buppin_number` varchar(100) NOT NULL,
   `qty_invoice` varchar(100) NOT NULL,
   `supplier` varchar(100) NOT NULL,
   `kind` varchar(100) NOT NULL,
   `price_invoiceseribu` varchar(100) NOT NULL,
   `price_invoicesatu` varchar(100) NOT NULL,
-  `amount_invoice` varchar(100) NOT NULL,
-  `price_quotsatu` varchar(100) NOT NULL,
-  `amount_quot` varchar(100) NOT NULL,
-  `diff_amount` varchar(100) NOT NULL,
-  `diff_percentage` varchar(100) NOT NULL,
+  `price_total` varchar(100) NOT NULL,
   `periode` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -122,7 +118,11 @@ CREATE TABLE `tbl_users` (
 
 INSERT INTO `tbl_users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_level`) VALUES
 (1, 'Administrator', 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1'),
-(2, 'Dinarpratnya', 'Dinarpratnya12@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2');
+(2, 'Dinarpratnya', 'Dinarpratnya12@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2'),
+(3, 'tes', 't@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2'),
+(4, '1', '1@g.c', 'c4ca4238a0b923820dcc509a6f75849b', '2'),
+(5, 'Dinarpratnya Ningrum', 'Dinarpratnya12@gmail.com', '9f6e6800cfae7749eb6c486619254b9c', '2'),
+(6, 'Dinarpratnya Ningrum', 'Dinarpratnya@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2');
 
 --
 -- Indexes for dumped tables
@@ -166,7 +166,7 @@ ALTER TABLE `data_penawaran`
 -- AUTO_INCREMENT untuk tabel `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
