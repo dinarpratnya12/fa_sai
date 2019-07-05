@@ -168,7 +168,7 @@
                             <button type="submit" class="btn btn-primary" name="preview2" value="Preview2">Preview</button>
                         </form>
                         <?php if(!isset($_POST['preview2'])): ?>
-                        
+
                         <?php endif ?>
                         <?php
                             if(isset($_POST['preview2'])){ // Jika user menekan tombol Preview pada form
@@ -330,6 +330,8 @@
     </div>
 </div>
 </div>
+</div>
+    </section>
 
 <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>

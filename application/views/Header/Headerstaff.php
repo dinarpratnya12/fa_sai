@@ -85,13 +85,13 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="">
-                        <a href="<?php echo site_url('page/index');?>">
+                        <a href="<?php echo site_url('page/staff');?>">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('import/index');?>">
+                        <a href="<?php echo site_url('import/index2');?>">
                             <i class="material-icons">swap_calls</i>
                             <span>Import Data</span>
                         </a>
@@ -103,22 +103,16 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?php echo site_url('lihat_data/invoice');?>" class="menu-toggle">
+                                <a href="<?php echo site_url('lihat_data/invoice2');?>" class="menu-toggle">
                                     <span>Data Invoice</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('lihat_data/penawaran');?>" class="menu-toggle">
+                                <a href="<?php echo site_url('lihat_data/penawaran2');?>" class="menu-toggle">
                                     <span>Data Penawaran</span>
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('crud/index');?>">
-                            <i class="material-icons">settings</i>
-                            <span>Menage People</span>
-                        </a>
                     </li>
                 </ul>
 

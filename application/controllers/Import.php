@@ -22,6 +22,17 @@ class Import extends CI_Controller {
 		$this->load->view('Header/footerfix');
 
 	}
+	public function index2(){
+		$this->load->view('Header/headerstaff');
+		$data['data_penawaran'] = $this->db->get('data_penawaran')->result();
+		$data['data_invoice'] = $this->Invoice_models->view();
+		if(isset($_POST['compare'])){
+			$data['data_komper'] = $this->Komper_model->get_by_role($this->input->post('periode'));
+		}
+		$this->load->view('import_view', $data);
+		$this->load->view('Header/footerfix');
+
+	}
 
 	public function form(){
 		$data = array(); // Buat variabel $data sebagai array

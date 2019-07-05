@@ -21,7 +21,7 @@ class Page extends CI_Controller{
 
   function staff(){
     //Allowing akses to staff only
-    $this->load->view('Header/headerfix');
+    $this->load->view('Header/headerstaff');
     if($this->session->userdata('level')==='2'){
       $this->load->view('dashboard');
     }else{

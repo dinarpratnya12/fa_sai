@@ -63,48 +63,13 @@
 <div class="container" style="margin-top:0px !important;">
     <div class="row">
         <div class="container-fluid">
-            <h3>LIST DATA</h3>
+            <h3>LIST DATA PENAWARAN</h3>
             <hr>
             <div class="row">
-                <!-- Form invoice -->
-                <div class="col-lg-6">
-                    <div style="background-color: #fcab42; padding: 10px">
-                        <center><h4>Data Invoice</h4></center>
-                        <br>
-                        <div class="table-responsive-sm">
-                            <table class="table text warnain" cellpadding="" id="example" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Buppin Number</th>
-                                        <th>Supplier</th>
-                                        <th>Price</th>
-                                        <th>Periode</th>
-                                    </tr>
-                                </thead>
-                                <?php
-                                    if( ! empty($data_invoice)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
-                                        foreach($data_invoice as $data){ // Lakukan looping pada variabel siswa dari controller
-                                            echo "<tr>";
-                                            $str = $data->buppin_number;
-                                            $str2 = str_replace("-","",$str);
-                                            echo "<td>".$str2."</td>";
-                                            echo "<td>".$data->supplier."</td>";
-                                            echo "<td>".$data->price_total."</td>";
-                                            echo "<td>".$data->periode."</td>";
-                                            echo "</tr>";
-                                        }
-                                    }else{ // Jika data tidak ada
-                                        echo "<tr><td colspan='14'>Data tidak ada</td></tr>";
-                                    }
-                                ?>
-                            </table>
-                        </div>
-                    </div>
-                </div>
 
 
                 <!-- Form penawaran -->
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <div style="background-color: #fcab42; padding: 10px">
                         <center><h4>Data Penawaran</h4></center>
                         <br>
