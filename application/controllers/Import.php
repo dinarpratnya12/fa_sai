@@ -12,13 +12,14 @@ class Import extends CI_Controller {
 	}
 
 	public function index(){
-		$this->load->view('Header/header');
+		$this->load->view('Header/headerfix');
 		$data['data_penawaran'] = $this->db->get('data_penawaran')->result();
 		$data['data_invoice'] = $this->Invoice_models->view();
 		if(isset($_POST['compare'])){
-			$data['data_komper'] = $this->Komper_model->get_by_role();
+			$data['data_komper'] = $this->Komper_model->get_by_role($this->input->post('periode'));
 		}
 		$this->load->view('import_view', $data);
+		$this->load->view('Header/footerfix');
 
 	}
 
@@ -95,11 +96,25 @@ class Import extends CI_Controller {
 		foreach($sheet as $row){
 				if($row['A'] != "" || $row['A'] != null){
 					// $date = $row['B'];
-					// var_dump($row['B']);exit();
-					$tanggal = date('d-m-y',strtotime($row['B']));
-					//echo $tanggal;
+					// var_dump($row['B']);
+					$tanggal = date('y-m-d',strtotime($row['B']));
+					// var_dump($tanggal);exit();
+					// echo $tanggal;
 					$persatu = $row['G']/1000;
 					$total =  $row['G']/1000*$row['D'];
+
+					$tahun = '20'.date('y',strtotime($row['B']));
+					$month = date('m',strtotime($row['B']));
+
+					$periode = "";
+					if($month == 12){
+						$periode = "Dec ".$tahun." - May ".($tahun+1);
+					}else if($month >= 1 && $month <= 5){
+						$periode = "Dec ".($tahun-1)." - May ".$tahun;
+					}else if($month >= 6 && $month <= 11){
+						$periode = "Jun ".$tahun." - Nov ".$tahun;
+					}
+
 					array_push($data, array(
 						'invoice_number' => $row['A'], // Ambil data invoice number
 						'invoice_date' => $tanggal, // Ambil data invoice date
@@ -109,12 +124,8 @@ class Import extends CI_Controller {
 						'kind' => $row['F'], // Ambil data kind
 						'price_invoiceseribu' => $row['G'], // Ambil data price perseribu
 						'price_invoicesatu' => $persatu, // Ambil data price persatu
-						'price_total' => $total // Ambil data price total
-						// 'price_quotsatu' => $row['J'], // Ambil data
-						// 'amount_quot' => $row['K'], // Ambil data
-						// 'diff_amount' => $row['L'], // Ambil data
-						// 'diff_percentage' => $row['M'], // Ambil data
-						// 'periode' => $row['N'], // Ambil data
+						'price_total' => $total, // Ambil data price total
+						'periode' => $periode, // Ambil data periode
 					));
 				}
 			//$numrow++; // Tambah 1 setiap kali looping
@@ -134,11 +145,15 @@ class Import extends CI_Controller {
 		$loadexcel2 = $excelreader2->load('excel/'.$this->filename.'.xlsx'); // Load file yang telah diupload ke folder excel
 		$sheet2 = $loadexcel2->getActiveSheet()->toArray(null, true, true ,true);
 
+		// $highesColumn = $loadexcel2->getActiveSheet()->getHighesColumn();
+
 		// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
 		$data2 = array();
 		$numrow = 0;
 		unset($sheet2[1]);
 		// unset($sheet2[2]);
+		// echo $highesColumn;
+		// exit();
 
 		foreach($sheet2 as $row2){
 
@@ -159,7 +174,7 @@ class Import extends CI_Controller {
 						'BASE_UOM' => $row2['M'], // Ambil data base uom
 						'SHT_NO' => $row2['N'], // Ambil data sht no
 						'SPPLY_ID' => $row2['O'], // Ambil data sppl id
-						'SPPLY_NM' => $row2['P'], // Ambil data sppl nm
+						'SPPLY_NM' => str_replace('YC Purchasing','HIB',$row2['P']), // Ambil data sppl nm
 						'CNTRY_CD' => $row2['Q'], // Ambil data cntry cd
 						'INCO' => $row2['R'], // Ambil data inco
 						'DUTY_FL' => $row2['S'], // Ambil data duty fl
@@ -172,7 +187,7 @@ class Import extends CI_Controller {
 						'MARK2' => $row2['Z'], // Ambil data mark2
 						'MARK3' => $row2['AA'], // Ambil data mark3
 						'NOTE' => $row2['AB'], // Ambil data note
-						// 'PERIOD' => $row2['AC'], // Ambil data
+						'PERIOD' => $row2['AC'], // Ambil data periode
 					));
 				}
 

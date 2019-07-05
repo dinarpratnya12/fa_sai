@@ -9,30 +9,32 @@ class Page extends CI_Controller{
 
   function index(){
     //Allowing akses to admin only
-    $this->load->view('Header/header');
+    $this->load->view('Header/headerfix');
       if($this->session->userdata('level')==='1'){
-          $this->load->view('dashboard_view');
+          $this->load->view('dashboard');
       }else{
           echo "Access Denied";
       }
+      $this->load->view('Header/footerfix');
 
   }
 
   function staff(){
     //Allowing akses to staff only
-    $this->load->view('Header/header');
+    $this->load->view('Header/headerfix');
     if($this->session->userdata('level')==='2'){
-      $this->load->view('dashboard_view');
+      $this->load->view('dashboard');
     }else{
         echo "Access Denied";
     }
+    $this->load->view('Header/footerfix');
   }
 
   function author(){
     //Allowing akses to author only
-    $this->load->view('Header/header');
+    // $this->load->view('Header/header');
     if($this->session->userdata('level')==='3'){
-      $this->load->view('dashboard_view');
+      $this->load->view('dashboard');
     }else{
         echo "Access Denied";
     }

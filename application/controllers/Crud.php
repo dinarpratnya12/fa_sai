@@ -12,9 +12,10 @@ class Crud extends CI_Controller{
 	}
 
 	function index(){
-
+		$this->load->view('Header/headercrud');
 		$data['tbl_users'] = $this->user_models->tampil_data()->result();
 		$this->load->view('user_view',$data);
+		$this->load->view('Header/footerfix');
 
 	}
 

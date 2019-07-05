@@ -54,7 +54,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" style="margin-top:0px !important;">
     <div class="row">
         <div class="container-fluid">
             <h3>Form Import</h3>
@@ -63,7 +63,7 @@
                 <!-- Form invoice -->
                 <div class="col-lg-6">
                     <div style="background-color: #f2f2f2; padding: 10px">
-                        <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format Invoice</a>
+                        <a href="<?php echo base_url("excel/Invoice File.xlsx"); ?>">Download Format Invoice</a>
                         <br>
 
                         <br>
@@ -74,36 +74,7 @@
                             <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
                         </form>
                         <?php if(!isset($_POST['preview'])): ?>
-                        <center><h4>Data Invoice</h4></center>
-                        <br>
-                        <div class="table-responsive-sm">
-                            <table class="table table-striped table-bordered text" cellpadding="" id="example" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>Buppin Number</th>
-                                        <th>Supplier</th>
-                                        <th>Price</th>
-                                        <th>Periode</th>
-                                    </tr>
-                                </thead>
-                                <?php
-                                    if( ! empty($data_invoice)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
-                                        foreach($data_invoice as $data){ // Lakukan looping pada variabel siswa dari controller
-                                            echo "<tr>";
-                                            $str = $data->buppin_number;
-                                            $str2 = str_replace("-","",$str);
-                                            echo "<td>".$str2."</td>";
-                                            echo "<td>".$data->supplier."</td>";
-                                            echo "<td>".$data->price_total."</td>";
-                                            echo "<td>".$data->periode."</td>";
-                                            echo "</tr>";
-                                        }
-                                    }else{ // Jika data tidak ada
-                                        echo "<tr><td colspan='14'>Data tidak ada</td></tr>";
-                                    }
-                                ?>
-                            </table>
-                        </div>
+
                         <?php endif ?>
                         <?php
                             if(isset($_POST['preview'])){ // Jika user menekan tombol Preview pada form
@@ -115,12 +86,12 @@
                         ?>
                         <?php if(isset($sheet)){?>
                         <div class="table-responsive-sm">
-                            <table class="table table-bordered text" cellpadding="" id="example">
+                            <table class="table table-striped table-bordered text" cellpadding="" id="example">
                                 <thead>
                                     <th>Buppin Number</th>
                                     <th>Supplier</th>
                                     <th>Price</th>
-                                    <!-- <th>Periode</th> -->
+                                    <th>Periode</th>
                                 </thead>
                                 <?php
                                     $numrow = 1;
@@ -186,7 +157,7 @@
                 <!-- Form penawaran -->
                 <div class="col-lg-6">
                     <div style="background-color: #f2f2f2; padding: 10px">
-                        <a href="<?php echo base_url("excel/format.xlsx"); ?>">Download Format Penawaran</a>
+                        <a href="<?php echo base_url("excel/Penawaran File.xlsx"); ?>">Download Format Penawaran</a>
                         <br>
 
                         <br>
@@ -197,34 +168,7 @@
                             <button type="submit" class="btn btn-primary" name="preview2" value="Preview2">Preview</button>
                         </form>
                         <?php if(!isset($_POST['preview2'])): ?>
-                        <center><h4>Data Penawaran</h4></center>
-                        <br>
-                        <div class="table-responsive-sm">
-                            <table class="table table-striped table-bordered text2" cellpadding="" id="example2" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th class="th-sm">Buppin Number</th>
-                                        <th class="th-sm">Supplier</th>
-                                        <th class="th-sm">Price</th>
-                                        <!-- <th class="th-sm">Periode</th> -->
-                                    </tr>
-                                </thead>
-                                <?php
-                                    if( ! empty($data_penawaran)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
-                                        foreach($data_penawaran as $data){ // Lakukan looping pada variabel siswa dari controller
-                                            echo "<tr>";
-                                            echo "<td>".$data->GCT_COMP_NO."</td>";
-                                            echo "<td>".$data->SPPLY_NM."</td>";
-                                            echo "<td>".$data->FIS_PRICE."</td>";
-                                            // echo "<td>".$data->PERIOD."</td>";
-                                            echo "</tr>";
-                                        }
-                                    }else{ // Jika data tidak ada
-                                         echo "<tr><td colspan='14'>Data tidak ada</td></tr>";
-                                    }
-                                ?>
-                            </table>
-                        </div>
+                        
                         <?php endif ?>
                         <?php
                             if(isset($_POST['preview2'])){ // Jika user menekan tombol Preview pada form
@@ -247,22 +191,24 @@
                                     $kosong = 0;
                                     // unset($sheet[1]);
                                     foreach($sheet as $row){
+
                                         // Ambil data pada excel sesuai Kolom
                                         $GCT_COMP_NO = $row['A'];
                                         $SPPLY_NM = $row['P'];
                                         $FIS_PRICE = $row['I'];
-                                        // $PERIOD = $row['AC'];
-
+                                        $PERIOD = $row['AC'];
+                                        if($row['A'] != ""){
                                         if($numrow > 1){
                                             echo "<tr>";
                                             echo "<td>".$GCT_COMP_NO."</td>";
                                             echo "<td>".$SPPLY_NM."</td>";
                                             echo "<td>".$FIS_PRICE."</td>";
-                                            // echo "<td>".$PERIOD."</td>";
+                                            echo "<td>".$PERIOD."</td>";
                                             echo "</tr>";
                                         }
                                         $numrow++; // Tambah 1 setiap kali looping
                                                     }
+                                                }
                                         echo "</table>";
                                         if($kosong > 0){
                                     ?>
@@ -301,13 +247,13 @@
     <br>
     <center>Pilih periode yang akan anda compare :</center>
     <br>
-        <div class="form-group">
+        <div class="">
         <br>
             <form method="post">
             <select class="form-control" name="periode">
                 <option class="hidden" selected disabled>Pilih Periode</option>
                 <?php
-                    $periode = $this->db->select('*')->from('data_penawaran')->group_by('PERIOD')->get()->result();
+                    $periode = $this->db->query('SELECT DISTINCT data_penawaran.PERIOD FROM data_penawaran,data_invoice')->result();
                     foreach($periode as $row) {?>
                 <option value="<?= $row->PERIOD;?>" ><?= $row->PERIOD;?></option>
                 <?php } ?>
@@ -325,11 +271,12 @@
                 <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>No</th>
                         <th>Buppin Number Invoice</th>
+                        <th>Supplier</th>
                         <th>Price Invoice</th>
-                        <th>Buppin Number Penawaran</th>
                         <th>Price Penawaran</th>
+                        <th>Beda Komper</th>
                         <th>Ket</th>
                     </tr>
                 </thead>
@@ -342,17 +289,30 @@
                         <tr>
                             <td><?=$no?>
                             <td><?=$row->buppin_number ?></td>
+                            <td><?=$row->supplier ?></td>
                             <td><?=$row->price_invoicesatu ?></td>
-                            <td><?=$row->GCT_COMP_NO ?></td>
                             <td><?=$row->BASE_PRICE ?></td>
                             <td>
                                 <?php
                                 $sisa = $row->price_invoicesatu - $row->BASE_PRICE;
                                 $str3 = str_replace("-","",$sisa);
                                 if($sisa > 0){
-                                    echo "Lebih Mahal ".$sisa;
+                                    echo "".$sisa;
                                 }else if($sisa < 0){
-                                    echo "Lebih Murah ".$str3;
+                                    echo "".$str3;
+                                }else{
+                                    echo "0";
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                $sisa = $row->price_invoicesatu - $row->BASE_PRICE;
+                                $str3 = str_replace("-","",$sisa);
+                                if($sisa > 0){
+                                    echo "Invoice Lebih Mahal";
+                                }else if($sisa < 0){
+                                    echo "Invoice Lebih Murah";
                                 }else{
                                     echo "Sama";
                                 }
