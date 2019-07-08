@@ -1,99 +1,9 @@
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
     <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
-
 <body class="theme-orange">
 
-    <!-- Top Bar -->
-    <nav class="navbar" style="position:fixed">
-        <div class="container-fluid">
-            <div class="navbar-header">
-            <img style="max-width:180px;"  src="<?php echo base_url('assets/fa.png');?>" alt="">
-            </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Profile -->
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="body">
-                                <li>
-                                    <a href="<?php echo site_url('login/logout');?>">
-                                    <i class="material-icons">input</i>
-                                    <span>Log Out</span>
-                                    </a>
-                                </li>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- #END# Profile -->
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- #Top Bar -->
-    <section>
-        <!-- Left Sidebar -->
-        <aside id="leftsidebar" class="sidebar">
-            <!-- User Info -->
-            <div class="user-info">
-                <div class="image">
-                    <img src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/images/user.png');?>" width="48" height="48" alt="User" />
-                </div>
-                <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('username');?></div>
-                    <div class="email"><?php echo $this->session->userdata('email');?></div>
-                </div>
-            </div>
-            <!-- #User Info -->
-            <!-- Menu -->
-            <div class="menu">
-                <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="">
-                        <a href="<?php echo site_url('page/index');?>">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('import/index');?>">
-                            <i class="material-icons">swap_calls</i>
-                            <span>Import Data</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="pages/helper-classes.html">
-                            <i class="material-icons">layers</i>
-                            <span>List Data</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('crud/index');?>">
-                            <i class="material-icons">settings</i>
-                            <span>Menage People</span>
-                        </a>
-                    </li>
-                </ul>
+    <!-- Ada di note -->
 
-            </div>
-            <!-- #Menu -->
-            <!-- Footer -->
-            <div class="legal">
-                <div class="copyright">
-                    &copy; 2019 <a>Finance Accounting PT. SAI</a>
-                </div>
-                <div class="version">
-                    <b>Version: </b> 1.0.0
-                </div>
-            </div>
-            <!-- #Footer -->
-        </aside>
-        <!-- #END# Left Sidebar -->
-    </section>
-
-    <!-- DASHBOARD -->
     <section class="content">
         <div class="container-fluid">
 
@@ -118,6 +28,7 @@
             <br>
 
               <!-- Button trigger modal -->
+
             <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
               Tambah User
             </a>
@@ -205,11 +116,33 @@
                     <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
                       Edit
                     </a>
-                    <button class="btn btn-warning">Delete</button>
+                    <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $this->session->userdata('user_id');?>"> Hapus</a>
 
 
                   </td>
                 </tr>
+                <!-- ============ MODAL HAPUS BARANG =============== -->
+                  <div class="modal fade" id="modal_hapus<?php echo $this->session->userdata('username');?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+                      <div class="modal-dialog">
+                      <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                          <h3 class="modal-title" id="myModalLabel">Hapus Barang</h3>
+                      </div>
+                      <form class="form-horizontal" method="post" action="<?php echo base_url().'crud/hapus'?>">
+                          <div class="modal-body">
+                              <p>Anda yakin mau menghapus <b><?php echo $this->session->userdata('username');?></b></p>
+                          </div>
+                          <div class="modal-footer">
+                              <input type="hidden" name="user_id" value="<?php echo $this->session->userdata('user_id');?>">
+                              <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                              <button class="btn btn-danger">Hapus</button>
+                          </div>
+                      </form>
+                      </div>
+                      </div>
+                  </div>
+              <!--END MODAL HAPUS BARANG-->
                 <?php } ?>
               </table>
               </div>
@@ -221,6 +154,7 @@
         <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
         <script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script>
+
 
         <?php if(validation_errors() != null){ ?>
         <script>

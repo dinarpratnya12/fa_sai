@@ -11,7 +11,7 @@ class Page extends CI_Controller{
     //Allowing akses to admin only
     $this->load->view('Header/headerfix');
       if($this->session->userdata('level')==='1'){
-          $this->load->view('dashboard');
+          $this->load->view('import_view');
       }else{
           echo "Access Denied";
       }
@@ -23,7 +23,7 @@ class Page extends CI_Controller{
     //Allowing akses to staff only
     $this->load->view('Header/headerstaff');
     if($this->session->userdata('level')==='2'){
-      $this->load->view('dashboard');
+      $this->load->view('import_view');
     }else{
         echo "Access Denied";
     }
@@ -34,7 +34,7 @@ class Page extends CI_Controller{
     //Allowing akses to author only
     // $this->load->view('Header/header');
     if($this->session->userdata('level')==='3'){
-      $this->load->view('dashboard');
+      $this->load->view('import_view');
     }else{
         echo "Access Denied";
     }

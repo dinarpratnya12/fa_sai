@@ -56,7 +56,7 @@
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
 
 
-<script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script>
+<!-- <script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script> -->
 </head>
 <body>
 
@@ -88,7 +88,27 @@
                                             $str = $data->buppin_number;
                                             $str2 = str_replace("-","",$str);
                                             echo "<td>".$str2."</td>";
-                                            echo "<td>".$data->supplier."</td>";
+                                            $strs = $data->supplier;
+                                            $strs = str_replace("IRC INOAC","PASI",$strs);
+                                            $strs = str_replace("NIDEC","PASI",$strs);
+                                            $strs = str_replace("NIFCO","PASI",$strs);
+                                            $strs = str_replace("PLASSES","PASI",$strs);
+                                            $strs = str_replace("PT. CATURINDO AGUNG","PASI",$strs);
+                                            $strs = str_replace("PT. INDONESIA KYOUEI","PASI",$strs);
+                                            $strs = str_replace("PT. KMK PLASTICS IND","PASI",$strs);
+                                            $strs = str_replace("PT. KOJIMA INDONESIA","PASI",$strs);
+                                            $strs = str_replace("PT. NANBU PLASTICS I","PASI",$strs);
+                                            $strs = str_replace("PT. OGATA INDONESIA","PASI",$strs);
+                                            $strs = str_replace("PT. PIOLAX INDONESIA","PASI",$strs);
+                                            $strs = str_replace("PT. SATO SEIKI","PASI",$strs);
+                                            $strs = str_replace("PT. TENMA INDONESIA","PASI",$strs);
+                                            $strs = str_replace("SCHLEMMER","PASI",$strs);
+                                            $strs = str_replace("TOKAI RIKA JP","PASI",$strs);
+                                            $strs = str_replace("YAMANASHI INDONESIA","PASI",$strs);
+                                            $strs = str_replace("TAP-AW","TAP",$strs);
+                                            $strs = str_replace("TAP-INJ","TAP",$strs);
+                                            $strs = str_replace("TAP-VT","TAP",$strs);
+                                            echo "<td>".$strs."</td>";
                                             echo "<td>".$data->price_total."</td>";
                                             echo "<td>".$data->periode."</td>";
                                             echo "</tr>";

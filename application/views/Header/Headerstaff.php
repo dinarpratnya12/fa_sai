@@ -83,13 +83,13 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="">
+                    <!-- <li class="header">MAIN NAVIGATION</li> -->
+                    <!-- <li class="">
                         <a href="<?php echo site_url('page/staff');?>">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="<?php echo site_url('import/index2');?>">
                             <i class="material-icons">swap_calls</i>
@@ -121,7 +121,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2019 <a>Finance Accounting PT. SAI</a>
+                    &copy; 2019 <a>PT. Surabaya Autocomp Indonesia</a>
                 </div>
                 <div class="version">
                     <b>Version: </b> 1.0.0

@@ -20,14 +20,12 @@ class Lihat_data extends CI_Controller{
   public function invoice(){
   $this->load->view('Header/headerfix');
 		$data['data_invoice'] = $this->Invoice_models->view();
-
     $this->load->view('invoice_data', $data);
     $this->load->view('Header/footerfix');
   }
   public function penawaran(){
     $this->load->view('Header/headerfix');
       $data['data_penawaran'] = $this->Penawaran_models->view();
-
       $this->load->view('penawaran_data', $data);
       $this->load->view('Header/footerfix');
     }
@@ -45,14 +43,12 @@ class Lihat_data extends CI_Controller{
     public function invoice2(){
     $this->load->view('Header/headerstaff');
       $data['data_invoice'] = $this->Invoice_models->view();
-
       $this->load->view('invoice_data', $data);
       $this->load->view('Header/footerfix');
     }
     public function penawaran2(){
       $this->load->view('Header/headerstaff');
         $data['data_penawaran'] = $this->Penawaran_models->view();
-
         $this->load->view('penawaran_data', $data);
         $this->load->view('Header/footerfix');
       }

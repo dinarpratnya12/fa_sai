@@ -83,13 +83,6 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <li class="header">MAIN NAVIGATION</li>
-                    <li class="">
-                        <a href="<?php echo site_url('page/index');?>">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a>
-                    </li>
                     <li>
                         <a href="<?php echo site_url('import/index');?>">
                             <i class="material-icons">swap_calls</i>
@@ -127,7 +120,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2019 <a>Finance Accounting PT. SAI</a>
+                    &copy; 2019 <a>PT. Surabaya Autocomp Indonesia</a>
                 </div>
                 <div class="version">
                     <b>Version: </b> 1.0.0
@@ -145,6 +138,5 @@
             <!-- CPU Usage -->
             <!-- <div class="row clearfix">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
                     <div class="body"> -->
                         <!-- <div id="real_time_chart" class="dashboard-flot-chart"> -->

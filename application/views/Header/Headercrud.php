@@ -31,6 +31,8 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/themes/all-themes.css');?>" rel="stylesheet" />
 
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
+
 </head>
 <style>
 .modal-backdrop {
@@ -85,13 +87,7 @@
         <!-- Menu -->
         <div class="menu">
             <ul class="list">
-                <li class="header">MAIN NAVIGATION</li>
-                <li class="">
-                    <a href="<?php echo site_url('page/index');?>">
-                        <i class="material-icons">home</i>
-                        <span>Home</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="<?php echo site_url('import/index');?>">
                         <i class="material-icons">swap_calls</i>
@@ -99,15 +95,28 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo site_url('lihat_data/index');?>">
+                    <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">layers</i>
+
                         <span>List Data</span>
                     </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="<?php echo site_url('lihat_data/invoice');?>" class="menu-toggle">
+                                <span>Data Invoice</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('lihat_data/penawaran');?>" class="menu-toggle">
+                                <span>Data Penawaran</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="<?php echo site_url('crud/index');?>">
                         <i class="material-icons">settings</i>
-                        <span>Menage People</span>
+                        <span>Manage People</span>
                     </a>
                 </li>
             </ul>
@@ -117,7 +126,7 @@
         <!-- Footer -->
         <div class="legal">
             <div class="copyright">
-                &copy; 2019 <a>Finance Accounting PT. SAI</a>
+                &copy; 2019 <a>PT. Surabaya Autocomp Indonesia</a>
             </div>
             <div class="version">
                 <b>Version: </b> 1.0.0

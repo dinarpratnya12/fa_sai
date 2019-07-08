@@ -56,7 +56,7 @@
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
 
 
-<script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script>
+<!-- <script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script> -->
 </head>
 <body>
 
@@ -89,16 +89,21 @@
                                             echo "<tr>";
                                             echo "<td>".$data->GCT_COMP_NO."</td>";
                                             $strsup = $data->SPPLY_NM;
-                                            $strsup2 = str_replace("YC Purchasing","HIB",$strsup);
-                                            $strsup3 = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);
-                                            $strsup4 = str_replace("Elcom", "COMBU-E", $strsup);
-                                            $strsup5 = str_replace("Federal Mogul (Thailand) Ltd.","FMTH", $strsup);
-                                            $strsup6 = str_replace("Hellermann Tyton","HELLERMANN TYTON", $strsup);
-                                            $strsup7 = str_replace("Molex Singapore","ARROW ELECTRONICS AS", $strsup);
-                                            $strsup8 = str_replace("PT INDOWIRE PRIMA INDUSTRINDO","PT. INDOWIRE PRIMA", $strsup);
-                                            $strsup9 = str_replace("PT Nitto Materials Indonesia","PT. NMI", $strsup);
-                                            $strsup10 = str_replace("Sugity PT.SUGITY CREATEIVES","SUGITY", $strsup);
-                                            $strsup11 = str_replace("TBD Supplier","SUGITY", $strsup);
+                                            $strsup = str_replace("YC Purchasing","HIB",$strsup);
+                                            $strsup = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);
+                                            $strsup = str_replace("Elcom", "COMBU-E", $strsup);
+                                            $strsup = str_replace("Federal Mogul (Thailand) Ltd.","FMTH", $strsup);
+                                            $strsup = str_replace("Hellermann Tyton","HELLERMANN TYTON", $strsup);
+                                            $strsup = str_replace("Molex Singapore","ARROW ELECTRONICS AS", $strsup);
+                                            $strsup = str_replace("PT INDOWIRE PRIMA INDUSTRINDO","PT. INDOWIRE PRIMA", $strsup);
+                                            $strsup = str_replace("PT Nitto Materials Indonesia","PT. NMI", $strsup);
+                                            $strsup = str_replace("Sugity PT.SUGITY CREATEIVES","SUGITY", $strsup);
+                                            $strsup = str_replace("TBD Supplier","J/A", $strsup);
+                                            $strsup = str_replace("PEMI","PEMI-AW", $strsup);
+                                            $strsup = str_replace("Tesa Tape Asia Pacific Pte Ltd","TESA", $strsup);
+                                            $strsup = str_replace("YAZAKI (CHINA) INVESTMENT CORPORATION","YGP", $strsup);
+                                            $strsup = str_replace("YGP PTE. LTD.","YGP", $strsup);
+                                            $strsup = str_replace("YZK AMERICAS.","YNA", $strsup);
                                             echo "<td>".$strsup."</td>";
                                             echo "<td>".$data->FIS_PRICE."</td>";
                                             echo "<td>".$data->PERIOD."</td>";

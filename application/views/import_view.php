@@ -50,7 +50,7 @@
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
 
 
-<script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script>
+<!-- <script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script> -->
 </head>
 <body>
 
@@ -61,7 +61,7 @@
             <hr>
             <div class="row">
                 <!-- Form invoice -->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div style="background-color: #f2f2f2; padding: 10px">
                         <a href="<?php echo base_url("excel/Invoice File.xlsx"); ?>">Download Format Invoice</a>
                         <br>
@@ -85,13 +85,13 @@
                                 echo "<form method='post' action='".site_url("Import/import")."'>";
                         ?>
                         <?php if(isset($sheet)){?>
-                        <div class="table-responsive-sm">
+                        <div class="table-responsive">
                             <table class="table table-striped table-bordered text" cellpadding="" id="example">
                                 <thead>
                                     <th>Buppin Number</th>
                                     <th>Supplier</th>
                                     <th>Price</th>
-                                    <th>Periode</th>
+                                    <th>Tanggal</th>
                                 </thead>
                                 <?php
                                     $numrow = 1;
@@ -107,7 +107,7 @@
                                         $buppin_number = $row['C'];
                                         $supplier = $row['E'];
                                         $price_total = $total;
-                                        // $periode = $row['I'];
+                                        $tanggal = $row['B'];
 
                                         if($numrow > 1){
                                             if($row['C'] != "" || $row['C'] != null){
@@ -116,7 +116,7 @@
                                                 echo "<td>".$buppin_number."</td>";
                                                 echo "<td>".$supplier."</td>";
                                                 echo "<td>".$price_total."</td>";
-                                                // echo "<td>".$periode."</td>";
+                                                echo "<td>".$tanggal."</td>";
                                                 echo "</tr>";
                                             }
                                         }
@@ -155,7 +155,7 @@
 
 
                 <!-- Form penawaran -->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div style="background-color: #f2f2f2; padding: 10px">
                         <a href="<?php echo base_url("excel/Penawaran File.xlsx"); ?>">Download Format Penawaran</a>
                         <br>
@@ -242,7 +242,7 @@
 <br>
 <div class= "container">
     <div class="col-lg-12"></div>
-    <div class="col-lg-12">
+    <div class="col-lg-9">
     <div style="background-color: #f2f2f2; padding: 10px">
     <br>
     <center>Pilih periode yang akan anda compare :</center>
@@ -272,12 +272,12 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Buppin Number Invoice</th>
+                        <th>Buppin Number</th>
                         <th>Supplier</th>
                         <th>Price Invoice</th>
-                        <th>Price Penawaran</th>
-                        <th>Beda Komper</th>
-                        <th>Ket</th>
+                        <th>Material Price</th>
+                        <th>Price Different</th>
+                        <th>Mark</th>
                     </tr>
                 </thead>
 

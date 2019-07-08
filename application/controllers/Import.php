@@ -35,9 +35,10 @@ class Import extends CI_Controller {
 	}
 
 	public function form(){
+		$this->load->view('Header/headerstaff');
 		$data = array(); // Buat variabel $data sebagai array
 
-		$data['data_penawaran'] = $this->db->get('data_penawaran')->result();
+		// $data['data_penawaran'] = $this->db->get('data_penawaran')->result();
 		if(isset($_POST['preview'])){ // Jika user menekan tombol Preview pada form
 			// lakukan upload file dengan memanggil function upload yang ada di SiswaModel.php
 			$upload = $this->Invoice_models->upload_file($this->filename);
@@ -62,8 +63,9 @@ class Import extends CI_Controller {
 	}
 
 	public function form2(){
+		$this->load->view('Header/headerstaff');
 		$data = array(); // Buat variabel $data sebagai array
-		$data['data_invoice'] = $this->db->get('data_invoice')->result();
+		// $data['data_invoice'] = $this->db->get('data_invoice')->result();
 
 		if(isset($_POST['preview2'])){ // Jika user menekan tombol Preview pada form
 			// lakukan upload file dengan memanggil function upload yang ada di SiswaModel.php
@@ -105,6 +107,26 @@ class Import extends CI_Controller {
 		//echo count($sheet);
 
 		foreach($sheet as $row){
+			$strs = $row['E'];
+			$strs = str_replace("IRC INOAC","PASI",$strs);
+			$strs = str_replace("NIDEC","PASI",$strs);
+			$strs = str_replace("NIFCO","PASI",$strs);
+			$strs = str_replace("PLASSES","PASI",$strs);
+			$strs = str_replace("PT. CATURINDO AGUNG","PASI",$strs);
+			$strs = str_replace("PT. INDONESIA KYOUEI","PASI",$strs);
+			$strs = str_replace("PT. KMK PLASTICS IND","PASI",$strs);
+			$strs = str_replace("PT. KOJIMA INDONESIA","PASI",$strs);
+			$strs = str_replace("PT. NANBU PLASTICS I","PASI",$strs);
+			$strs = str_replace("PT. OGATA INDONESIA","PASI",$strs);
+			$strs = str_replace("PT. PIOLAX INDONESIA","PASI",$strs);
+			$strs = str_replace("PT. SATO SEIKI","PASI",$strs);
+			$strs = str_replace("PT. TENMA INDONESIA","PASI",$strs);
+			$strs = str_replace("SCHLEMMER","PASI",$strs);
+			$strs = str_replace("TOKAI RIKA JP","PASI",$strs);
+			$strs = str_replace("YAMANASHI INDONESIA","PASI",$strs);
+			$strs = str_replace("TAP-AW","TAP",$strs);
+			$strs = str_replace("TAP-INJ","TAP",$strs);
+			$strs = str_replace("TAP-VT","TAP",$strs);
 				if($row['A'] != "" || $row['A'] != null){
 					// $date = $row['B'];
 					// var_dump($row['B']);
@@ -131,7 +153,7 @@ class Import extends CI_Controller {
 						'invoice_date' => $tanggal, // Ambil data invoice date
 						'buppin_number' => str_replace('-','',$row['C']), // Ambil data bummpin number
 						'qty_invoice' => $row['D'], // Ambil data qty invoice
-						'supplier' => $row['E'], // Ambil data supplier
+						'supplier' => $strs, // Ambil data supplier
 						'kind' => $row['F'], // Ambil data kind
 						'price_invoiceseribu' => $row['G'], // Ambil data price perseribu
 						'price_invoicesatu' => $persatu, // Ambil data price persatu
@@ -168,6 +190,23 @@ class Import extends CI_Controller {
 
 		foreach($sheet2 as $row2){
 
+			$strsup = $row2['P'];
+            $strsup = str_replace("YC Purchasing","HIB",$strsup);
+            $strsup = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);
+            $strsup = str_replace("Elcom", "COMBU-E", $strsup);
+            $strsup = str_replace("Federal Mogul (Thailand) Ltd.","FMTH", $strsup);
+            $strsup = str_replace("Hellermann Tyton","HELLERMANN TYTON", $strsup);
+            $strsup = str_replace("Molex Singapore","ARROW ELECTRONICS AS", $strsup);
+            $strsup = str_replace("PT INDOWIRE PRIMA INDUSTRINDO","PT. INDOWIRE PRIMA", $strsup);
+        	$strsup = str_replace("PT Nitto Materials Indonesia","PT. NMI", $strsup);
+            $strsup = str_replace("Sugity PT.SUGITY CREATEIVES","SUGITY", $strsup);
+            $strsup = str_replace("TBD Supplier","J/A", $strsup);
+			$strsup = str_replace("PEMI","PEMI-AW", $strsup);
+            $strsup = str_replace("Tesa Tape Asia Pacific Pte Ltd","TESA", $strsup);
+			$strsup = str_replace("YAZAKI (CHINA) INVESTMENT CORPORATION","YGP", $strsup);
+			$strsup = str_replace("YGP PTE. LTD.","YGP", $strsup);
+			$strsup = str_replace("YZK AMERICAS.","YNA", $strsup);
+
 				if($row2['A'] != ""){
 					array_push($data2, array(
 						'GCT_COMP_NO' => $row2['A'], // Ambil data nomor
@@ -185,7 +224,7 @@ class Import extends CI_Controller {
 						'BASE_UOM' => $row2['M'], // Ambil data base uom
 						'SHT_NO' => $row2['N'], // Ambil data sht no
 						'SPPLY_ID' => $row2['O'], // Ambil data sppl id
-						'SPPLY_NM' => str_replace('YC Purchasing','HIB',$row2['P']), // Ambil data sppl nm
+						'SPPLY_NM' => $strsup, // Ambil data sppl nm
 						'CNTRY_CD' => $row2['Q'], // Ambil data cntry cd
 						'INCO' => $row2['R'], // Ambil data inco
 						'DUTY_FL' => $row2['S'], // Ambil data duty fl
@@ -219,6 +258,7 @@ class Import extends CI_Controller {
  	// 	return $query->result();
 
 	// }
+
 
 
 

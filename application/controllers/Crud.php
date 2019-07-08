@@ -21,6 +21,7 @@ class Crud extends CI_Controller{
 
 	function tambah(){
 		// $this->load->view('add_view');
+		$this->load->view('Header/headercrud');
 		$data['tbl_users'] = $this->user_models->tampil_data()->result();
 
 		$this->form_validation->set_rules('name', 'NAME','required');
@@ -42,32 +43,39 @@ class Crud extends CI_Controller{
 
 			redirect('Crud','refresh');
 		}
+		$this->load->view('Header/footerfix');
 	}
 
 	function edit(){
 
-		$data['tbl_users']='Update Data User';
-        $this->load->model('user_models');
-        $data['edit']=$this->user_models->edit_user($user_id);
-        $this->load->view('user_view', $data);
+		$user_id=$this->input->post('use$user_id');
+		$user_name=$this->input->post('user$user_name');
+		$user_email=$this->input->post('use$user_email');
+		$user_password=$this->input->post('user_$user_password');
+		$this->user_models->edit_barang($user_id,$user_name,$user_email,$user_password);
+		redirect('Crud','refresh');
 	}
 
-	function simpan_edit_user()
-    {
-        $user_id = $this->input->post('user_id');
-        $user_name = $this->input->post('user_name$user_name');
-        $user_email = $this->input->post('user_email');
-        $user_password = $this->input->post('user_password');
+	// function simpan_edit_user()
+    // {
+    //     $user_id = $this->input->post('user_id');
+    //     $user_name = $this->input->post('user_name$user_name');
+    //     $user_email = $this->input->post('user_email');
+    //     $user_password = $this->input->post('user_password');
 
-        $data['tbl_users'] = 'Update Data User';
-        $this->load->model('user_model');
-        $data['edit'] = $this->user_model->simpan_edit_user($user_id, $user_name, $user_email, $user_password);
-        $data['notifikasi'] = 'Data telah berhasil disimpan';
-        $this->load->view('notifikasi', $data);
-    }
+    //     $data['tbl_users'] = 'Update Data User';
+    //     $this->load->model('user_model');
+    //     $data['edit'] = $this->user_model->simpan_edit_user($user_id, $user_name, $user_email, $user_password);
+    //     $data['notifikasi'] = 'Data telah berhasil disimpan';
+    //     $this->load->view('notifikasi', $data);
+    // }
 
 	function hapus(){
-		$this->db->delete('tbl_users', array('user_id'=>$id));
-		redirect('crud/index');
-	}
+		$user_id=$this->input->post('user_id');
+        $this->user_models->delete($user_id);
+        redirect('Crud','refresh');
+    }
+	// 	$this->db->delete('tbl_users', array('user_id'=>$id));
+	// 	redirect('crud/index');
+	// }
 }
