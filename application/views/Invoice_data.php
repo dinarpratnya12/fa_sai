@@ -68,7 +68,7 @@
             <div class="row">
                 <!-- Form invoice -->
                 <div class="col-lg-8">
-                    <div style="background-color: #fcab42; padding: 10px">
+                    <div style="background-color: #ffbd38; padding: 10px">
                         <center><h4>Data Invoice</h4></center>
                         <br>
                         <div class="table-responsive-sm">

@@ -66,7 +66,7 @@
             <div class="row">
                 <!-- Form invoice -->
                 <div class="col-lg-5">
-                    <div style="background-color: #f2f2f2; padding: 10px">
+                    <div style="background-color: #fcd992; padding: 10px">
                         <a href="<?php echo base_url("excel/Invoice File.xlsx"); ?>">Download Format Invoice</a>
                         <br>
                         <br>
@@ -158,7 +158,7 @@
 
                 <!-- Form penawaran -->
                 <div class="col-lg-5">
-                    <div style="background-color: #f2f2f2; padding: 10px">
+                    <div style="background-color: #fcd992; padding: 10px">
                         <a href="<?php echo base_url("excel/Penawaran File.xlsx"); ?>">Download Format Penawaran</a>
                         <br>
 
@@ -245,7 +245,7 @@
 <div class= "container">
     <div class="col-lg-12"></div>
     <div class="col-lg-11">
-    <div style="background-color: #f2f2f2; padding: 10px">
+    <div style="background-color: #ffbd38; padding: 10px">
     <br>
     <center>Pilih periode yang akan anda compare :</center>
     <br>
@@ -271,7 +271,7 @@
 
             <?php if(isset($_POST['compare'])){ ?>
                 <div class="table-responsive">
-                <table class="table table-striped table-bordered text" cellpadding="" id="example3">
+                <table class="table table-striped text" cellpadding="" id="example3" bordered=5px>
                 <thead>
                     <tr>
                         <th>No</th>
