@@ -35,7 +35,7 @@ class Import extends CI_Controller {
 	}
 
 	public function form(){
-		$this->load->view('Header/headerstaff');
+		$this->load->view('Header/headerfix');
 		$data = array(); // Buat variabel $data sebagai array
 
 		// $data['data_penawaran'] = $this->db->get('data_penawaran')->result();
@@ -63,7 +63,7 @@ class Import extends CI_Controller {
 	}
 
 	public function form2(){
-		$this->load->view('Header/headerstaff');
+		$this->load->view('Header/headerfix');
 		$data = array(); // Buat variabel $data sebagai array
 		// $data['data_invoice'] = $this->db->get('data_invoice')->result();
 

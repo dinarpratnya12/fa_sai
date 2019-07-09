@@ -16,7 +16,9 @@ class Komper_model extends CI_Model{
       data_invoice.buppin_number,
       data_invoice.price_invoicesatu,
       data_invoice.supplier,
+      data_invoice.qty_invoice,
       data_penawaran.GCT_COMP_NO,
+      data_penawaran.PERIOD,
       data_penawaran.BASE_PRICE,
       data_penawaran.SPPLY_NM
     from

@@ -53,6 +53,14 @@
     <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
 
+    <script src="<?php echo base_url('assets/export/dataTables.buttons.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/export/buttons.flash.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/export/jszip.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/export/pdfmake.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/export/vfs_fonts.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/export/buttons.html5.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/export/buttons.print.min.js'); ?>"></script>
+
     <script>
         $(document).ready(function(){
             // Sembunyikan alert validasi kosong

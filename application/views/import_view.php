@@ -13,6 +13,9 @@
     <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
 
+    <link href="<?php echo base_url('assets/export/jquery.dataTables.min.css');?>">
+    <link href="<?php echo base_url('assets/export/buttons.dataTables.min.css');?>">
+
     <style>
         .table-condensed{
             font-size: 10px;
@@ -50,6 +53,7 @@
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
 
 
+
 <!-- <script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script> -->
 </head>
 <body>
@@ -61,15 +65,13 @@
             <hr>
             <div class="row">
                 <!-- Form invoice -->
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div style="background-color: #f2f2f2; padding: 10px">
                         <a href="<?php echo base_url("excel/Invoice File.xlsx"); ?>">Download Format Invoice</a>
                         <br>
-
                         <br>
                         <form method="post" action="<?php echo site_url("Import/form"); ?>" enctype="multipart/form-data">
                             <input type="file" name="file">
-                            <br>
                             <br>
                             <button type="submit" class="btn btn-primary" name="preview" value="Preview">Preview</button>
                         </form>
@@ -155,7 +157,7 @@
 
 
                 <!-- Form penawaran -->
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div style="background-color: #f2f2f2; padding: 10px">
                         <a href="<?php echo base_url("excel/Penawaran File.xlsx"); ?>">Download Format Penawaran</a>
                         <br>
@@ -164,7 +166,7 @@
                         <form method="post" action="<?php echo site_url("Import/form2"); ?>" enctype="multipart/form-data">
                             <input type="file" name="file">
                             <br>
-                            <br>
+
                             <button type="submit" class="btn btn-primary" name="preview2" value="Preview2">Preview</button>
                         </form>
                         <?php if(!isset($_POST['preview2'])): ?>
@@ -242,7 +244,7 @@
 <br>
 <div class= "container">
     <div class="col-lg-12"></div>
-    <div class="col-lg-9">
+    <div class="col-lg-11">
     <div style="background-color: #f2f2f2; padding: 10px">
     <br>
     <center>Pilih periode yang akan anda compare :</center>
@@ -268,16 +270,20 @@
             <br>
 
             <?php if(isset($_POST['compare'])){ ?>
-                <table class="table table-bordered">
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered text" cellpadding="" id="example3">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Buppin Number</th>
+                        <th>Part Number</th>
+                        <th>Periode</th>
                         <th>Supplier</th>
-                        <th>Price Invoice</th>
-                        <th>Material Price</th>
+                        <th>Price Invoice (pcs)</th>
+                        <th>Price Quatition (pcs)</th>
                         <th>Price Different</th>
-                        <th>Mark</th>
+                        <th>Remark</th>
+                        <th>Qty material di Invoice</th>
+                        <th>Amount</th>
                     </tr>
                 </thead>
 
@@ -289,6 +295,7 @@
                         <tr>
                             <td><?=$no?>
                             <td><?=$row->buppin_number ?></td>
+                            <td><?=$row->PERIOD ?></td>
                             <td><?=$row->supplier ?></td>
                             <td><?=$row->price_invoicesatu ?></td>
                             <td><?=$row->BASE_PRICE ?></td>
@@ -310,12 +317,22 @@
                                 $sisa = $row->price_invoicesatu - $row->BASE_PRICE;
                                 $str3 = str_replace("-","",$sisa);
                                 if($sisa > 0){
-                                    echo "Invoice Lebih Mahal";
+                                    echo "Price di Invoice Lebih Mahal";
                                 }else if($sisa < 0){
-                                    echo "Invoice Lebih Murah";
+                                    echo "Price di Invoice Lebih Murah";
                                 }else{
-                                    echo "Sama";
+                                    echo "Price Sama";
                                 }
+                                ?>
+                            </td>
+                            <td><?=$row->qty_invoice ?></td>
+                            <td>
+                                <?php
+                                $sisa2 = $row->price_invoicesatu - $row->BASE_PRICE;
+                                $amount = $row->qty_invoice * $sisa2;
+                                $strqty = str_replace("-","",$amount);
+
+                                echo $strqty;
                                 ?>
                             </td>
                         </tr>
@@ -323,6 +340,7 @@
                 <tbody>
             </table>
             <?php } ?>
+            </div>
 
 
         </div>
@@ -365,5 +383,16 @@
         );
     } );
 </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example3').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            } );
+        } );
+    </script>
 </body>
 </html>
