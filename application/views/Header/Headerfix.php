@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>SAI</title>
+    <title>Compare Invoice Quotation</title>
     <!-- Favicon-->
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 
@@ -34,7 +34,7 @@
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
 </head>
 
-<body class="theme-orange">
+<body class="theme-orange" style="background-color: #f0f0f0;">
 
     <!-- Top Bar -->
     <nav class="navbar" style="position:fixed">
@@ -107,6 +107,7 @@
                             </li>
                         </ul>
                     </li>
+
                     <li>
                         <a href="<?php echo site_url('crud/index');?>">
                             <i class="material-icons">settings</i>
@@ -132,8 +133,10 @@
     </section>
 
     <!-- DASHBOARD -->
+    <div style="background-color: #f0f0f0;">
     <section class="content">
         <div class="container-fluid">
+
 
             <!-- CPU Usage -->
             <!-- <div class="row clearfix">

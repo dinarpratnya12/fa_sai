@@ -50,8 +50,8 @@
         $('a[href="<?= current_url() ?>"]').parent().addClass('active');
     </script>
 
-    <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
+    <!-- <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script> -->
 
     <script src="<?php echo base_url('assets/export/dataTables.buttons.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/export/buttons.flash.min.js'); ?>"></script>
@@ -75,7 +75,7 @@
             $(".modal-backdrop").remove();
         }
     </script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 

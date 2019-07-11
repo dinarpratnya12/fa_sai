@@ -67,17 +67,20 @@
             <hr>
             <div class="row">
                 <!-- Form invoice -->
-                <div class="col-lg-8">
-                    <div style="background-color: #ffbd38; padding: 10px">
+                <div class="col-lg-11">
+                    <div style="background-color: #ffffff; padding: 10px">
                         <center><h4>Data Invoice</h4></center>
                         <br>
                         <div class="table-responsive-sm">
                             <table class="table text warnain" cellpadding="" id="example" style="width:100%">
                                 <thead>
                                     <tr>
+                                        <th>Invoice Number</th>
                                         <th>Buppin Number</th>
                                         <th>Supplier</th>
+                                        <th>Kind</th>
                                         <th>Price</th>
+                                        <th>Qty Invoice</th>
                                         <th>Periode</th>
                                     </tr>
                                 </thead>
@@ -85,6 +88,7 @@
                                     if( ! empty($data_invoice)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
                                         foreach($data_invoice as $data){ // Lakukan looping pada variabel siswa dari controller
                                             echo "<tr>";
+                                            echo "<td>".$data->invoice_number."</td>";
                                             $str = $data->buppin_number;
                                             $str2 = str_replace("-","",$str);
                                             echo "<td>".$str2."</td>";
@@ -109,7 +113,9 @@
                                             $strs = str_replace("TAP-INJ","TAP",$strs);
                                             $strs = str_replace("TAP-VT","TAP",$strs);
                                             echo "<td>".$strs."</td>";
+                                            echo "<td>".$data->kind."</td>";
                                             echo "<td>".$data->price_total."</td>";
+                                            echo "<td>".$data->qty_invoice."</td>";
                                             echo "<td>".$data->periode."</td>";
                                             echo "</tr>";
                                         }

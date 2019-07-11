@@ -34,4 +34,20 @@ class Komper_model extends CI_Model{
     return $query->result();
   }
 
+  public function get_no_same($periode)
+  {
+    $query = $this->db->query('
+    select
+      data_invoice.buppin_number as no,data_invoice.supplier as supplier,data_invoice.price_invoicesatu as price from data_invoice
+    where
+      periode = "'.$periode.'"
+    UNION ALL
+    Select
+      data_penawaran.GCT_COMP_NO as no,data_penawaran.SPPLY_NM as supplier,data_penawaran.BASE_PRICE as price from data_penawaran
+    where
+      PERIOD = "'.$periode.'"');
+
+    return $query->result();
+  }
+
 }

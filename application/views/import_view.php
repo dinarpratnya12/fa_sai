@@ -11,7 +11,7 @@
 	});
 	</script>
     <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
+    <!-- <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet"> -->
 
     <link href="<?php echo base_url('assets/export/jquery.dataTables.min.css');?>">
     <link href="<?php echo base_url('assets/export/buttons.dataTables.min.css');?>">
@@ -44,6 +44,7 @@
         table.dataTable thead .sorting_desc_disabled:before {
         bottom: .5em;
         }
+
     </style>
 </head>
 <body>
@@ -51,10 +52,6 @@
 
     <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
-
-
-
-<!-- <script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script> -->
 </head>
 <body>
 
@@ -66,7 +63,7 @@
             <div class="row">
                 <!-- Form invoice -->
                 <div class="col-lg-5">
-                    <div style="background-color: #fcd992; padding: 10px">
+                    <div style="background-color: #fff; padding: 10px">
                         <a href="<?php echo base_url("excel/Invoice File.xlsx"); ?>">Download Format Invoice</a>
                         <br>
                         <br>
@@ -158,7 +155,7 @@
 
                 <!-- Form penawaran -->
                 <div class="col-lg-5">
-                    <div style="background-color: #fcd992; padding: 10px">
+                    <div style="background-color: #fff; padding: 10px">
                         <a href="<?php echo base_url("excel/Penawaran File.xlsx"); ?>">Download Format Penawaran</a>
                         <br>
 
@@ -244,8 +241,8 @@
 <br>
 <div class= "container">
     <div class="col-lg-12"></div>
-    <div class="col-lg-11">
-    <div style="background-color: #ffbd38; padding: 10px">
+    <div class="col-lg-10">
+    <div style="background-color: #ffffff; padding: 10px">
     <br>
     <center>Pilih periode yang akan anda compare :</center>
     <br>
@@ -339,6 +336,39 @@
                     <?php endforeach; ?>
                 <tbody>
             </table>
+
+            <!-- tabel no compare -->
+
+            <!-- <table class="table table-striped text" cellpadding="" id="example3" bordered=5px>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Part Number</th>
+                        <th>Periode</th>
+                        <th>Supplier</th>
+                        <th>Price Invoice (pcs)</th>
+                        <th>Price Quatition (pcs)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <?php
+                    $no = 0;
+                    foreach ($data_komper2 as $row):
+                    $no++ ?>
+                        <tr>
+                            <td><?=$no?>
+                            <td><?=$row->buppin_number ?></td>
+                            <td><?=$row->PERIOD ?></td>
+                            <td><?=$row->supplier ?></td>
+                            <td><?=$row->price_invoicesatu ?></td>
+                            <td><?=$row->BASE_PRICE ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <tbody>
+            </table> -->
+            <!-- End tabel no compare -->
+
             <?php } ?>
             </div>
 
@@ -364,7 +394,8 @@
     $(document).ready(function() {
         $('#example').DataTable(
             {
-                "scrollY": "200px",
+                "scrollY": "300px",
+                // "scrollX" : true,
                 "scrollCollapse": true,
                 "paging": false
             }
@@ -376,7 +407,7 @@
     $(document).ready(function() {
         $('#example2').DataTable(
             {
-                "scrollY": "200px",
+                "scrollY": "300px",
                 "scrollCollapse": true,
                 "paging": false
             }
@@ -386,13 +417,29 @@
 
     <script>
         $(document).ready(function() {
-            $('#example3').DataTable( {
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-            } );
+            $('#example3').DataTable(
+                {
+                    "scrollY": "400px",
+                    "scrollCollapse": true,
+                    "paging": false,
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {extend: 'copy', className: 'btn btn-primary'},
+                        {extend: 'csv', className: 'btn btn-primary'},
+                        {extend: 'excel', className: 'btn btn-primary'},
+                        {extend: 'pdf', className: 'btn btn-primary'},
+                        {extend: 'print', className: 'btn btn-primary'},
+                    ]
+
+                } );
+
         } );
     </script>
+    <!-- <script>
+            $('#sembarangwes').click(function(){
+                swal("Good job!", "You clicked the button!", "success");
+            }
+        } );
+    </script> -->
 </body>
 </html>

@@ -85,7 +85,7 @@
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="reset" class="btn btn-info">Reset</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                   </div>
                   <?php echo form_close();?>
               </div>
@@ -116,13 +116,15 @@
                     <a href="javascript:void(0)" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter2">
                       Edit
                     </a>
-                    <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $this->session->userdata('user_id');?>"> Hapus</a>
-
+                    <!-- <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $this->session->userdata('user_id');?>"> Hapus</a> -->
+                    <a href="<?php echo base_url('crud/hapus');?>/<?php echo $u->user_id; ?>"
+                    onClick="return confirm('Apakah anda yakin ?')" class="btn  btn-warning fa fa-trash-o">
+                    Delete</a></td>
 
                   </td>
                 </tr>
                 <!-- ============ MODAL HAPUS BARANG =============== -->
-                  <div class="modal fade" id="modal_hapus<?php echo $this->session->userdata('username');?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+                  <!-- <div class="modal fade" id="modal_hapus<?php echo $this->session->userdata('username');?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
                       <div class="modal-dialog">
                       <div class="modal-content">
                       <div class="modal-header">
@@ -141,7 +143,7 @@
                       </form>
                       </div>
                       </div>
-                  </div>
+                  </div> -->
               <!--END MODAL HAPUS BARANG-->
                 <?php } ?>
               </table>

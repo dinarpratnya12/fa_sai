@@ -83,15 +83,8 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
-                    <!-- <li class="header">MAIN NAVIGATION</li> -->
-                    <!-- <li class="">
-                        <a href="<?php echo site_url('page/staff');?>">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a>
-                    </li> -->
                     <li>
-                        <a href="<?php echo site_url('import/index2');?>">
+                        <a href="<?php echo site_url('import/index');?>">
                             <i class="material-icons">swap_calls</i>
                             <span>Import Data</span>
                         </a>
