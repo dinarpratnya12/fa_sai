@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 05 Jul 2019 pada 05.55
+-- Waktu pembuatan: 11 Jul 2019 pada 08.37
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -59,13 +59,11 @@ CREATE TABLE `data_penawaran` (
   `TENTATIVE_FL` varchar(100) NOT NULL,
   `CLASS_CD` varchar(100) NOT NULL,
   `FIS_PRICE` varchar(100) NOT NULL,
-  `kljhi` varchar(100) NOT NULL,
   `FIS_CRCY` varchar(100) NOT NULL,
   `BASE_PRICE` varchar(100) NOT NULL,
   `BASE_CRCY` varchar(100) NOT NULL,
   `BASE_UOM` varchar(100) NOT NULL,
   `SHT_NO` varchar(100) NOT NULL,
-  `szdb` varchar(100) NOT NULL,
   `SPPLY_ID` varchar(100) NOT NULL,
   `SPPLY_NM` varchar(100) NOT NULL,
   `CNTRY_CD` varchar(100) NOT NULL,
@@ -119,10 +117,8 @@ CREATE TABLE `tbl_users` (
 INSERT INTO `tbl_users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_level`) VALUES
 (1, 'Administrator', 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1'),
 (2, 'Dinarpratnya', 'Dinarpratnya12@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2'),
-(3, 'tes', 't@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2'),
-(4, '1', '1@g.c', 'c4ca4238a0b923820dcc509a6f75849b', '2'),
-(5, 'Dinarpratnya Ningrum', 'Dinarpratnya12@gmail.com', '9f6e6800cfae7749eb6c486619254b9c', '2'),
-(6, 'Dinarpratnya Ningrum', 'Dinarpratnya@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2');
+(3, 'meli', 'meli@gmail.com', '315fef7b8d30f99d6964f489ee4c9828', '2'),
+(8, 'Yudha Jelek', 'yudha@gmail.com', '2b9633304de305ed5c03fe19b7a06afe', '2');
 
 --
 -- Indexes for dumped tables
@@ -166,7 +162,7 @@ ALTER TABLE `data_penawaran`
 -- AUTO_INCREMENT untuk tabel `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
