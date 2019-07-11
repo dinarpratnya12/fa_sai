@@ -34,7 +34,7 @@
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
 </head>
 
-<body class="theme-orange">
+<body class="theme-orange" style="background-color: #f0f0f0;">
 
     <!-- Top Bar -->
     <nav class="navbar" style="position:fixed">
@@ -126,6 +126,7 @@
     </section>
 
     <!-- DASHBOARD -->
+    <div style="background-color: #f0f0f0;">
     <section class="content">
         <div class="container-fluid">
 

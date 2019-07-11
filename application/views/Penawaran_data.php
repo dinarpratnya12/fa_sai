@@ -131,24 +131,13 @@ $(document).ready(function(){
     $("#kosong").hide();
 });
 </script>
-<script>
-$(document).ready(function() {
-    $('#example').DataTable(
-        {
-            "scrollY": "200px",
-            "scrollCollapse": true,
-            "paging": false
-        }
-    );
-
-} );
-</script>
 
 <script>
 $(document).ready(function() {
     $('#example2').DataTable(
         {
-            "scrollY": "200px",
+            "scrollY": "300px",
+            "scrollX": true,
             "scrollCollapse": true,
             "paging": false
         }

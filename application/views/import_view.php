@@ -58,12 +58,14 @@
 <div class="container" style="margin-top:0px !important;">
     <div class="row">
         <div class="container-fluid">
-            <h3>Form Import</h3>
+            <h2>Compare Form</h2>
             <hr>
             <div class="row">
                 <!-- Form invoice -->
                 <div class="col-lg-5">
                     <div style="background-color: #fff; padding: 10px">
+                    <h3>Upload Invoice</h3>
+                    <br>
                         <a href="<?php echo base_url("excel/Invoice File.xlsx"); ?>">Download Format Invoice</a>
                         <br>
                         <br>
@@ -156,6 +158,8 @@
                 <!-- Form penawaran -->
                 <div class="col-lg-5">
                     <div style="background-color: #fff; padding: 10px">
+                    <h3>Upload Penawaran</h3>
+                    <br>
                         <a href="<?php echo base_url("excel/Penawaran File.xlsx"); ?>">Download Format Penawaran</a>
                         <br>
 
@@ -394,8 +398,7 @@
     $(document).ready(function() {
         $('#example').DataTable(
             {
-                "scrollY": "300px",
-                // "scrollX" : true,
+                "scrollY": "200px",
                 "scrollCollapse": true,
                 "paging": false
             }
@@ -407,7 +410,8 @@
     $(document).ready(function() {
         $('#example2').DataTable(
             {
-                "scrollY": "300px",
+                "scrollY": "200px",
+                "scrollX": true,
                 "scrollCollapse": true,
                 "paging": false
             }
@@ -421,6 +425,7 @@
                 {
                     "scrollY": "400px",
                     "scrollCollapse": true,
+                    "scrollX": true,
                     "paging": false,
                     dom: 'Bfrtip',
                     buttons: [
@@ -441,5 +446,14 @@
             }
         } );
     </script> -->
-</body>
-</html>
+
+    <script src=<?php echo base_url('assets/css/sweetalert.min.js')?>></script>
+    <?php if($this->session->flashdata('swal') != null){ ?>
+    <?php
+    echo $swal_data = $this->session->flashdata('swal');
+    $swa = explode('|',$swal_data);
+    ?>
+        <script>
+                swal("<?= $swa[0] ?>", "<?= $swa[1] ?>", "<?= $swa[2] ?>");
+        </script>
+    <?php } ?>

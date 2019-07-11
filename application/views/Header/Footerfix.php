@@ -53,6 +53,9 @@
     <!-- <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script> -->
 
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script src="<?php echo base_url('assets/export/dataTables.buttons.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/export/buttons.flash.min.js'); ?>"></script>
     <script src="<?php echo base_url('assets/export/jszip.min.js'); ?>"></script>
@@ -75,8 +78,15 @@
             $(".modal-backdrop").remove();
         }
     </script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    <?php if($this->session->flashdata('swal') != null){ ?>
+    <?php
+    $swal_data = $this->session->flashdata('swal');
+    $swa = explode('|',$swal_data);
+    ?>
+        <script>
+                swal("<?= $swa[0] ?>", "<?= $swa[1] ?>", "<?= $swa[2] ?>");
+        </script>
+    <?php } ?>
 </body>
 
 </html>

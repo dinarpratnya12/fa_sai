@@ -163,6 +163,7 @@
         $('#example2').DataTable(
             {
                 "scrollY": "200px",
+                "scrollX": true,
                 "scrollCollapse": true,
                 "paging": false
             }

@@ -164,8 +164,8 @@ class Import extends CI_Controller {
 							$periode = "Jun ".$tahun." - Nov ".$tahun;
 						}
 
-						$persatu = 5000/1000;
-						$total =  5000/1000*1;
+						$persatu = (int)$row['G']/1000;
+						$total =  $persatu*$row['D'];
 
 						array_push($data, array(
 							'invoice_number' => $row['A'], // Ambil data invoice number
@@ -186,6 +186,7 @@ class Import extends CI_Controller {
 				// Panggil fungsi insert_multiple yg telah kita buat sebelumnya di model
 				$this->Invoice_models->insert_multiple($data);
 
+				$this->session->set_flashdata('swal','Success|Success Upload Invoice|success');
 				redirect("Import"); // Redirect ke halaman awal (ke controller siswa fungsi index)
 			}
 
@@ -259,13 +260,13 @@ class Import extends CI_Controller {
 							'PERIOD' => $row2['AC'], // Ambil data periode
 						));
 					}
-
-
 					$numrow++; // Tambah 1 setiap kali looping
 				}
 
 				// Panggil fungsi insert_multiple yg telah kita buat sebelumnya di model
 				$this->Penawaran_models->insert_multiple($data2);
+
+				$this->session->set_flashdata('swal','Success|Success Upload Quantitation|success');
 
 				redirect("Import"); // Redirect ke halaman awal (ke controller siswa fungsi index)
 			}
@@ -277,8 +278,4 @@ class Import extends CI_Controller {
 				// 	return $query->result();
 
 				// }
-
-
-
-
 			}
