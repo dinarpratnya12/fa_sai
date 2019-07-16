@@ -114,6 +114,12 @@
                     </ul>
                 </li>
                 <li>
+                        <a href="<?php echo site_url('compare/index');?>">
+                            <i class="material-icons">assignment</i>
+                            <span>Compare Data</span>
+                        </a>
+                    </li>
+                <li>
                     <a href="<?php echo site_url('crud/index');?>">
                         <i class="material-icons">settings</i>
                         <span>Manage People</span>

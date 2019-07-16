@@ -39,8 +39,9 @@ class Crud extends CI_Controller{
 
 			$this->user_models->input_data($data1);
 
-			$pesan['message'] = "Pendaftaran berhasil";
+			// $pesan['message'] = "Pendaftaran berhasil";
 
+			$this->session->set_flashdata('swal','Success|Successful Add User|success');
 			redirect('Crud','refresh');
 		}
 		$this->load->view('Header/footerfix');
@@ -73,7 +74,8 @@ class Crud extends CI_Controller{
 
 	function hapus($user_id){
 		$this->load->model('user_models');;
-        $this->user_models->hapus($user_id);
+		$this->user_models->hapus($user_id);
+		$this->session->set_flashdata('swal');
         redirect('Crud','refresh');
     }
 }

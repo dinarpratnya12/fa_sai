@@ -117,34 +117,11 @@
                       Edit
                     </a>
                     <!-- <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#modal_hapus<?php echo $this->session->userdata('user_id');?>"> Hapus</a> -->
-                    <a href="<?php echo base_url('crud/hapus');?>/<?php echo $u->user_id; ?>"
-                    onClick="return confirm('Apakah anda yakin ?')" class="btn  btn-warning fa fa-trash-o">
+                    <a href="#" onclick="delete_c(<?php echo $u->user_id; ?>)" class="btn  btn-warning fa fa-trash-o">
                     Delete</a></td>
 
                   </td>
                 </tr>
-                <!-- ============ MODAL HAPUS BARANG =============== -->
-                  <!-- <div class="modal fade" id="modal_hapus<?php echo $this->session->userdata('username');?>" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-                      <div class="modal-dialog">
-                      <div class="modal-content">
-                      <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                          <h3 class="modal-title" id="myModalLabel">Hapus Barang</h3>
-                      </div>
-                      <form class="form-horizontal" method="post" action="<?php echo base_url().'crud/hapus'?>">
-                          <div class="modal-body">
-                              <p>Anda yakin mau menghapus <b><?php echo $this->session->userdata('username');?></b></p>
-                          </div>
-                          <div class="modal-footer">
-                              <input type="hidden" name="user_id" value="<?php echo $this->session->userdata('user_id');?>">
-                              <button class="btn" data-dismiss="modal" aria-hidden="true">Tutup</button>
-                              <button class="btn btn-danger">Hapus</button>
-                          </div>
-                      </form>
-                      </div>
-                      </div>
-                  </div> -->
-              <!--END MODAL HAPUS BARANG-->
                 <?php } ?>
               </table>
               </div>
@@ -174,7 +151,38 @@
               }
             );
           } );
+
+          function delete_c(id){
+
+            var url = '<?php echo base_url('crud/hapus');?>/'+id
+            swal({
+              title: "Are you sure?",
+              text: "Once deleted, you will not be able to recover this imaginary file!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                window.location.href = url;
+              } else {
+                swal("Your imaginary file is safe!");
+              }
+            });
+          }
         </script>
+
+<?php if($this->session->flashdata('swal') != null){ ?>
+    <?php
+    $swal_data = $this->session->flashdata('swal');
+    // $swa = explode('|',$swal_data);
+    ?>
+
+        <script>
+                swal("<?= $swa[0] ?>", "<?= $swa[1] ?>", "<?= $swa[2] ?>");
+        </script>
+    <?php } ?>
+
 
 </body>
 

@@ -170,7 +170,7 @@ class Import extends CI_Controller {
 						array_push($data, array(
 							'invoice_number' => $row['A'], // Ambil data invoice number
 							'invoice_date' => $tanggal, // Ambil data invoice date
-							'buppin_number' => str_replace('-','',$row['C']), // Ambil data bummpin number
+							'buppin_number' => $row['C'], // Ambil data bummpin number
 							'qty_invoice' => $row['D'], // Ambil data qty invoice
 							'supplier' => $strs, // Ambil data supplier
 							'kind' => $row['F'], // Ambil data kind
@@ -227,9 +227,14 @@ class Import extends CI_Controller {
 					$strsup = str_replace("YGP PTE. LTD.","YGP", $strsup);
 					$strsup = str_replace("YZK AMERICAS.","YNA", $strsup);
 
-					if($row2['A'] != ""){
+					$gct = $row2['A'];
+                    $gct_split = str_split($gct,4);
+                    $gct_implode = implode("-",$gct_split);
+					$GCT_COMP_NO = $gct_implode;
+
+					if($gct_implode != ""){
 						array_push($data2, array(
-							'GCT_COMP_NO' => $row2['A'], // Ambil data nomor
+							'GCT_COMP_NO' => $gct_implode, // Ambil data nomor
 							'OW_ID' => $row2['B'], // Ambil data ow id
 							'PRICE_ID' => $row2['C'], // Ambil data price id
 							'PriceIdDesc' => $row2['D'], // Ambil data periode desc

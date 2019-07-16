@@ -85,7 +85,7 @@
                 <ul class="list">
                     <li>
                         <a href="<?php echo site_url('import/index');?>">
-                            <i class="material-icons">swap_calls</i>
+                            <i class="material-icons">file_upload</i>
                             <span>Import Data</span>
                         </a>
                     </li>
@@ -107,7 +107,12 @@
                             </li>
                         </ul>
                     </li>
-
+                    <li>
+                        <a href="<?php echo site_url('compare/index');?>">
+                            <i class="material-icons">swap_horiz</i>
+                            <span>Compare Data</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="<?php echo site_url('crud/index');?>">
                             <i class="material-icons">settings</i>

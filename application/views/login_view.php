@@ -107,7 +107,8 @@
           <div class="rounded">
             <img class="profile-img" src="<?php echo base_url('assets/yasaki.png');?>" alt="">
               <form class="form-signin" action="<?php echo site_url('login/auth');?>" method="post">
-                <h2 class="form-signin-heading">Please Sign In</h2>
+                <br>
+                <h3 class="form-signin-heading">Please Sign In</h3>
                 <?php echo $this->session->flashdata('msg');?>
                 <label for="username" class="sr-only">Username</label>
                 <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>

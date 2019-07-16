@@ -47,12 +47,9 @@
 
     </style>
 </head>
-<body>
-<link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
-
+    <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
     <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
-</head>
 <body>
 
 <div class="container" style="margin-top:0px !important;">
@@ -62,7 +59,7 @@
             <hr>
             <div class="row">
                 <!-- Form invoice -->
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <div style="background-color: #fff; padding: 10px">
                     <h3>Upload Invoice</h3>
                     <br>
@@ -89,7 +86,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered text" cellpadding="" id="example">
                                 <thead>
-                                    <th>Buppin Number</th>
+                                    <th>Part Number</th>
                                     <th>Supplier</th>
                                     <th>Price</th>
                                     <th>Tanggal</th>
@@ -143,20 +140,26 @@
                                         echo "<button class='btn btn-primary' type='submit' name='import'>Import</button>";
                                         echo "&nbsp&nbsp&nbsp&nbsp&nbsp";
                                         echo "<a href='".site_url("Import/index")."' class='btn btn-default'>Cancel</a>";
+
                                     }
+
                                     echo "</form>";
                             }
                                 ?>
                         </div>
+                        <br>
                         <?php } ?>
                 </div>
                 <?php if(!isset($_POST['preview'])){ ?>
+
                 </div>
+
                 <?php } ?>
 
 
+
                 <!-- Form penawaran -->
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <div style="background-color: #fff; padding: 10px">
                     <h3>Upload Penawaran</h3>
                     <br>
@@ -184,7 +187,7 @@
                         <div class="table-responsive-sm">
                             <table class="table table-bordered text2" cellpadding="" id="example2">
                                 <thead>
-                                    <th>Buppin Number</th>
+                                    <th>Part Number</th>
                                     <th>Supplier</th>
                                     <th>Price(@1)</th>
                                     <th>Periode</th>
@@ -196,7 +199,10 @@
                                     foreach($sheet as $row){
 
                                         // Ambil data pada excel sesuai Kolom
-                                        $GCT_COMP_NO = $row['A'];
+                                        $gct = $row['A'];
+                                        $gct_split = str_split($gct,4);
+                                        $gct_implode = implode("-",$gct_split);
+                                        $GCT_COMP_NO = $gct_implode;
                                         $SPPLY_NM = $row['P'];
                                         $FIS_PRICE = $row['I'];
                                         $PERIOD = $row['AC'];
@@ -235,153 +241,14 @@
                                         echo "</form>";
                                     }
                                     ?>
+                                    <!-- <br>
+                                    <br> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-<br>
-<div class= "container">
-    <div class="col-lg-12"></div>
-    <div class="col-lg-10">
-    <div style="background-color: #ffffff; padding: 10px">
-    <br>
-    <center>Pilih periode yang akan anda compare :</center>
-    <br>
-        <div class="">
-        <br>
-            <form method="post">
-            <select class="form-control" name="periode">
-                <option class="hidden" selected disabled>Pilih Periode</option>
-                <?php
-                    $periode = $this->db->query('SELECT DISTINCT data_penawaran.PERIOD FROM data_penawaran,data_invoice')->result();
-                    foreach($periode as $row) {?>
-                <option value="<?= $row->PERIOD;?>" ><?= $row->PERIOD;?></option>
-                <?php } ?>
-            </select>
-            <br>
-            <br>
-            <input type="hidden" name="compare" value="Compare">
-            <center><button type="submit" class="btn btn-success">Submit</button></center>
-            </form>
-            <br>
-            <br>
-            <br>
-
-            <?php if(isset($_POST['compare'])){ ?>
-                <div class="table-responsive">
-                <table class="table table-striped text" cellpadding="" id="example3" bordered=5px>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Part Number</th>
-                        <th>Periode</th>
-                        <th>Supplier</th>
-                        <th>Price Invoice (pcs)</th>
-                        <th>Price Quatition (pcs)</th>
-                        <th>Price Different</th>
-                        <th>Remark</th>
-                        <th>Qty material di Invoice</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php
-                    $no = 0;
-                    foreach ($data_komper as $row):
-                    $no++ ?>
-                        <tr>
-                            <td><?=$no?>
-                            <td><?=$row->buppin_number ?></td>
-                            <td><?=$row->PERIOD ?></td>
-                            <td><?=$row->supplier ?></td>
-                            <td><?=$row->price_invoicesatu ?></td>
-                            <td><?=$row->BASE_PRICE ?></td>
-                            <td>
-                                <?php
-                                $sisa = $row->price_invoicesatu - $row->BASE_PRICE;
-                                $str3 = str_replace("-","",$sisa);
-                                if($sisa > 0){
-                                    echo "".$sisa;
-                                }else if($sisa < 0){
-                                    echo "".$str3;
-                                }else{
-                                    echo "0";
-                                }
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                $sisa = $row->price_invoicesatu - $row->BASE_PRICE;
-                                $str3 = str_replace("-","",$sisa);
-                                if($sisa > 0){
-                                    echo "Price di Invoice Lebih Mahal";
-                                }else if($sisa < 0){
-                                    echo "Price di Invoice Lebih Murah";
-                                }else{
-                                    echo "Price Sama";
-                                }
-                                ?>
-                            </td>
-                            <td><?=$row->qty_invoice ?></td>
-                            <td>
-                                <?php
-                                $sisa2 = $row->price_invoicesatu - $row->BASE_PRICE;
-                                $amount = $row->qty_invoice * $sisa2;
-                                $strqty = str_replace("-","",$amount);
-
-                                echo $strqty;
-                                ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <tbody>
-            </table>
-
-            <!-- tabel no compare -->
-
-            <!-- <table class="table table-striped text" cellpadding="" id="example3" bordered=5px>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Part Number</th>
-                        <th>Periode</th>
-                        <th>Supplier</th>
-                        <th>Price Invoice (pcs)</th>
-                        <th>Price Quatition (pcs)</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <?php
-                    $no = 0;
-                    foreach ($data_komper2 as $row):
-                    $no++ ?>
-                        <tr>
-                            <td><?=$no?>
-                            <td><?=$row->buppin_number ?></td>
-                            <td><?=$row->PERIOD ?></td>
-                            <td><?=$row->supplier ?></td>
-                            <td><?=$row->price_invoicesatu ?></td>
-                            <td><?=$row->BASE_PRICE ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <tbody>
-            </table> -->
-            <!-- End tabel no compare -->
-
-            <?php } ?>
-            </div>
-
-
-        </div>
-    </div>
-    </div>
-</div>
-</div>
 </div>
     </section>
 
@@ -421,7 +288,23 @@
 
     <script>
         $(document).ready(function() {
-            $('#example3').DataTable(
+            // Setup - add a text input to each footer cell
+
+             $('#example3 thead tr').clone(true).appendTo( '#example3 thead' );
+                $('#example3 thead tr:eq(1) th').each( function (i) {
+                var title = $(this).text();
+                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+
+                $( 'input', this ).on( 'keyup change', function () {
+                    if ( table.column(i).search() !== this.value ) {
+                        table
+                            .column(i)
+                            .search( this.value )
+                            .draw();
+                    }
+                } );
+                });
+            var table = $('#example3').DataTable(
                 {
                     "scrollY": "400px",
                     "scrollCollapse": true,
@@ -438,19 +321,15 @@
 
                 } );
 
-        } );
-    </script>
-    <!-- <script>
-            $('#sembarangwes').click(function(){
-                swal("Good job!", "You clicked the button!", "success");
-            }
-        } );
-    </script> -->
 
-    <script src=<?php echo base_url('assets/css/sweetalert.min.js')?>></script>
+            } );
+
+    </script>
+
+    <script src="<?php echo base_url('assets/css/sweetalert.min.js')?>"></script>
     <?php if($this->session->flashdata('swal') != null){ ?>
     <?php
-    echo $swal_data = $this->session->flashdata('swal');
+    $swal_data = $this->session->flashdata('swal');
     $swa = explode('|',$swal_data);
     ?>
         <script>

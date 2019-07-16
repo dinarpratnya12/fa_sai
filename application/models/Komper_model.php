@@ -13,6 +13,7 @@ class Komper_model extends CI_Model{
   {
     $query = $this->db->query('
     select
+      data_invoice.invoice_number,
       data_invoice.buppin_number,
       data_invoice.price_invoicesatu,
       data_invoice.supplier,
