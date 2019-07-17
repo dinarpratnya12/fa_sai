@@ -48,27 +48,21 @@ class Crud extends CI_Controller{
 	}
 
 	function edit($user_id){
-		$user_id = $this->uri->segment(3);
-		$data['query'] = $this->User_models->edit($user_id);
-		$this->load->view('user_view', $data);
-	}
-
-	public function update()
-	{
-		$user_id = $this->input->post('user_id');
-		$data = array(
-			'user_name' => $this->input->post('user_name'),
-			'user_email' => $this->input->post('user_email'),
-			'user_password' => $this->input->post('user_password')
-		);
-
-		$proses = $this->User_models->update($user_id, $data);
-		if (!$proses) {
-			header('Location: user_view');
-		} else {
-			echo "Data Gagal Diupdate";
-			echo "<br>";
-			echo "<a href='".base_url('index.php/crud/index/')."'>Tampil data</a>";
+		$this->form_validation->set_rules('user_id', 'NAME', 'required');
+		$this->form_validation->set_rules('user_name', 'EMAIL', 'required|valid_email');
+		$this->form_validation->set_rules('user_password', 'PASSWOARD', 'required');
+		$this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
+        if($this->form_validation->run()==FALSE){
+            $this->session->set_flashdata('error',"Data Gagal Di Edit");
+            redirect('Modal');
+        }else{
+            $data=array(
+                "user_name"=>$_POST['user_name'],
+            );
+            $this->db->where('user_id', $_POST['user_id']);
+            $this->db->update('tbl_users',$data);
+            $this->session->set_flashdata('sukses',"Data Berhasil Diedit");
+            redirect('Modal');
 		}
 	}
 

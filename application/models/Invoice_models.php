@@ -31,4 +31,10 @@ class Invoice_models extends CI_Model {
 	public function insert_multiple($data){
 		$this->db->insert_batch('data_invoice', $data);
 	}
+
+	public function hapus($id_){
+        $this->db->where('id_',$id_); //pencocokan id
+        $this->db->delete('data_invoice'); //eksekusi
+        return;
+	}
 }
