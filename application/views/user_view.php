@@ -114,7 +114,7 @@
                   <td>
                     <!-- Button trigger modal -->
                     <a href="javascript:void(0);" data-id="<?php echo $u->user_id ; ?>" data-name="<?php echo $u->user_name ; ?>" data-email="<?php echo $u->user_email ; ?>" data-toggle="modal" data-target="#exampleModalCenter1-data">
-                            		<button  data-toggle="modal" data-target="#ubah-data" class="btn btn-secondary"><span class="fa fa-edit"></span></button></a>
+                    <button  data-toggle="modal" data-target="#ubah-data" class="btn btn-secondary"><span class="fa fa-edit"></span></button></a>
 
                     <a href="#" onclick="delete_c(<?php echo $u->user_id; ?>)" class="btn  btn-warning fa fa-trash-o">
                     Delete</a></td>
@@ -128,7 +128,7 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLongTitle1">Edit User</h3>
+                    <h3 class="modal-title" id="exampleModalLongTitle1">Form Edit User</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
