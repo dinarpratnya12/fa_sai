@@ -113,8 +113,8 @@
                   <td><?php echo $u->user_email ?></td>
                   <td>
                     <!-- Button trigger modal -->
-                    <a href="javascript:void(0);" data-id="<?php echo $u->user_id ; ?>" data-name="<?php echo $u->user_name ; ?>" data-email="<?php echo $u->user_email ; ?>" data-toggle="modal" data-target="#exampleModalCenter1-data">
-                    <button  data-toggle="modal" data-target="#ubah-data" class="btn btn-secondary"><span class="fa fa-edit"></span></button></a>
+                    <a href="javascript:void(0);" class="item_edit" data-id="<?php echo $u->user_id ; ?>" data-username="<?php echo $u->user_name ; ?>" data-email="<?php echo $u->user_email ; ?>" data-toggle="modal" data-target="#exampleModalCenter1">
+                    <button class="btn btn-secondary" ><span class="fa fa-edit"></span>Edit</button></a>
 
                     <a href="#" onclick="delete_c(<?php echo $u->user_id; ?>)" class="btn  btn-warning fa fa-trash-o">
                     Delete</a></td>
@@ -128,7 +128,7 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLongTitle1">Form Edit User</h3>
+                    <h3 class="modal-title">Form Edit User</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -140,7 +140,8 @@
                         <h5 align="left">Nama Lengkap :</h5>
                       </div>
                       <div class="col-lg-8">
-                        <input type="text" name="name" class="form-control" value="<?php echo set_value('name'); ?>"/>
+                      <input type="hidden" name="user_id" id="user_id" class="form-control"/>
+                        <input type="text" name="username" id="username" class="form-control" required/>
                         <?php echo form_error('name'); ?>
                       </div>
                     </div>
@@ -149,7 +150,7 @@
                         <h5 align="left">Email : </h5>
                       </div>
                       <div class="col-lg-8">
-                        <input type="text" name="email" class="form-control" value="<?php echo set_value('email'); ?>"/>
+                        <input type="text" name="email" id="email" class="form-control" required/>
                         <?php echo form_error('email'); ?>
                       </div>
                     </div>
@@ -158,7 +159,7 @@
                         <h5 align="left">Password : </h5>
                       </div>
                         <div class="col-lg-8">
-                          <input type="password" name="password" class="form-control" value="<?php echo set_value('password'); ?>"/>
+                          <input type="password" name="password" class="form-control" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_conf.pattern = this.value;" required/>
                           <?php echo form_error('password'); ?>
                         </div>
                     </div>
@@ -167,7 +168,7 @@
                         <h5 align="left">Konfirmasi Password : </h5>
                       </div>
                       <div class="col-lg-8">
-                        <input type="password" name="password_conf" class="form-control" value="<?php echo set_value('password_conf'); ?>"/>
+                        <input type="password" name="password_conf" id="password_conf" class="form-control" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" required/>
                         <?php echo form_error('password_conf'); ?>
                       </div>
                     </div>
@@ -186,21 +187,32 @@
             </div>
           </div>
         </div>
-        <script src="<?php echo base_url('assets/jquery-1.12.4.js'); ?>"></script>
         <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
         <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
         <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
         <script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script>
 
-
-        <?php if(validation_errors() != null){ ?>
-        <script>
-          $('#exampleModalCenter').modal('show');
-        </script>
-        <?php } ?>
-
-        <script>
+          <script>
           $(document).ready(function() {
+            $('#example').on('click','.item_edit',function() {
+            var userid = $(this).data('id');
+            var username = $(this).data('username');
+            var email = $(this).data('email');
+
+	            // // Isi nilai pada field
+	            // modal.find('#user_id').attr("value",div.data('id'));
+	            // modal.find('#user_name').attr("value",div.data('name'));
+	            // modal.find('#user_email').attr("value",div.data('email'));
+
+
+              $('[name=username]').val(username);
+              $('[name="email"]').val(email);
+              $('[name="user_id"]').val(userid);
+              //alert(email);
+              //$('#exampleModalCenter1').modal();
+	            //modal.find('#user_password').attr("value",div.data('user_password'));
+	            });
+
             $('#example').DataTable(
               {
                 "scrollY": "200px",

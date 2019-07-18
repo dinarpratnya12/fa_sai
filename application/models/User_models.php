@@ -15,8 +15,8 @@ class User_models extends CI_Model{
         return $query->result();
     }
 
-	function edit($user_id){
-        $this->db->where('user_id', $id);
+	function edit($data,$where){
+        $this->db->where($where);
 		$this->db->update('tbl_users', $data);
 
 	}

@@ -37,4 +37,9 @@ class Penawaran_models extends CI_Model {
         $this->db->delete('data_penawaran'); //eksekusi
         return;
 	}
+	public function hapusperiode($PERIOD){
+		$this->db->where('PERIOD',$PERIOD); //pencocokan id
+        $this->db->delete('data_penawaran'); //eksekusi
+        return;
+	}
 }

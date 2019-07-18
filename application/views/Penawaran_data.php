@@ -66,6 +66,38 @@
                         <div style="background-color: #ffffff; padding: 10px">
                             <center><h4>Data Penawaran</h4></center>
                             <br>
+                            <hr>
+                                <?php echo form_open('Lihat_data/hapusperiode');?>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <br>
+                                        <br>
+                                        <label>Pilih periode yang akan dihapus :</label>
+                                        <div class="row">
+                                        <div class="col-md-11">
+                                        <select class="form-control show-tick" name="selectperiode">
+                                            <option selected disabled>-- Pilih Periode --</option>
+                                            <option
+                                            <?php
+                                                $PERIOD = $this->db->query('SELECT DISTINCT data_penawaran.PERIOD FROM data_penawaran')->result();
+                                                foreach($PERIOD as $row) {?>
+                                            <option value="<?= $row->PERIOD;?>"><?= $row->PERIOD;?></option>
+                                            <?php } ?>
+                                        </select>
+                                        </div>
+                                        <div class="col-md-1">
+                                        <input type='submit' value="Delete" class='btn  btn-warning fa fa-trash-o'>
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                    </div>
+                                </div>
+
+                                <?php echo form_close();?>
+                                <br>
                             <div class="table-responsive-sm">
                                 <table class="table warnain text2" cellpadding="" id="example2" style="width:100%">
                                     <thead>

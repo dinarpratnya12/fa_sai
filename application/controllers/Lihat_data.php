@@ -59,7 +59,21 @@ class Lihat_data extends CI_Controller{
     }
     function hapus2($id_penawaran){
       $this->load->model('penawaran_models');;
-      $this->invoice_models->hapus($id_penawaran);
+      $this->invoice_models->hapus2($id_penawaran);
+      $this->session->set_flashdata('swal');
+      redirect('Lihat_data/penawaran','refresh');
+    }
+    function hapusnumber(){
+      $invoice = $this->input->post('selectinvoice');
+      $this->load->model('invoice_models');;
+      $this->invoice_models->hapusnumber($invoice);
+      $this->session->set_flashdata('swal');
+      redirect('Lihat_data/invoice','refresh');
+    }
+    function hapusperiode(){
+      $penawaran = $this->input->post('selectperiode');
+      $this->load->model('penawaran_models');;
+      $this->penawaran_models->hapusperiode($penawaran);
       $this->session->set_flashdata('swal');
       redirect('Lihat_data/penawaran','refresh');
     }

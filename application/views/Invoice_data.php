@@ -66,7 +66,39 @@
                         <!-- Form invoice -->
                         <div class="col-lg-12">
                             <div style="background-color: #ffffff; padding: 10px">
-                                <center><h4>Data Invoice</h4></center>
+                                <center><h2>Data Invoice</h2></center>
+                                <br>
+                                <hr>
+                                <?php echo form_open('Lihat_data/hapusnumber');?>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <br>
+                                        <br>
+                                        <label>Pilih Invoice Number yang akan dihapus :</label>
+                                        <div class="row">
+                                        <div class="col-md-11">
+                                        <select class="form-control show-tick" name="selectinvoice">
+                                            <option selected disabled>-- Pilih Invoice Number --</option>
+                                            <option
+                                            <?php
+                                                $invoice_number = $this->db->query('SELECT DISTINCT data_invoice.invoice_number FROM data_invoice')->result();
+                                                foreach($invoice_number as $row) {?>
+                                            <option value="<?= $row->invoice_number;?>"><?= $row->invoice_number;?></option>
+                                            <?php } ?>
+                                        </select>
+                                        </div>
+                                        <div class="col-md-1">
+                                        <input type='submit' value="Delete" class='btn  btn-warning fa fa-trash-o'>
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+
+                                    </div>
+                                </div>
+
+                                <?php echo form_close();?>
                                 <br>
                                 <div class="table-responsive-sm">
                                     <table class="table text warnain" cellpadding="" id="example" style="width:100%">
@@ -126,6 +158,7 @@
                                             }
                                         ?>
                                     </table>
+
                                 </div>
                             </div>
                         </div>
@@ -166,6 +199,29 @@
                         "paging": false
                     }
                 );
+                // $('#deleteaku').on('click', function(){
+                //     var a = $('[name=selectinvoice]').val();
+                //     if(a != null){
+                //         var url = '<?php echo base_url('lihat_data/hapus');?>/'+id
+                //     swal({
+                //         title: "Are you sure?",
+                //         text: "Once deleted, you will not be able to recover this imaginary file!",
+                //         icon: "warning",
+                //         buttons: true,
+                //         dangerMode: true,
+                //     })
+                //     .then((willDelete) => {
+                //         if (willDelete) {
+                //             window.location.href = url;
+                //         } else {
+                //             swal({
+                //                 title: "Data Aman!",
+                //                 icon: "info",
+                //             })
+                //         }
+                //     });
+                //     }
+                // })
             } );
             function delete_c(id){
 
@@ -187,6 +243,9 @@
                         })
                     }
             });
+            function deleteaku(){
+
+            }
         }
         </script>
     </body>

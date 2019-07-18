@@ -47,29 +47,38 @@ class Crud extends CI_Controller{
 		$this->load->view('Header/footerfix');
 	}
 
-	function edit($user_id){
-		$this->form_validation->set_rules('user_id', 'NAME', 'required');
-		$this->form_validation->set_rules('user_name', 'EMAIL', 'required|valid_email');
-		$this->form_validation->set_rules('user_password', 'PASSWOARD', 'required');
-		$this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
-        if($this->form_validation->run()==FALSE){
-            $this->session->set_flashdata('error',"Data Gagal Di Edit");
-            redirect('Modal');
-        }else{
-            $data=array(
-                "user_name"=>$_POST['user_name'],
-            );
-            $this->db->where('user_id', $_POST['user_id']);
-            $this->db->update('tbl_users',$data);
-            $this->session->set_flashdata('sukses',"Data Berhasil Diedit");
-            redirect('Modal');
-		}
+	function edit(){
+		// $this->form_validation->set_rules('user_id', 'NAME', 'required');
+		// $this->form_validation->set_rules('user_name', 'EMAIL', 'required|valid_email');
+		// $this->form_validation->set_rules('user_password', 'PASSWOARD', 'required');
+		// $this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
+
+
+        // if($this->form_validation->run()==FALSE){
+        //     $this->session->set_flashdata('error',"Data Gagal Di Edit");
+        //     //redirect('Crud','refresh');
+        // }else{
+            $data= array(
+				"user_name"=>$_POST['username'],
+				"user_email"=>$_POST['email'],
+				"user_password" =>md5($_POST['password'])
+
+			);
+			$where = array(
+				"user_id"=>$_POST['user_id'],
+			);
+			$this->user_models->edit($data,$where);
+
+            $this->session->set_flashdata('swal','Success|Successful Edit User|success');
+            redirect('Crud','refresh');
+		// }
 	}
 
 	function hapus($user_id){
 		$this->load->model('user_models');;
 		$this->user_models->hapus($user_id);
 		$this->session->set_flashdata('swal');
+		$this->session->set_flashdata('swal','Success|Successful Delete User|success');
         redirect('Crud','refresh');
     }
 }
