@@ -16,7 +16,7 @@
     <link href="<?php echo base_url('assets/export/buttons.dataTables.min.css');?>"><div class="row">
     <br>
     <!-- Select -->
-    <div class="row clearfix">
+            <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -26,8 +26,8 @@
                         </div>
                         <div class="body">
                             <div class="row clearfix">
-                                <div class="col-sm-6">
-                                    <form method="post">
+                            <form method="post">
+                                <!-- <div class="col-sm-5">
                                     <select class="form-control show-tick">
                                         <option selected disabled>-- Pilih Invoice Number --</option>
                                         <option
@@ -37,27 +37,28 @@
                                         <option value="<?= $row->invoice_number;?>"><?= $row->invoice_number;?></option>
                                         <?php } ?>
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="col-sm-6">
-                                        <select class="form-control show-tick" name="periode">
-                                            <option selected disabled>-- Pilih Periode --</option>
-                                            <?php
-                                                $periode = $this->db->query('SELECT DISTINCT data_penawaran.PERIOD FROM data_penawaran')->result();
-                                                foreach($periode as $row) {?>
-                                            <option value="<?= $row->PERIOD;?>" ><?= $row->PERIOD;?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <br>
-                                        <br>
+                                    <select class="form-control show-tick" name="periode">
+                                        <option selected disabled>-- Pilih Periode --</option>
+                                        <?php
+                                            $periode = $this->db->query('SELECT DISTINCT data_penawaran.PERIOD FROM data_penawaran')->result();
+                                            foreach($periode as $row) {?>
+                                        <option value="<?= $row->PERIOD;?>" ><?= $row->PERIOD;?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <br>
+                                    <br>
                                 </div>
                                 <input type="hidden" name="compare" value="Compare">
-                                        <center><button type="submit" class="btn btn-success btn-lg waves-effect">Submit</button></center>
-                                    </form>
-                                    <br>
-                                    <br>
-                                    <?php if(isset($_POST['compare'])){ ?>
+                                <center><button type="submit" class="btn btn-success btn-lg waves-effect">Submit</button></center>
+                            </form>
+                            </div>
+                            <br>
+                            <br>
+                            <?php if(isset($_POST['compare'])){ ?>
                             <div class="table-responsive">
-                                <table class="table table-striped text" cellpadding="" id="example3" bordered=5px>
+                                <table class="table table-striped text" cellpadding="" id="example3" bordered=>
                                     <thead>
                                         <tr>
                                             <th>Invoice Number</th>
@@ -74,7 +75,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        foreach ($data_komper as $row):
+                                            foreach ($data_komper as $row):
                                         ?>
                                         <tr>
                                             <td><?=$row->invoice_number?></td>
@@ -122,41 +123,7 @@
                                         <?php endforeach; ?>
                                     <tbody>
                                 </table>
-
-                                <!-- tabel no compare -->
-
-                                <!-- <table class="table table-striped text" cellpadding="" id="example3" bordered=5px>
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Part Number</th>
-                                            <th>Periode</th>
-                                            <th>Supplier</th>
-                                            <th>Price Invoice (pcs)</th>
-                                            <th>Price Quatition (pcs)</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        <?php
-                                        $no = 0;
-                                        foreach ($data_komper2 as $row):
-                                        $no++ ?>
-                                            <tr>
-                                                <td><?=$no?>
-                                                <td><?=$row->buppin_number ?></td>
-                                                <td><?=$row->PERIOD ?></td>
-                                                <td><?=$row->supplier ?></td>
-                                                <td><?=$row->price_invoicesatu ?></td>
-                                                <td><?=$row->BASE_PRICE ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <tbody>
-                                </table> -->
-                                <!-- End tabel no compare -->
-                            <?php } ?>
-                            </div>
-                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

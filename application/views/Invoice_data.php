@@ -243,9 +243,6 @@
                         })
                     }
             });
-            function deleteaku(){
-
-            }
         }
         </script>
     </body>

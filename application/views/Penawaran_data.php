@@ -142,7 +142,7 @@
                                             echo "<td style='position: sticky;right:0px; background-color:white'>
                                             <a href='javascript:void(0)' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalCenter2'>
                                             Edit                                                </a>
-                                            <a href='#' onclick='delete_c(".$data->id_penawaran.")' class='btn  btn-warning fa fa-trash-o'>
+                                            <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn  btn-warning fa fa-trash-o'>
                                             Delete</a></td>";
                                             echo "</tr>";
                                         }
@@ -192,9 +192,9 @@
                     }
                 );
             } );
-            function delete_c(id){
+            function delete_a(id){
 
-                var url = '<?php echo base_url('lihat_data/hapus');?>/'+id
+                var url = '<?php echo base_url('lihat_data/hapuspenawaran');?>/'+id
                 swal({
                     title: "Are you sure?",
                     text: "Once deleted, you will not be able to recover this imaginary file!",

@@ -32,7 +32,7 @@ class Penawaran_models extends CI_Model {
 		$this->db->insert_batch('data_penawaran', $data);
 	}
 
-	public function hapus($id_penawaran){
+	public function hapuspenawaran($id_penawaran){
         $this->db->where('id_penawaran',$id_penawaran); //pencocokan id
         $this->db->delete('data_penawaran'); //eksekusi
         return;

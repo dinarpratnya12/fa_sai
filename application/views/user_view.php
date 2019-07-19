@@ -114,7 +114,7 @@
                   <td>
                     <!-- Button trigger modal -->
                     <a href="javascript:void(0);" class="item_edit" data-id="<?php echo $u->user_id ; ?>" data-username="<?php echo $u->user_name ; ?>" data-email="<?php echo $u->user_email ; ?>" data-toggle="modal" data-target="#exampleModalCenter1">
-                    <button class="btn btn-secondary" ><span class="fa fa-edit"></span>Edit</button></a>
+                    <button class="btn  btn-primary fa fa-trash-o" >Edit</button></a>
 
                     <a href="#" onclick="delete_c(<?php echo $u->user_id; ?>)" class="btn  btn-warning fa fa-trash-o">
                     Delete</a></td>
