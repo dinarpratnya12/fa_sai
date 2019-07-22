@@ -18,7 +18,6 @@ class User_models extends CI_Model{
 	function edit($data,$where){
         $this->db->where($where);
 		$this->db->update('tbl_users', $data);
-
 	}
 
 	public function hapus($user_id){

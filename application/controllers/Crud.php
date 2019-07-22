@@ -20,7 +20,7 @@ class Crud extends CI_Controller{
 	}
 
 	function tambah(){
-		// $this->load->view('add_view');
+		
 		$this->load->view('Header/headercrud');
 		$data['tbl_users'] = $this->user_models->tampil_data()->result();
 
@@ -39,8 +39,6 @@ class Crud extends CI_Controller{
 
 			$this->user_models->input_data($data1);
 
-			// $pesan['message'] = "Pendaftaran berhasil";
-
 			$this->session->set_flashdata('swal','Success|Successful Add User|success');
 			redirect('Crud','refresh');
 		}
@@ -48,16 +46,6 @@ class Crud extends CI_Controller{
 	}
 
 	function edit(){
-		// $this->form_validation->set_rules('user_id', 'NAME', 'required');
-		// $this->form_validation->set_rules('user_name', 'EMAIL', 'required|valid_email');
-		// $this->form_validation->set_rules('user_password', 'PASSWOARD', 'required');
-		// $this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
-
-
-        // if($this->form_validation->run()==FALSE){
-        //     $this->session->set_flashdata('error',"Data Gagal Di Edit");
-        //     //redirect('Crud','refresh');
-        // }else{
             $data= array(
 				"user_name"=>$_POST['username'],
 				"user_email"=>$_POST['email'],
@@ -71,7 +59,6 @@ class Crud extends CI_Controller{
 
             $this->session->set_flashdata('swal','Success|Successful Edit User|success');
             redirect('Crud','refresh');
-		// }
 	}
 
 	function hapus($user_id){

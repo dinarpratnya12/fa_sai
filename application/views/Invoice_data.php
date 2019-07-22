@@ -107,6 +107,8 @@
                                                 <th>Currency Code</th>
                                                 <th>Qty Invoice</th>
                                                 <th>Invoice Value</th>
+                                                <th>Unit Code</th>
+                                                <th>Order Number</th>
                                                 <th>Tanggal</th>
                                                 <th>Periode</th>
                                                 <th style="position: sticky;right:0px;background-color:white;">Action</th>
@@ -151,6 +153,8 @@
                                                     }else{
                                                         echo "<td>".$data->InvoiceValue."</td>";
                                                     }
+                                                    echo "<td>".$data->UnitCode."</td>";
+                                                    echo "<td>".$data->OrderNumber."</td>";
                                                     echo "<td>".$data->InvoiceDate."</td>";
                                                     echo "<td>".$data->periode."</td>";
                                                     echo "<td style='position: sticky;right:0px; background-color:white'>
