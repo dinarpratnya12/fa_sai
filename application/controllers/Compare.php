@@ -21,6 +21,5 @@ class Compare extends CI_Controller{
 		$this->load->view('compare_view', $data);
 		$this->load->view('Header/footerfix');
   }
-
-
 }
+?>

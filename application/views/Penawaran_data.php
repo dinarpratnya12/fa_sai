@@ -49,12 +49,14 @@
             border-color: #4d4a46;
         }
     </style>
-</head>
-<body>
+
+
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
     <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
 
+</head>
+<body>
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
             <div class="container-fluid">
@@ -86,13 +88,9 @@
                                         </select>
                                         </div>
                                         <div class="col-md-1">
-                                        <input type='submit' value="Delete" class='btn  btn-warning fa fa-trash-o'>
-
+                                            <input type='submit' value="Delete" class='btn  btn-warning fa fa-trash-o'>
                                         </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6">
-
                                     </div>
                                 </div>
 
@@ -102,7 +100,7 @@
                                 <table class="table warnain text2" cellpadding="" id="example2" style="width:100%">
                                     <thead>
                                         <tr>
-                                            <th class="th-sm">Part Number</th>
+                                            <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
                                             <th class="th-sm">Price ID</th>
                                             <th class="th-sm">Effect Date</th>
                                             <th class="th-sm">Expire Date</th>
@@ -116,7 +114,7 @@
                                     if( ! empty($data_penawaran)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
                                         foreach($data_penawaran as $data){ // Lakukan looping pada variabel siswa dari controller
                                             echo "<tr>";
-                                            echo "<td>".$data->GCT_COMP_NO."</td>";
+                                            echo "<td style='position: sticky;left:0px; background-color:white'>".$data->GCT_COMP_NO."</td>";
                                             echo "<td>".$data->PRICE_ID."</td>";
                                             echo "<td>".$data->EFFECT_DT."</td>";
                                             echo "<td>".$data->EXPIRE_DT."</td>";
@@ -141,7 +139,7 @@
                                             echo "<td>".$data->PERIOD."</td>";
                                             echo "<td style='position: sticky;right:0px; background-color:white'>
                                             <a href='javascript:void(0)' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalCenter2'>
-                                            Edit                                                </a>
+                                            Edit</a>
                                             <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn  btn-warning fa fa-trash-o'>
                                             Delete</a></td>";
                                             echo "</tr>";

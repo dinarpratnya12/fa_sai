@@ -38,8 +38,8 @@ class Invoice_models extends CI_Model {
         return;
 	}
 
-	public function hapusnumber($invoice_number){
-		$this->db->where('invoice_number',$invoice_number); //pencocokan id
+	public function hapusnumber($InvoiceNumber){
+		$this->db->where('InvoiceNumber',$InvoiceNumber); //pencocokan id
         $this->db->delete('data_invoice'); //eksekusi
         return;
 	}

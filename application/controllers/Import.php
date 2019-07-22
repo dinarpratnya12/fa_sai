@@ -124,7 +124,7 @@ class Import extends CI_Controller {
 				//echo count($sheet);
 
 				foreach($sheet as $row){
-					$strs = $row['E'];
+					$strs = $row['V'];
 					$strs = str_replace("IRC INOAC","PASI",$strs);
 					$strs = str_replace("NIDEC","PASI",$strs);
 					$strs = str_replace("NIFCO","PASI",$strs);
@@ -144,16 +144,16 @@ class Import extends CI_Controller {
 					$strs = str_replace("TAP-AW","TAP",$strs);
 					$strs = str_replace("TAP-INJ","TAP",$strs);
 					$strs = str_replace("TAP-VT","TAP",$strs);
-					if($row['A'] != "" || $row['A'] != null){
+					if($row['E'] != "" || $row['E'] != null){
 						// $date = $row['B'];
 						// var_dump($row['B']);
-						$tanggal = date('y-m-d',strtotime($row['B']));
+						$tanggal = date('Y-m-d',strtotime($row['P']));
 						// var_dump($tanggal);exit();
 						// echo $tanggal;
 
 
-						$tahun = '20'.date('y',strtotime($row['B']));
-						$month = date('m',strtotime($row['B']));
+						$tahun = date('Y',strtotime($row['P']));
+						$month = date('m',strtotime($row['P']));
 
 						$periode = "";
 						if($month == 12){
@@ -163,20 +163,19 @@ class Import extends CI_Controller {
 						}else if($month >= 6 && $month <= 11){
 							$periode = "Jun ".$tahun." - Nov ".$tahun;
 						}
-
-						$persatu = (int)$row['G']/1000;
-						$total =  $persatu*$row['D'];
+						$total = (int)$row['Q']/(int)$row['J'];
 
 						array_push($data, array(
-							'invoice_number' => $row['A'], // Ambil data invoice number
-							'invoice_date' => $tanggal, // Ambil data invoice date
-							'buppin_number' => $row['C'], // Ambil data bummpin number
-							'qty_invoice' => $row['D'], // Ambil data qty invoice
+							'ProductID' => $row['E'], // Ambil data ProductID
+							'QuantityUnit' => $row['J'], // Ambil data QuantityUnit
+							'UnitCode' => $row['K'], // Ambil data UnitCode
+							'InvoiceNumber' => $row['O'], // Ambil data InvoiceNumber
+							'InvoiceDate' => $tanggal, // Ambil data kind
+							'InvoiceValue' => $row['Q'], // Ambil data InvoiceValue
+							'CurrencyCode' => $row['R'], // Ambil data CurrencyCode
+							'OrderNumber' => $row['U'], // Ambil data OrderNumber
 							'supplier' => $strs, // Ambil data supplier
-							'kind' => $row['F'], // Ambil data kind
-							'price_invoiceseribu' => $row['G'], // Ambil data price perseribu
-							'price_invoicesatu' => $persatu, // Ambil data price persatu
-							'price_total' => $total, // Ambil data price total
+							'kalkulasi_per_pcs' => $total, // Ambil data price total
 							'periode' => $periode, // Ambil data periode
 						));
 					}

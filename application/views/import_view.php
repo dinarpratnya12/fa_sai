@@ -55,7 +55,7 @@
 <div class="container" style="margin-top:0px !important;">
     <div class="row">
         <div class="container-fluid">
-            <h2>Compare Form</h2>
+            <h2>Import Form</h2>
             <hr>
             <div class="row">
                 <!-- Form invoice -->
@@ -87,34 +87,44 @@
                             <table class="table table-striped table-bordered text" cellpadding="" id="example">
                                 <thead>
                                     <th>Part Number</th>
+                                    <th>Invoice Number</th>
                                     <th>Supplier</th>
-                                    <th>Price</th>
+                                    <th>Invoice Value</th>
+                                    <th>QTY</th>
+                                    <th>Price @pcs</th>
                                     <th>Tanggal</th>
                                 </thead>
                                 <?php
                                     $numrow = 1;
                                     $kosong = 0;
+                                    $total = 0;
                                     // unset($sheet[1]);
-
                                     foreach($sheet as $row){
-                                        $qty_int = (int)$row['D'];
-                                        $perseribu_int = (int)$row['G'];
-                                        $total =  $perseribu_int/1000*$qty_int;
+                                        if($row['Q'] > 0 && $row['J'] > 0){
+                                            $total = (double)$row['Q']*(double)$row['J'];
+                                        }
+
 
                                     // Ambil data pada excel sesuai Kolom
-                                        $buppin_number = $row['C'];
-                                        $supplier = $row['E'];
-                                        $price_total = $total;
-                                        $tanggal = $row['B'];
+                                        $ProductID = $row['E'];
+                                        $InvoiceNumber = $row['O'];
+                                        $supplier = $row['V'];
+                                        $InvoiceValue = $row['Q'];
+                                        $QuantityUnit = $row['J'];
+                                        $kalkulasi_per_pcs = $total;
+                                        $InvoiceDate = $row['P'];
 
                                         if($numrow > 1){
-                                            if($row['C'] != "" || $row['C'] != null){
+                                            if($row['E'] != "" || $row['E'] != null){
 
                                                 echo "<tr>";
-                                                echo "<td>".$buppin_number."</td>";
+                                                echo "<td>".$ProductID."</td>";
+                                                echo "<td>".$InvoiceNumber."</td>";
                                                 echo "<td>".$supplier."</td>";
-                                                echo "<td>".$price_total."</td>";
-                                                echo "<td>".$tanggal."</td>";
+                                                echo "<td>".$InvoiceValue."</td>";
+                                                echo "<td>".$QuantityUnit."</td>";
+                                                echo "<td>".$total."</td>";
+                                                echo "<td>".$InvoiceDate."</td>";
                                                 echo "</tr>";
                                             }
                                         }
@@ -155,8 +165,6 @@
                 </div>
 
                 <?php } ?>
-
-
 
                 <!-- Form penawaran -->
                 <div class="col-lg-6">
