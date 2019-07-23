@@ -13,11 +13,11 @@ class Komper_model extends CI_Model{
   {
     $query = $this->db->query('
     select
-      data_invoice.invoice_number,
-      data_invoice.buppin_number,
-      data_invoice.price_invoicesatu,
+      data_invoice.InvoiceNumber,
+      data_invoice.ProductID,
+      data_invoice.kalkulasi_per_pcs,
       data_invoice.supplier,
-      data_invoice.qty_invoice,
+      data_invoice.QuantityUnit,
       data_penawaran.GCT_COMP_NO,
       data_penawaran.PERIOD,
       data_penawaran.BASE_PRICE,
@@ -27,7 +27,7 @@ class Komper_model extends CI_Model{
     inner join
       data_penawaran
     on
-      data_invoice.buppin_number = data_penawaran.GCT_COMP_NO
+      data_invoice.ProductID = data_penawaran.GCT_COMP_NO
     and
       data_invoice.supplier = data_penawaran.SPPLY_NM where data_invoice.periode="'.$periode.'"
       AND data_penawaran.PERIOD="'.$periode.'"');
@@ -39,7 +39,7 @@ class Komper_model extends CI_Model{
   {
     $query = $this->db->query('
     select
-      data_invoice.buppin_number as no,data_invoice.supplier as supplier,data_invoice.price_invoicesatu as price from data_invoice
+      data_invoice.ProductID as no,data_invoice.supplier as supplier,data_invoice.kalkulasi_per_pcs as price from data_invoice
     where
       periode = "'.$periode.'"
     UNION ALL

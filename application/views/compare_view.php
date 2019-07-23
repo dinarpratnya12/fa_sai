@@ -32,9 +32,9 @@
                                         <option selected disabled>-- Pilih Invoice Number --</option>
                                         <option
                                         <?php
-                                            $invoice_number = $this->db->query('SELECT DISTINCT data_invoice.invoice_number FROM data_invoice')->result();
-                                            foreach($invoice_number as $row) {?>
-                                        <option value="<?= $row->invoice_number;?>"><?= $row->invoice_number;?></option>
+                                            $InvoiceNumber = $this->db->query('SELECT DISTINCT data_invoice.InvoiceNumber FROM data_invoice')->result();
+                                            foreach($InvoiceNumber as $row) {?>
+                                        <option value="<?= $row->InvoiceNumber;?>"><?= $row->InvoiceNumber;?></option>
                                         <?php } ?>
                                     </select>
                                 </div> -->
@@ -78,8 +78,8 @@
                                             foreach ($data_komper as $row):
                                         ?>
                                         <tr>
-                                            <td><?=$row->invoice_number?></td>
-                                            <td><?=$row->buppin_number ?></td>
+                                            <td><?=$row->InvoiceNumber?></td>
+                                            <td><?=$row->ProductID ?></td>
                                             <td><?=$row->PERIOD ?></td>
                                             <td><?=$row->supplier ?></td>
                                             <td><?=$row->price_invoicesatu ?></td>

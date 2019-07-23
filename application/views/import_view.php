@@ -110,6 +110,9 @@
                                         $InvoiceNumber = $row['O'];
                                         $supplier = $row['V'];
                                         $InvoiceValue = $row['Q'];
+                                        if(stripos($InvoiceValue,".") !== false){
+                                            $InvoiceValue = number_format($InvoiceValue,2);
+                                        }
                                         $QuantityUnit = $row['J'];
                                         $kalkulasi_per_pcs = $total;
                                         $InvoiceDate = $row['P'];

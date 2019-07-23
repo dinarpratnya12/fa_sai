@@ -100,8 +100,8 @@
                                 <table class="table warnain text" cellpadding="" id="example1" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th style="position: sticky;left:0px;background-color:white;">Invoice Number</th>
-                                                <th>Part Number</th>
+                                                <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
+                                                <th>Invoice Number</th>
                                                 <th>Supplier</th>
                                                 <th>Price @pcs</th>
                                                 <th>Currency Code</th>
@@ -118,8 +118,8 @@
                                             if( ! empty($data_invoice)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
                                                 foreach($data_invoice as $data){ // Lakukan looping pada variabel siswa dari controller
                                                     echo "<tr>";
-                                                    echo "<td style='position: sticky;left:0px; background-color:white'>".$data->InvoiceNumber."</td>";
-                                                    echo "<td>".$data->ProductID."</td>";
+                                                    echo "<td style='position: sticky;left:0px; background-color:white'>".$data->ProductID."</td>";
+                                                    echo "<td>".$data->InvoiceNumber."</td>";
                                                     $strs = $data->supplier;
                                                     $strs = str_replace("IRC INOAC","PASI",$strs);
                                                     $strs = str_replace("NIDEC","PASI",$strs);
@@ -154,13 +154,12 @@
                                                         echo "<td>".$data->InvoiceValue."</td>";
                                                     }
                                                     echo "<td>".$data->UnitCode."</td>";
-                                                    echo "<td>".$data->OrderNumber."</td>";
+                                                    echo "<td>".$data->orderNumber."</td>";
                                                     echo "<td>".$data->InvoiceDate."</td>";
                                                     echo "<td>".$data->periode."</td>";
                                                     echo "<td style='position: sticky;right:0px; background-color:white'>
-                                                    <a href='javascript:void(0)' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalCenter2'>
-                                                    Edit
-                                                    </a>
+                                                    <a href='javascript:void(0)' class='item_edit1' data-id_='".$data->id_."' data-productid='".$data->ProductID."' data-quantityunit='".$data->QuantityUnit."' data-unitcode='".$data->UnitCode."' data-invoicenumber='".$data->InvoiceNumber."' data-invoicedate='".$data->InvoiceDate."' data-invoicevalue='".$data->InvoiceValue."' data-currencycode='".$data->CurrencyCode."' data-ordernumber='".$data->orderNumber."' data-supplier='".$data->supplier."' data-kalkulasi_per_pcs='".$data->kalkulasi_per_pcs."' data-periode='".$data->periode."' data-toggle='modal' data-target='#exampleModalCenter1'>
+                                                    <button class='btn  btn-primary fa fa-trash-o' >Edit</button></a>
                                                     <a href='#' onclick='delete_c(".$data->id_.")' class='btn  btn-warning fa fa-trash-o'>
                                                     Delete</a></td>";
                                                     echo "</tr>";
@@ -170,6 +169,128 @@
                                             }
                                         ?>
                                     </table>
+                                    <!-- Edit -->
+                                    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">Form Edit</h3>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                    <?php echo form_open('lihat_data/editinvoice');?>
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Invoice Number : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="hidden" name="id_" id="id_" class="form-control"/>
+                                                            <input type="text" name="InvoiceNumber" id="InvoiceNumber" class="form-control" required/>
+                                                            <?php echo form_error('InvoiceNumber'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Product ID :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="ProductID" id="ProductID" class="form-control" required/>
+                                                            <?php echo form_error('ProductID'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Supplier :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="supplier" id="supplier" class="form-control" required/>
+                                                            <?php echo form_error('supplier'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Kalkulasi @pcs :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="kalkulasi_per_pcs" id="kalkulasi_per_pcs" class="form-control" readonly/>
+                                                            <?php echo form_error('kalkulasi_per_pcs'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Currency Code :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="CurrencyCode" id="CurrencyCode" class="form-control" readonly/>
+                                                            <?php echo form_error('CurrencyCode'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Quantity Unit : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="QuantityUnit" id="QuantityUnit" class="form-control" required/>
+                                                            <?php echo form_error('QuantityUnit'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Invoice Value :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="InvoiceValue" id="InvoiceValue" class="form-control" required/>
+                                                            <?php echo form_error('InvoiceValue'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Unit Code : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="UnitCode" id="UnitCode" class="form-control" required/>
+                                                            <?php echo form_error('UnitCode'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">OrderNumber :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="orderNumber" id="orderNumber" class="form-control" required/>
+                                                            <?php echo form_error('OrderNumber'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Invoice Date :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="InvoiceDate" id="InvoiceDate" class="form-control" readonly/>
+                                                            <?php echo form_error('InvoiceDate'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Periode :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="periode" id="periode" class="form-control" readonly/>
+                                                            <?php echo form_error('periode'); ?>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="reset" class="btn btn-info">Reset</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                            <?php echo form_close();?>
+                                        </div>
+                                    </div>
+                                    <!-- End Edit -->
                                 </div>
                             </div>
                         </div>
@@ -178,14 +299,12 @@
             </div>
         </div>
 
-        <script src="<?php echo base_url('assets/jquery-1.12.4.js'); ?>"></script>
+        <!-- <script src="<?php echo base_url('assets/jquery-1.12.4.js'); ?>"></script> -->
         <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
+        <!-- <script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script> -->
 
         <?php if(validation_errors() != null){ ?>
 
-        <script>
-          $('#exampleModalCenter').modal('show');
-        </script>
         <?php } ?>
         <script>
             $(document).ready(function() {
@@ -202,6 +321,37 @@
                             }
                         } );
                 });
+                $('#example1').on('click','.item_edit1',function() {
+                    var id_ = $(this).data('id_');
+
+                    var ProductID = $(this).data('productid');
+                    var InvoiceNumber = $(this).data('invoicenumber');
+                    var supplier = $(this).data('supplier');
+                    var kalkulasi_per_pcs = $(this).data('kalkulasi_per_pcs');
+                    var CurrencyCode = $(this).data('currencycode');
+                    var QuantityUnit = $(this).data('quantityunit');
+                    var InvoiceValue = $(this).data('invoicevalue');
+                    var UnitCode = $(this).data('unitcode');
+                    var orderNumber = $(this).data('ordernumber');
+                    var InvoiceDate = $(this).data('invoicedate');
+                    var periode = $(this).data('periode');
+
+
+
+                    $('[name="id_"]').val(id_);
+                    $('[name=ProductID]').val(ProductID);
+                    $('[name="InvoiceNumber"]').val(InvoiceNumber);
+                    $('[name="supplier"]').val(supplier);
+                    $('[name="kalkulasi_per_pcs"]').val(kalkulasi_per_pcs);
+                    $('[name="CurrencyCode"]').val(CurrencyCode);
+                    $('[name="QuantityUnit"]').val(QuantityUnit);
+                    $('[name="InvoiceValue"]').val(InvoiceValue);
+                    $('[name="UnitCode"]').val(UnitCode);
+                    $('[name="orderNumber"]').val(orderNumber);
+                    $('[name="InvoiceDate"]').val(InvoiceDate);
+                    $('[name="periode"]').val(periode);
+
+                });
                 var table = $('#example1').DataTable(
                     {
                         "scrollY": "400px",
@@ -212,7 +362,6 @@
                 );
             } );
             function delete_c(id){
-
                 var url = '<?php echo base_url('lihat_data/hapus');?>/'+id
                 swal({
                     title: "Are you sure?",
@@ -221,7 +370,7 @@
                     buttons: true,
                     dangerMode: true,
                 })
-                 .then((willDelete) => {
+                .then((willDelete) => {
                     if (willDelete) {
                         window.location.href = url;
                     } else {
@@ -230,8 +379,8 @@
                             icon: "info",
                         })
                     }
-            });
-        }
+                });
+            }
         </script>
     </body>
 </html>

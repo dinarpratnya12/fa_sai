@@ -165,13 +165,19 @@ class Import extends CI_Controller {
 						}
 						$total = (int)$row['Q']/(int)$row['J'];
 
+						$invoiceValue = $row['Q'];
+						if(stripos($invoiceValue,",") !== false){
+							$InvoiceValue = round($invoiceValue,2);
+						}
+
+
 						array_push($data, array(
 							'ProductID' => $row['E'], // Ambil data ProductID
 							'QuantityUnit' => $row['J'], // Ambil data QuantityUnit
 							'UnitCode' => $row['K'], // Ambil data UnitCode
 							'InvoiceNumber' => $row['O'], // Ambil data InvoiceNumber
 							'InvoiceDate' => $tanggal, // Ambil data kind
-							'InvoiceValue' => $row['Q'], // Ambil data InvoiceValue
+							'InvoiceValue' => $invoiceValue, // Ambil data InvoiceValue
 							'CurrencyCode' => $row['R'], // Ambil data CurrencyCode
 							'OrderNumber' => $row['U'], // Ambil data OrderNumber
 							'supplier' => $strs, // Ambil data supplier

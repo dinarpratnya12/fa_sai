@@ -116,7 +116,7 @@
                     <li>
                         <a href="<?php echo site_url('crud/index');?>">
                             <i class="material-icons">settings</i>
-                            <span>Menage People</span>
+                            <span>Manage People</span>
                         </a>
                     </li>
                 </ul>

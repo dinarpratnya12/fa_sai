@@ -50,8 +50,7 @@
         $('a[href="<?= current_url() ?>"]').parent().addClass('active');
     </script>
 
-    <!-- <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script> -->
+
 
 
     <script src="<?php echo base_url('assets/css/sweetalert.min.js')?>"></script>
