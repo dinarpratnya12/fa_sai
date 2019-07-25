@@ -69,7 +69,7 @@ class Import extends CI_Controller {
 						// Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
 						// Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
 						$data['sheet'] = $sheet;
-						if($loadexcel->getActiveSheet()->getCell('B1')->getValue() != "invoice"){
+						if($loadexcel->getActiveSheet()->getCell('E1')->getValue() != "ProductID" && getActiveSheet()->getCell('O1')->getValue() != "InvoiceNumber"){
 							$data['data_error'] = "Format Tidak Sesuai";
 							$this->session->set_flashdata('swal','Error|Format Tidak Sesuai|error');
 							$data['sheet'] = [];
