@@ -69,9 +69,9 @@ class Import extends CI_Controller {
 						// Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
 						// Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
 						$data['sheet'] = $sheet;
-						if($loadexcel->getActiveSheet()->getCell('E1')->getValue() != "ProductID" && getActiveSheet()->getCell('O1')->getValue() != "InvoiceNumber"){
+						if($loadexcel->getActiveSheet()->getCell('E1')->getValue() != "ProductID"){
 							$data['data_error'] = "Format Tidak Sesuai";
-							$this->session->set_flashdata('swal','Error|Format Tidak Sesuai|error');
+							$this->session->set_flashdata('swal','Format Tidak Sesuai!|Periksa Kembali Data Anda!|error');
 							$data['sheet'] = [];
 						}
 					}else{ // Jika proses upload gagal
@@ -107,6 +107,11 @@ class Import extends CI_Controller {
 						// Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
 						// Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
 						$data['sheet'] = $sheet;
+						if($loadexcel2->getActiveSheet()->getCell('AC1')->getValue() != "PERIOD"){
+							$data['data_error'] = "Format Tidak Sesuai";
+							$this->session->set_flashdata('swal','Format Tidak Sesuai!|Periksa Kembali Data Anda!|error');
+							$data['sheet'] = [];
+						}
 					}else{ // Jika proses upload gagal
 						$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
 					}
