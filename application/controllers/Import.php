@@ -12,6 +12,7 @@ class Import extends CI_Controller {
 	}
 
 	public function index(){
+		unset($_SESSION['swal']);
 		$data['level'] = $this->session->userdata('level');
 		if($data['level']=='1'){
 			$this->load->view('Header/headerfix');
@@ -63,9 +64,16 @@ class Import extends CI_Controller {
 						$loadexcel = $excelreader->load('excel/'.$this->filename.'.xlsx'); // Load file yang tadi diupload ke folder excel
 						$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 
+						unset($sheet[1]);
+
 						// Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
 						// Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
 						$data['sheet'] = $sheet;
+						if($loadexcel->getActiveSheet()->getCell('B1')->getValue() != "invoice"){
+							$data['data_error'] = "Format Tidak Sesuai";
+							$this->session->set_flashdata('swal','Error|Format Tidak Sesuai|error');
+							$data['sheet'] = [];
+						}
 					}else{ // Jika proses upload gagal
 						$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
 					}
@@ -120,6 +128,7 @@ class Import extends CI_Controller {
 				$data = array();
 				//$numrow = 1;
 				unset($sheet[1]);
+				unset($sheet[2]);
 
 				//echo count($sheet);
 
@@ -196,6 +205,7 @@ class Import extends CI_Controller {
 			}
 
 			public function import2(){
+
 				// Load plugin PHPExcel nya
 				include APPPATH.'third_party/PHPExcel/PHPExcel.php';
 
@@ -228,7 +238,7 @@ class Import extends CI_Controller {
 					$strsup = str_replace("TBD Supplier","J/A", $strsup);
 					$strsup = str_replace("PEMI","PEMI-AW", $strsup);
 					$strsup = str_replace("Tesa Tape Asia Pacific Pte Ltd","TESA", $strsup);
-					$strsup = str_replace("YAZAKI (CHINA) INVESTMENT CORPORATION","YGP", $strsup);
+					$strsup = str_replace("YAZAKI (CHINA) INVESTMENT CORPORATION","YCIC", $strsup);
 					$strsup = str_replace("YGP PTE. LTD.","YGP", $strsup);
 					$strsup = str_replace("YZK AMERICAS.","YNA", $strsup);
 

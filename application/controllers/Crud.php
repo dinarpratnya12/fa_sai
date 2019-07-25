@@ -8,7 +8,6 @@ class Crud extends CI_Controller{
 		$this->load->helper('url');
 		$this->load->library(array('form_validation'));
 		$this->load->helper(array('url','form'));
-
 	}
 
 	function index(){
@@ -20,7 +19,7 @@ class Crud extends CI_Controller{
 	}
 
 	function tambah(){
-		
+
 		$this->load->view('Header/headercrud');
 		$data['tbl_users'] = $this->user_models->tampil_data()->result();
 

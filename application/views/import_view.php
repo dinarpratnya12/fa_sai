@@ -101,7 +101,7 @@
                                     // unset($sheet[1]);
                                     foreach($sheet as $row){
                                         if($row['Q'] > 0 && $row['J'] > 0){
-                                            $total = (double)$row['Q']*(double)$row['J'];
+                                            $total = (double)$row['Q']/(double)$row['J'];
                                         }
 
 

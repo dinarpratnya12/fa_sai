@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 22 Jul 2019 pada 06.28
+-- Waktu pembuatan: 25 Jul 2019 pada 02.51
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -30,14 +30,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `data_invoice` (
   `id_` int(11) NOT NULL,
-  `ProductID` varchar(20) NOT NULL,
-  `QuantityUnit` varchar(20) NOT NULL,
-  `UnitCode` varchar(20) NOT NULL,
-  `InvoiceNumber` varchar(20) NOT NULL,
-  `InvoiceDate` varchar(20) NOT NULL,
-  `InvoiceValue` varchar(20) NOT NULL,
-  `CurrencyCode` varchar(20) NOT NULL,
-  `OrderNumber` varchar(20) NOT NULL,
+  `productid` varchar(20) NOT NULL,
+  `quantityunit` varchar(20) NOT NULL,
+  `unitcode` varchar(20) NOT NULL,
+  `invoicenumber` varchar(20) NOT NULL,
+  `invoicedate` varchar(20) NOT NULL,
+  `invoicevalue` varchar(20) NOT NULL,
+  `currencycode` varchar(20) NOT NULL,
+  `ordernumber` varchar(20) NOT NULL,
   `supplier` varchar(100) NOT NULL,
   `kalkulasi_per_pcs` varchar(20) NOT NULL,
   `periode` varchar(100) NOT NULL
@@ -85,16 +85,25 @@ CREATE TABLE `data_penawaran` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hasil`
+-- Struktur dari tabel `sup_gct`
 --
 
-CREATE TABLE `hasil` (
-  `id_hasil` int(11) NOT NULL,
-  `kode_barang` int(1) NOT NULL,
-  `periode` varchar(30) NOT NULL,
-  `price_quotation` int(1) NOT NULL,
-  `different` int(1) NOT NULL,
-  `remark` varchar(300) NOT NULL
+CREATE TABLE `sup_gct` (
+  `id_supgct` int(11) NOT NULL,
+  `nama_subgct` int(11) NOT NULL,
+  `ganti_gct` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `sup_sai`
+--
+
+CREATE TABLE `sup_sai` (
+  `id_supsai` int(11) NOT NULL,
+  `nama_subsai` int(11) NOT NULL,
+  `ganti_sai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -119,7 +128,7 @@ INSERT INTO `tbl_users` (`user_id`, `user_name`, `user_email`, `user_password`, 
 (1, 'Administrator', 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '1'),
 (2, 'Dinarpratnya', 'Dinarpratnya12@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2'),
 (3, 'meli', 'meli@gmail.com', '315fef7b8d30f99d6964f489ee4c9828', '2'),
-(8, 'Yudha Jelek', 'yudha@gmail.com', '2b9633304de305ed5c03fe19b7a06afe', '2');
+(4, 'Dinarpratnya Ningrum', 'cantik@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2');
 
 --
 -- Indexes for dumped tables
@@ -136,6 +145,18 @@ ALTER TABLE `data_invoice`
 --
 ALTER TABLE `data_penawaran`
   ADD PRIMARY KEY (`id_penawaran`);
+
+--
+-- Indeks untuk tabel `sup_gct`
+--
+ALTER TABLE `sup_gct`
+  ADD PRIMARY KEY (`id_supgct`);
+
+--
+-- Indeks untuk tabel `sup_sai`
+--
+ALTER TABLE `sup_sai`
+  ADD PRIMARY KEY (`id_supsai`);
 
 --
 -- Indeks untuk tabel `tbl_users`
@@ -160,10 +181,22 @@ ALTER TABLE `data_penawaran`
   MODIFY `id_penawaran` int(100) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `sup_gct`
+--
+ALTER TABLE `sup_gct`
+  MODIFY `id_supgct` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `sup_sai`
+--
+ALTER TABLE `sup_sai`
+  MODIFY `id_supsai` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

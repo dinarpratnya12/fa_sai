@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Invoice_models extends CI_Model {
+
 	public function view(){
 		return $this->db->get('data_invoice')->result(); // Tampilkan semua data yang ada di tabel siswa
 	}
@@ -43,9 +44,16 @@ class Invoice_models extends CI_Model {
 		$this->db->update('data_invoice', $data);
 	}
 
-	public function hapusnumber($InvoiceNumber){
-		$this->db->where('InvoiceNumber',$InvoiceNumber); //pencocokan id
+	public function hapusnumber($invoicenumber){
+		$this->db->where('invoicenumber',$invoicenumber); //pencocokan id
         $this->db->delete('data_invoice'); //eksekusi
         return;
 	}
+	function tampil_data(){
+		return $this->db->get('data_invoice');
+	}
+	function input_data($data){
+		$this->db->insert('data_invoice',$data);
+	}
+
 }
