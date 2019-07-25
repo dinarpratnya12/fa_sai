@@ -108,8 +108,27 @@
                         </ul>
                     </li>
                     <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">assignment</i>
+                        <span>List Supplier</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="<?php echo site_url('lihat_data/supsai');?>" class="menu-toggle">
+                                <span>Supplier SAI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('lihat_data/supgct');?>" class="menu-toggle">
+                                <span>Supplier GCT</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <li>
                         <a href="<?php echo site_url('compare/index');?>">
-                            <i class="material-icons">assignment</i>
+                            <i class="material-icons">swap_horiz</i>
                             <span>Compare Data</span>
                         </a>
                     </li>

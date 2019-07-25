@@ -51,8 +51,10 @@
     <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
 <body>
-
+<div style="background-color: #f0f0f;">
+      <section class="content">
 <div class="container" style="margin-top:0px !important;">
+
     <div class="row">
         <div class="container-fluid">
             <h2>Import Form</h2>
@@ -63,9 +65,6 @@
                     <div style="background-color: #fff; padding: 10px">
                     <h3>Upload Invoice</h3>
                     <br>
-                        <a href="<?php echo base_url("excel/Invoice File.xlsx"); ?>">Download Format Invoice</a>
-                        <br>
-                        <br>
                         <form method="post" action="<?php echo site_url("Import/form"); ?>" enctype="multipart/form-data">
                             <input type="file" name="file">
                             <br>
@@ -174,10 +173,6 @@
                     <div style="background-color: #fff; padding: 10px">
                     <h3>Upload Penawaran</h3>
                     <br>
-                        <a href="<?php echo base_url("excel/Penawaran File.xlsx"); ?>">Download Format Penawaran</a>
-                        <br>
-
-                        <br>
                         <form method="post" action="<?php echo site_url("Import/form2"); ?>" enctype="multipart/form-data">
                             <input type="file" name="file">
                             <br>
@@ -334,16 +329,5 @@
 
 
             } );
-
     </script>
 
-    <script src="<?php echo base_url('assets/css/sweetalert.min.js')?>"></script>
-    <?php if($this->session->flashdata('swal') != null){ ?>
-    <?php
-    $swal_data = $this->session->flashdata('swal');
-    $swa = explode('|',$swal_data);
-    ?>
-        <script>
-                swal("<?= $swa[0] ?>", "<?= $swa[1] ?>", "<?= $swa[2] ?>");
-        </script>
-    <?php } ?>

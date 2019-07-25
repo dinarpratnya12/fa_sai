@@ -13,18 +13,6 @@
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/css.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/icon.css');?>" rel="stylesheet" type="text/css">
 
-    <!-- Bootstrap Core Css -->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/bootstrap/css/bootstrap.css');?>" rel="stylesheet">
-
-    <!-- Waves Effect Css -->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/node-waves/waves.css');?>" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/animate-css/animate.css');?>" rel="stylesheet" />
-
-    <!-- Morris Chart Css-->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/morrisjs/morris.css');?>" rel="stylesheet" />
-
     <!-- Custom Css -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css');?>" rel="stylesheet">
 
@@ -108,6 +96,25 @@
                         </ul>
                     </li>
                     <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">assignment</i>
+                        <span>List Supplier</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="<?php echo site_url('lihat_data/supsai');?>" class="menu-toggle">
+                                <span>Supplier SAI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('lihat_data/supgct');?>" class="menu-toggle">
+                                <span>Supplier GCT</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <li>
                         <a href="<?php echo site_url('compare/index');?>">
                             <i class="material-icons">swap_horiz</i>
                             <span>Compare Data</span>
@@ -138,13 +145,3 @@
     </section>
 
     <!-- DASHBOARD -->
-    <div style="background-color: #f0f0f0;">
-    <section class="content">
-        <div class="container-fluid">
-
-
-            <!-- CPU Usage -->
-            <!-- <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body"> -->
-                        <!-- <div id="real_time_chart" class="dashboard-flot-chart"> -->

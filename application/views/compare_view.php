@@ -4,18 +4,15 @@
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 	<!-- Load File jquery.min.js yang ada difolder js -->
 
-	<script>
-	$(document).ready(function(){
-		// Sembunyikan alert validasi kosong
-		$("#kosong").hide();
-	});
-	</script>
     <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
 
     <link href="<?php echo base_url('assets/export/buttons.dataTables.min.css');?>"><div class="row">
     <br>
     <!-- Select -->
+    <div style="background-color: #f0f0f0;">
+      <section class="content">
+        <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -32,9 +29,9 @@
                                         <option selected disabled>-- Pilih Invoice Number --</option>
                                         <option
                                         <?php
-                                            $InvoiceNumber = $this->db->query('SELECT DISTINCT data_invoice.InvoiceNumber FROM data_invoice')->result();
-                                            foreach($InvoiceNumber as $row) {?>
-                                        <option value="<?= $row->InvoiceNumber;?>"><?= $row->InvoiceNumber;?></option>
+                                            $invoicenumber = $this->db->query('SELECT DISTINCT data_invoice.invoicenumber FROM data_invoice')->result();
+                                            foreach($invoicenumber as $row) {?>
+                                        <option value="<?= $row->invoicenumber;?>"><?= $row->invoicenumber;?></option>
                                         <?php } ?>
                                     </select>
                                 </div> -->
@@ -61,8 +58,8 @@
                                 <table class="table table-striped text" cellpadding="" id="example3" bordered=>
                                     <thead>
                                         <tr>
+                                            <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
                                             <th>Invoice Number</th>
-                                            <th>Part Number</th>
                                             <th>Periode</th>
                                             <th>Supplier</th>
                                             <th>Price Invoice (pcs)</th>
@@ -78,28 +75,42 @@
                                             foreach ($data_komper as $row):
                                         ?>
                                         <tr>
-                                            <td><?=$row->InvoiceNumber?></td>
-                                            <td><?=$row->ProductID ?></td>
+                                            <td style='position: sticky;left:0px; background-color:white'><?=$row->productid ?></td>
+                                            <td><?=$row->invoicenumber?></td>
                                             <td><?=$row->PERIOD ?></td>
                                             <td><?=$row->supplier ?></td>
-                                            <td><?=$row->price_invoicesatu ?></td>
-                                            <td><?=$row->BASE_PRICE ?></td>
                                             <td>
                                                 <?php
-                                                    $sisa = $row->price_invoicesatu - $row->BASE_PRICE;
-                                                    $str3 = str_replace("-","",$sisa);
-                                                    if($sisa > 0){
-                                                        echo "".$sisa;
-                                                    }else if($sisa < 0){
-                                                        echo "".$str3;
+                                                    if(stripos($row->kalkulasi_per_pcs,".") !== false){
+                                                        echo "".number_format($row->kalkulasi_per_pcs,4);
                                                     }else{
-                                                        echo "0";
-                                                    }
-                                                ?>
+                                                        echo "".$row->kalkulasi_per_pcs;
+                                                }?>
                                             </td>
                                             <td>
                                                 <?php
-                                                    $sisa = $row->price_invoicesatu - $row->BASE_PRICE;
+                                                    if(stripos($row->BASE_PRICE,".") !== false){
+                                                        echo "".number_format($row->BASE_PRICE,4);
+                                                    }else{
+                                                        echo "".$row->BASE_PRICE;
+                                                }?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                    $sisa = $row->kalkulasi_per_pcs - $row->BASE_PRICE;
+                                                    $str3 = str_replace("-","",$sisa);
+                                                    if(stripos($sisa,".") !== false){
+                                                        echo "".number_format($sisa,4);
+                                                    }else if(stripos($str3,".") !== false){
+                                                        echo "".$str3;
+                                                    }else{
+                                                        echo "0";
+                                                }?>
+
+                                            </td>
+                                            <td>
+                                                <?php
+                                                    $sisa = $row->kalkulasi_per_pcs - $row->BASE_PRICE;
                                                     $str3 = str_replace("-","",$sisa);
                                                     if($sisa > 0){
                                                         echo "Price di Invoice Lebih Mahal";
@@ -110,18 +121,23 @@
                                                     }
                                                 ?>
                                             </td>
-                                            <td><?=$row->qty_invoice ?></td>
+                                            <td><?=$row->quantityunit ?></td>
                                             <td>
                                                 <?php
-                                                    $sisa2 = $row->price_invoicesatu - $row->BASE_PRICE;
-                                                    $amount = $row->qty_invoice * $sisa2;
+                                                    $sisa2 = $row->kalkulasi_per_pcs - $row->BASE_PRICE;
+                                                    $amount = (int)$row->quantityunit * $sisa2;
                                                     $strqty = str_replace("-","",$amount);
-                                                    echo $strqty;
+                                                    if(stripos($strqty,".") !== false){
+                                                        echo "".number_format($strqty,2);
+                                                    }else{
+                                                        echo "".$strqty;
+                                                    }
                                                 ?>
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
                                     <tbody>
+                                    <br>
                                 </table>
                                 <?php } ?>
                             </div>
@@ -166,27 +182,9 @@
                     "paging": false,
                     dom: 'Bfrtip',
                     buttons: [
-                        {extend: 'copy', className: 'btn btn-primary'},
-                        {extend: 'csv', className: 'btn btn-primary'},
-                        {extend: 'excel', className: 'btn btn-primary'},
-                        {extend: 'pdf', className: 'btn btn-primary'},
-                        {extend: 'print', className: 'btn btn-primary'},
+                        'copy', 'csv', 'excel', 'pdf', 'print'
                     ]
-
-                } );
-
-
+                });
             } );
 
     </script>
-
-    <script src="<?php echo base_url('assets/css/sweetalert.min.js')?>"></script>
-    <?php if($this->session->flashdata('swal') != null){ ?>
-    <?php
-    $swal_data = $this->session->flashdata('swal');
-    $swa = explode('|',$swal_data);
-    ?>
-        <script>
-                swal("<?= $swa[0] ?>", "<?= $swa[1] ?>", "<?= $swa[2] ?>");
-        </script>
-    <?php } ?>

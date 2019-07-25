@@ -1,25 +1,12 @@
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
     <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
 <body class="theme-orange">
 
     <!-- Ada di note -->
-
-    <section class="content">
+<div style="background-color: #fff;">
         <div class="container-fluid">
-
-            <!-- CPU Usage -->
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="header">
-                        <div class="row clearfix">
-                            <div class="col-xs-12 col-sm-12">
-                                <h2></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="body">
-
-        <div class="container">
+        <div class="container" >
           <div class="row">
             <div class="col-md-8 ">
             <br>

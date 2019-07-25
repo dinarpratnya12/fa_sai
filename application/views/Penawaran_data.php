@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Form Import</title>
+    <title>Data Penawaran</title>
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
     <!-- Load File jquery.min.js yang ada difolder js -->
 
@@ -57,17 +57,19 @@
 
 </head>
 <body>
+<div style="background-color: #f0f0f0;">
+      <section class="content">
+        <div class="container-fluid">
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
             <div class="container-fluid">
                 <h3>LIST DATA PENAWARAN</h3>
-                <hr>
+                <div class="card col-lg-12">
                 <div class="row">
                     <!-- Form penawaran -->
                     <div class="col-lg-12">
                         <div style="background-color: #ffffff; padding: 10px">
-                            <center><h4>Data Penawaran</h4></center>
-                            <br>
+                            <center><h2>Data Penawaran</h2></center>
                             <hr>
                                 <?php echo form_open('Lihat_data/hapusperiode');?>
                                 <div class="row">
@@ -162,9 +164,6 @@
 
     <?php if(validation_errors() != null){ ?>
 
-    <script>
-        $('#exampleModalCenter').modal('show');
-    </script>
     <?php } ?>
     <script>
         $(document).ready(function() {

@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Form Import</title>
+        <title>Data Invoice</title>
         <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
         <!-- Load File jquery.min.js yang ada difolder js -->
 
@@ -57,17 +57,20 @@
 
 </head>
 <body>
+<div style="background-color: #f0f0f;">
+      <section class="content">
+        <div class="container-fluid">
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
             <div class="container-fluid" >
                     <h3>LIST DATA INVOICE</h3>
-                    <hr>
+                <div class="card col-lg-12">
+
                     <div class = "row">
                         <!-- Form invoice -->
                         <div class="col-lg-12">
                         <div style="background-color: #ffffff; padding: 10px">
                                 <center><h2>Data Invoice</h2></center>
-                                <br>
                                 <hr>
                                 <?php echo form_open('Lihat_data/hapusnumber',['id'=>'form-hapusnumber']);?>
                                 <div class="row">
@@ -81,9 +84,9 @@
                                             <option selected disabled>-- Pilih Invoice Number --</option>
                                             <option
                                             <?php
-                                                $InvoiceNumber = $this->db->query('SELECT DISTINCT data_invoice.InvoiceNumber FROM data_invoice')->result();
-                                                foreach($InvoiceNumber as $row) {?>
-                                            <option value="<?= $row->InvoiceNumber;?>"><?= $row->InvoiceNumber;?></option>
+                                                $invoicenumber = $this->db->query('SELECT DISTINCT data_invoice.invoicenumber FROM data_invoice')->result();
+                                                foreach($invoicenumber as $row) {?>
+                                            <option value="<?= $row->invoicenumber;?>"><?= $row->invoicenumber;?></option>
                                             <?php } ?>
                                         </select>
                                         </div>
@@ -97,9 +100,12 @@
 
                                 <?php echo form_close();?>
                                 <br>
-                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter">
                                 Tambah Invoice
                                 </a>
+                                <br>
+                                <br>
+                                <br>
 
                                 <!-- Modal Add Invoice-->
                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -221,14 +227,14 @@
                                                 <th>Order Number</th>
                                                 <th>Tanggal</th>
                                                 <th>Periode</th>
-                                                <th style="position: sticky;right:0px;background-color:white;">Action</th>
+                                                <th class = text-center style="position: sticky;right:0px;background-color:white;">Action</th>
                                             </tr>
                                         </thead>
                                         <?php
                                             if( ! empty($data_invoice)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
                                                 foreach($data_invoice as $data){ // Lakukan looping pada variabel siswa dari controller
                                                     echo "<tr>";
-                                                    echo "<td style='position: sticky;left:0px; background-color:white'>".$data->productid."</td>";
+                                                    echo "<td style='position: sticky;left:10px; background-color:white'>".$data->productid."</td>";
                                                     echo "<td>".$data->invoicenumber."</td>";
                                                     $strs = $data->supplier;
                                                     $strs = str_replace("IRC INOAC","PASI",$strs);
@@ -267,10 +273,10 @@
                                                     echo "<td>".$data->ordernumber."</td>";
                                                     echo "<td>".$data->invoicedate."</td>";
                                                     echo "<td>".$data->periode."</td>";
-                                                    echo "<td style='position: sticky;right:0px; background-color:white'>
+                                                    echo "<td style='position: sticky;right:-10px; background-color:white;'>
                                                     <a href='javascript:void(0)' class='item_edit1' data-id_='".$data->id_."' data-productid='".$data->productid."' data-quantityunit='".$data->quantityunit."' data-unitcode='".$data->unitcode."' data-invoicenumber='".$data->invoicenumber."' data-invoicedate='".$data->invoicedate."' data-invoicevalue='".$data->invoicevalue."' data-currencycode='".$data->currencycode."' data-ordernumber='".$data->ordernumber."' data-supplier='".$data->supplier."' data-kalkulasi_per_pcs='".$data->kalkulasi_per_pcs."' data-periode='".$data->periode."' data-toggle='modal' data-target='#exampleModalCenter1'>
-                                                    <button class='btn  btn-primary fa fa-trash-o' >Edit</button></a>
-                                                    <a href='#' onclick='delete_c(".$data->id_.")' class='btn  btn-warning fa fa-trash-o'>
+                                                    <button class='btn  btn-primary fa fa-trash-o pull-left' style='width:80px' >Edit</button></a>
+                                                    <a href='#' onclick='delete_c(".$data->id_.")' class='btn btn-warning fa fa-trash-o pull-right' style='width:80px'>
                                                     Delete</a></td>";
                                                     echo "</tr>";
                                                 }
@@ -409,9 +415,8 @@
             </div>
         </div>
 
-        <!-- <script src="<?php echo base_url('assets/jquery-1.12.4.js'); ?>"></script> -->
-        <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
-        <!-- <script src="<?php echo base_url('assets/jquery-3.3.1.js'); ?>"></script> -->
+    <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
 
         <?php if(validation_errors() != null){ ?>
 
@@ -464,6 +469,7 @@
                 });
                 var table = $('#example1').DataTable(
                     {
+                        "sDom": "lrtip",
                         "scrollY": "400px",
                         "scrollX": true,
                         "scrollCollapse": true,

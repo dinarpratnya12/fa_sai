@@ -4,7 +4,9 @@ class Lihat_data extends CI_Controller{
 		parent::__construct();
 
 		$this->load->model('Invoice_models');
-		$this->load->model('Penawaran_models');
+    $this->load->model('Penawaran_models');
+    $this->load->model('Sup_models');
+
 	}
 
 	public function index(){
@@ -65,10 +67,6 @@ class Lihat_data extends CI_Controller{
   }
   function editinvoice(){
     $tanggal = date('Y-m-d',strtotime($_POST['invoicedate']));
-						// var_dump($tanggal);exit();
-						// echo $tanggal;
-
-
 						$tahun = date('Y',strtotime($_POST['invoicedate']));
 						$month = date('m',strtotime($_POST['invoicedate']));
 
@@ -127,10 +125,6 @@ class Lihat_data extends CI_Controller{
 		}else{
 
       $tanggal = date('Y-m-d',strtotime($this->input->post('invoicedate')));
-						// var_dump($tanggal);exit();
-						// echo $tanggal;
-
-
 						$tahun = date('Y',strtotime($this->input->post('invoicedate')));
 						$month = date('m',strtotime($this->input->post('invoicedate')));
 
@@ -161,5 +155,18 @@ class Lihat_data extends CI_Controller{
 			redirect('Lihat_data/invoice','refresh');
 		}
 		$this->load->view('Header/footerfix');
-	}
+  }
+  public function supsai(){
+    $data3['level'] = $this->session->userdata('level');
+				if($data3['level']=='1'){
+					$this->load->view('Header/headerfix');
+				}else{
+					$this->load->view('Header/headerstaff');
+				}
+		$data3['sup_sai'] = $this->Sup_models->tampil_datasupsai();
+    $this->load->view('sup_sai', $data3);
+    $this->load->view('Header/footerfix');
+  }
+
+
 }

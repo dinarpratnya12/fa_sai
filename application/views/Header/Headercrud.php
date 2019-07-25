@@ -5,35 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>SAI</title>
+    <title>Compare Invoice Quotation</title>
     <!-- Favicon-->
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 
     <!-- Google Fonts -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/css.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/icon.css');?>" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core Css -->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/bootstrap/css/bootstrap.css');?>" rel="stylesheet">
-
-    <!-- Morris Chart Css-->
-    <!-- <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/morrisjs/morris.css');?>" rel="stylesheet" /> -->
-
     <!-- Custom Css -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css');?>" rel="stylesheet">
 
-    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/themes/all-themes.css');?>" rel="stylesheet" />
 
+
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
 </head>
-<style>
-.modal-backdrop {
-  z-index: -1;
-}</style>
-<body class="theme-orange">
+<body class="theme-orange" >
 
 <!-- Top Bar -->
 <nav class="navbar" style="position:fixed">
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div class="navbar-header">
         <img style="max-width:180px;"  src="<?php echo base_url('assets/fa.png');?>" alt="">
         </div>
@@ -88,7 +80,6 @@
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">layers</i>
-
                         <span>List Data</span>
                     </a>
                     <ul class="ml-menu">
@@ -105,10 +96,28 @@
                     </ul>
                 </li>
                 <li>
-                        <a href="<?php echo site_url('compare/index');?>">
-                            <i class="material-icons">assignment</i>
-                            <span>Compare Data</span>
-                        </a>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">assignment</i>
+                        <span>List Supplier</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="<?php echo site_url('lihat_data/supsai');?>" class="menu-toggle">
+                                <span>Supplier SAI</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('lihat_data/supgct');?>" class="menu-toggle">
+                                <span>Supplier GCT</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('compare/index');?>">
+                        <i class="material-icons">swap_horiz</i>
+                        <span>Compare Data</span>
+                    </a>
                     </li>
                 <li>
                     <a href="<?php echo site_url('crud/index');?>">
@@ -135,9 +144,6 @@
 </section>
 
 <!-- DASHBOARD -->
-
-        <!-- CPU Usage -->
-        <div class="row clearfix">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-                <div class="body">
+<div style="background-color: #fff;">
+    <section class="content">
+        <div class="container-fluid">
