@@ -60,7 +60,7 @@
 
     <script src="<?php echo base_url('assets/css/sweetalert.min.js')?>"></script>
 
-    
+
     <script>
         $(document).ready(function(){
             // Sembunyikan alert validasi kosong
@@ -71,9 +71,9 @@
             })
         } );
 
-        function openModal(){
-            $(".modal-backdrop").remove();
-        }
+        // function openModal(){
+        //     $(".modal-backdrop").remove();
+        // }
     </script>
     <?php if($this->session->flashdata('swal') != null){ ?>
     <?php

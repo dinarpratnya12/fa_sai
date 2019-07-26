@@ -76,13 +76,13 @@
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('username');?></div>
-                    <div class="email"><?php echo $this->session->userdata('email');?></div>
+                    <div class="username" style="font-size:12px;color:#f0f0f0"><?php echo 'Username : '.$this->session->userdata('username');?></div>
                 </div>
             </div>
             <!-- #User Info -->
             <!-- Menu -->
             <div class="menu">
-                <ul class="list">
+                <li class="list">
                     <li>
                         <a href="<?php echo site_url('import/index');?>">
                             <i class="material-icons">swap_calls</i>
@@ -108,32 +108,18 @@
                         </ul>
                     </li>
                     <li>
-                    <a href="javascript:void(0);" class="menu-toggle">
-                        <i class="material-icons">assignment</i>
-                        <span>List Supplier</span>
-                    </a>
-                    <ul class="ml-menu">
-                        <li>
-                            <a href="<?php echo site_url('lihat_data/supsai');?>" class="menu-toggle">
-                                <span>Supplier SAI</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="<?php echo site_url('lihat_data/supgct');?>" class="menu-toggle">
-                                <span>Supplier GCT</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
+                        <a href="<?php echo site_url('lihat_data/supsai');?>">
+                            <i class="material-icons">assignment</i>
+                            <span>List Supplier</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="<?php echo site_url('compare/index');?>">
                             <i class="material-icons">swap_horiz</i>
                             <span>Compare Data</span>
                         </a>
                     </li>
-                </ul>
-
+                </li>
             </div>
             <!-- #Menu -->
             <!-- Footer -->
@@ -151,9 +137,9 @@
     </section>
 
     <!-- DASHBOARD -->
-    <div style="background-color: #f0f0f0;">
+    <!-- <div style="background-color: #f0f0f0;">
     <section class="content">
-        <div class="container-fluid">
+        <div class="container-fluid"> -->
 
             <!-- CPU Usage -->
             <!-- <div class="row clearfix">

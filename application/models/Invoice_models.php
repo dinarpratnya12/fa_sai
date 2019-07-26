@@ -52,8 +52,8 @@ class Invoice_models extends CI_Model {
 	function tampil_data(){
 		return $this->db->get('data_invoice');
 	}
-	function input_data($data){
-		$this->db->insert('data_invoice',$data);
+	function input_data($data2){
+		$this->db->insert('data_invoice',$data2);
 	}
 
 }

@@ -24,7 +24,7 @@ class Crud extends CI_Controller{
 		$data['tbl_users'] = $this->user_models->tampil_data()->result();
 
 		$this->form_validation->set_rules('name', 'NAME','required');
-		$this->form_validation->set_rules('email','EMAIL','required|valid_email');
+		$this->form_validation->set_rules('username','USERNAME','required|is_unique[tbl_users.user_username]');
 		$this->form_validation->set_rules('password','PASSWORD','required');
 		$this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
 		if($this->form_validation->run() == FALSE) {
@@ -32,7 +32,7 @@ class Crud extends CI_Controller{
 		}else{
 
 			$data1['user_name'] = $this->input->post('name');
-			$data1['user_email'] = $this->input->post('email');
+			$data1['user_username'] = $this->input->post('username');
 			$data1['user_password'] = md5($this->input->post('password'));
 			$data1['user_level'] = 2;
 
@@ -46,8 +46,8 @@ class Crud extends CI_Controller{
 
 	function edit(){
             $data= array(
-				"user_name"=>$_POST['username'],
-				"user_email"=>$_POST['email'],
+				"user_name"=>$_POST['name'],
+				"user_username"=>$_POST['username'],
 				"user_password" =>md5($_POST['password'])
 
 			);

@@ -111,7 +111,7 @@
                 <h3 class="form-signin-heading">Please Sign In</h3>
                 <?php echo $this->session->flashdata('msg');?>
                 <label for="username" class="sr-only">Username</label>
-                <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
                 <label for="password" class="sr-only">Password</label>
                 <input type="password" name="password" class="form-control" placeholder="Password" required>
                 <div class="checkbox">

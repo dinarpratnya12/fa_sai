@@ -83,9 +83,9 @@
                                             <option selected disabled>-- Pilih Periode --</option>
                                             <option
                                             <?php
-                                                $PERIOD = $this->db->query('SELECT DISTINCT data_penawaran.PERIOD FROM data_penawaran')->result();
+                                                $PERIOD = $this->db->query('SELECT DISTINCT data_penawaran.period FROM data_penawaran')->result();
                                                 foreach($PERIOD as $row) {?>
-                                            <option value="<?= $row->PERIOD;?>"><?= $row->PERIOD;?></option>
+                                                <option value="<?= $row->period;?>"><?= $row->period;?></option>
                                             <?php } ?>
                                         </select>
                                         </div>
@@ -103,11 +103,11 @@
                                     <thead>
                                         <tr>
                                             <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
-                                            <th class="th-sm">Price ID</th>
-                                            <th class="th-sm">Effect Date</th>
-                                            <th class="th-sm">Expire Date</th>
+                                            <th class="th-sm">Price @pcs</th>
+                                            <th class="th-sm">Currency Code</th>
+                                            <th class="th-sm">BASE UOM</th>
                                             <th class="th-sm">Supplier</th>
-                                            <th class="th-sm">Price</th>
+                                            <th class="th-sm">Country CD</th>
                                             <th class="th-sm">Periode</th>
                                             <th style="position: sticky;right:0px;background-color:white;">Action</th>
                                         </tr>
@@ -116,11 +116,11 @@
                                     if( ! empty($data_penawaran)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
                                         foreach($data_penawaran as $data){ // Lakukan looping pada variabel siswa dari controller
                                             echo "<tr>";
-                                            echo "<td style='position: sticky;left:0px; background-color:white'>".$data->GCT_COMP_NO."</td>";
-                                            echo "<td>".$data->PRICE_ID."</td>";
-                                            echo "<td>".$data->EFFECT_DT."</td>";
-                                            echo "<td>".$data->EXPIRE_DT."</td>";
-                                            $strsup = $data->SPPLY_NM;
+                                            echo "<td style='position: sticky;left:0px; background-color:white'>".$data->partnumber."</td>";
+                                            echo "<td>".$data->base_price."</td>";
+                                            echo "<td>".$data->base_crcy."</td>";
+                                            echo "<td>".$data->base_uom."</td>";
+                                            $strsup = $data->supplier;
                                             $strsup = str_replace("YC Purchasing","HIB",$strsup);
                                             $strsup = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);
                                             $strsup = str_replace("Elcom", "COMBU-E", $strsup);
@@ -137,12 +137,22 @@
                                             $strsup = str_replace("YGP PTE. LTD.","YGP", $strsup);
                                             $strsup = str_replace("YZK AMERICAS.","YNA", $strsup);
                                             echo "<td>".$strsup."</td>";
-                                            echo "<td>".$data->FIS_PRICE."</td>";
-                                            echo "<td>".$data->PERIOD."</td>";
+                                            echo "<td>".$data->cntry_cd."</td>";
+                                            echo "<td>".$data->period."</td>";
                                             echo "<td style='position: sticky;right:0px; background-color:white'>
-                                            <a href='javascript:void(0)' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalCenter2'>
-                                            Edit</a>
-                                            <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn  btn-warning fa fa-trash-o'>
+                                            <a href='javascript:void(0)' class='item_edit1'
+                                                data-id_penawaran='".$data->id_penawaran."'
+                                                data-partnumber='".$data->partnumber."'
+                                                data-base_price='".$data->base_price."'
+                                                data-base_crcy='".$data->base_crcy."'
+                                                data-base_uom='".$data->base_uom."'
+                                                data-supplier='".$data->supplier."'
+                                                data-cntry_cd='".$data->cntry_cd."'
+                                                data-period='".$data->period."'
+                                                data-toggle='modal'
+                                                data-target='#exampleModalCenter1'>
+                                            <button class='btn btn-primary fa fa-trash-o pull-left' style='width:80px'>Edit</button></a>
+                                            <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn  btn-warning fa fa-trash-o pull-right' style='width:80px'>
                                             Delete</a></td>";
                                             echo "</tr>";
                                         }
@@ -151,6 +161,101 @@
                                     }
                                     ?>
                                 </table>
+                                <!-- Edit -->
+                                <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h3 class="modal-title">Form Edit</h3>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                    <?php echo form_open('lihat_data/editpenawaran',['id' => 'form-update']);?>
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Part Number : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="hidden" name="id_penawaran" id="id_penawaran" class="form-control"/>
+                                                            <input type="text" name="partnumber" id="partnumber" class="form-control" required/>
+                                                            <?php echo form_error('partnumber'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Price @pcs :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="number" name="base_price" id="base_price" class="form-control" required/>
+                                                            <?php echo form_error('base_price'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Currency Code : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="base_crcy" style="text-transform: uppercase" id="base_crcy" class="form-control" required/>
+                                                            <?php echo form_error('base_crcy'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">BASE UOM : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="base_uom" style="text-transform: uppercase" id="base_uom" class="form-control" required/>
+                                                            <?php echo form_error('base_uom'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Supplier :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <select class="form-control show-tick" name="supplier">
+                                                                <option selected disabled>-- Pilih Supplier --</option>
+                                                                <?php
+                                                                    $supplier = $this->db->query('SELECT DISTINCT supplier.sai FROM supplier')->result();
+                                                                    foreach($supplier as $row) {?>
+                                                                <option value="<?= $row->sai;?>" ><?= $row->sai;?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                            <?php echo form_error('supplier'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Country CD :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="cntry_cd" id="cntry_cd" style="text-transform: uppercase" class="form-control" required/>
+                                                            <?php echo form_error('cntry_cd'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">periode : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="period" id="period" class="form-control" required/>
+                                                            <?php echo form_error('period'); ?>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="reset" class="btn btn-info">Reset</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                            <?php echo form_close();?>
+                                        </div>
+                                    </div>
+                                    <!-- End Edit -->
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -179,6 +284,28 @@
                             .draw();
                         }
                     } );
+                });
+                $('#example2').on('click','.item_edit1',function() {
+                    var id_penawaran = $(this).data('id_penawaran');
+
+                    var partnumber = $(this).data('partnumber');
+                    var base_price = $(this).data('base_price');
+                    var base_crcy = $(this).data('base_crcy');
+                    var base_uom = $(this).data('base_uom');
+                    var supplier = $(this).data('supplier');
+                    var cntry_cd = $(this).data('cntry_cd');
+                    var period = $(this).data('period');
+
+
+                    $('[name="id_penawaran"]').val(id_penawaran);
+                    $('[name=partnumber]').val(partnumber);
+                    $('[name="base_price"]').val(base_price);
+                    $('[name="base_crcy"]').val(base_crcy);
+                    $('[name="base_uom"]').val(base_uom);
+                    $('[name="supplier"]').val(supplier);
+                    $('[name="cntry_cd"]').val(cntry_cd);
+                    $('[name="period"]').val(period);
+
                 });
                 var table = $('#example2').DataTable(
                     {

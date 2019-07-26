@@ -10,17 +10,17 @@ class Login extends CI_Controller{
     }
 
     function auth(){
-        $email    = $this->input->post('email',TRUE);
+        $username    = $this->input->post('username',TRUE);
         $password = md5($this->input->post('password',TRUE));
-        $validate = $this->login_model->validate($email,$password);
+        $validate = $this->login_model->validate($username,$password);
         if($validate->num_rows() > 0){
             $data  = $validate->row_array();
             $name  = $data['user_name'];
-            $email = $data['user_email'];
+            $username = $data['user_username'];
             $level = $data['user_level'];
             $sesdata = array(
-                'username'  => $name,
-                'email'     => $email,
+                'name'  => $name,
+                'username'  => $username,
                 'level'     => $level,
                 'logged_in' => TRUE
             );
