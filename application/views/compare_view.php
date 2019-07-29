@@ -1,6 +1,5 @@
-<html>
 <head>
-	<title>Form Import</title>
+	<title>Form Compare</title>
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 	<!-- Load File jquery.min.js yang ada difolder js -->
 
@@ -39,9 +38,9 @@
                                     <select class="form-control show-tick" name="periode">
                                         <option selected disabled>-- Pilih Periode --</option>
                                         <?php
-                                            $periode = $this->db->query('SELECT DISTINCT data_penawaran.PERIOD FROM data_penawaran')->result();
+                                            $periode = $this->db->query('SELECT DISTINCT data_penawaran.period FROM data_penawaran')->result();
                                             foreach($periode as $row) {?>
-                                        <option value="<?= $row->PERIOD;?>" ><?= $row->PERIOD;?></option>
+                                        <option value="<?= $row->period;?>" ><?= $row->period;?></option>
                                         <?php } ?>
                                     </select>
                                     <br>
@@ -77,7 +76,7 @@
                                         <tr>
                                             <td style='position: sticky;left:0px; background-color:white'><?=$row->productid ?></td>
                                             <td><?=$row->invoicenumber?></td>
-                                            <td><?=$row->PERIOD ?></td>
+                                            <td><?=$row->period ?></td>
                                             <td><?=$row->supplier ?></td>
                                             <td>
                                                 <?php
@@ -89,15 +88,15 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                    if(stripos($row->BASE_PRICE,".") !== false){
-                                                        echo "".number_format($row->BASE_PRICE,4);
+                                                    if(stripos($row->base_price,".") !== false){
+                                                        echo "".number_format($row->base_price,4);
                                                     }else{
-                                                        echo "".$row->BASE_PRICE;
+                                                        echo "".$row->base_price;
                                                 }?>
                                             </td>
                                             <td>
                                                 <?php
-                                                    $sisa = $row->kalkulasi_per_pcs - $row->BASE_PRICE;
+                                                    $sisa = $row->kalkulasi_per_pcs - $row->base_price;
                                                     $str3 = str_replace("-","",$sisa);
                                                     if(stripos($sisa,".") !== false){
                                                         echo "".number_format($sisa,4);
@@ -110,7 +109,7 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                    $sisa = $row->kalkulasi_per_pcs - $row->BASE_PRICE;
+                                                    $sisa = $row->kalkulasi_per_pcs - $row->base_price;
                                                     $str3 = str_replace("-","",$sisa);
                                                     if($sisa > 0){
                                                         echo "Price di Invoice Lebih Mahal";
@@ -124,7 +123,7 @@
                                             <td><?=$row->quantityunit ?></td>
                                             <td>
                                                 <?php
-                                                    $sisa2 = $row->kalkulasi_per_pcs - $row->BASE_PRICE;
+                                                    $sisa2 = $row->kalkulasi_per_pcs - $row->base_price;
                                                     $amount = (int)$row->quantityunit * $sisa2;
                                                     $strqty = str_replace("-","",$amount);
                                                     if(stripos($strqty,".") !== false){

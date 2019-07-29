@@ -1,6 +1,5 @@
-<html>
 <head>
-	<title>Form Import</title>
+	<title>Compare Invoice Quotation</title>
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 	<!-- Load File jquery.min.js yang ada difolder js -->
 

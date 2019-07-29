@@ -18,19 +18,19 @@ class Komper_model extends CI_Model{
       data_invoice.kalkulasi_per_pcs,
       data_invoice.supplier,
       data_invoice.quantityunit,
-      data_penawaran.GCT_COMP_NO,
-      data_penawaran.PERIOD,
-      data_penawaran.BASE_PRICE,
-      data_penawaran.SPPLY_NM
+      data_penawaran.partnumber,
+      data_penawaran.period,
+      data_penawaran.base_price,
+      data_penawaran.supplier
     from
       data_invoice
     inner join
       data_penawaran
     on
-      data_invoice.productid = data_penawaran.GCT_COMP_NO
+      data_invoice.productid = data_penawaran.partnumber
     and
-      data_invoice.supplier = data_penawaran.SPPLY_NM where data_invoice.periode="'.$periode.'"
-      AND data_penawaran.PERIOD="'.$periode.'"');
+      data_invoice.supplier = data_penawaran.supplier where data_invoice.periode="'.$periode.'"
+      AND data_penawaran.period="'.$periode.'"');
 
     return $query->result();
   }
@@ -44,9 +44,9 @@ class Komper_model extends CI_Model{
       periode = "'.$periode.'"
     UNION ALL
     Select
-      data_penawaran.GCT_COMP_NO as no,data_penawaran.SPPLY_NM as supplier,data_penawaran.BASE_PRICE as price from data_penawaran
+      data_penawaran.partnumber as no,data_penawaran.supplier as supplier,data_penawaran.base_price as price from data_penawaran
     where
-      PERIOD = "'.$periode.'"');
+      period = "'.$periode.'"');
 
     return $query->result();
   }

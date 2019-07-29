@@ -64,8 +64,8 @@
                     <!-- Form Supplier SAI -->
                     <div class="col-lg-12">
                         <div style="background-color: #ffffff; padding: 10px">
-                            <center><h4>Data Supplier</h4></center>
-                            <br>
+                            <center><h2>Data Supplier</h2></center>
+
                             <hr>
                             <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter">
                                 Tambah Supplier
@@ -138,10 +138,10 @@
                                             echo "<td>".$kalimat_new2."</td>";
                                             echo "<td style='position: sticky;right:0px; background-color:white'>
 
-                                            <a href='javascript:void(0);' class='item_edit' data-id_sup='$data3->id_sup' data-sai='$data3->sai' data-gct='$data3->gct' data-toggle='modal' data-target='#exampleModalCenter1'>
-                                            <button class='btn  btn-primary fa fa-trash-o' >Edit</button></a>
-                                            <a href='#' onclick='delete_a(".$data3->id_sup.")' class='btn  btn-warning fa fa-trash-o'>
-                                            Delete</a></td>";
+                                            <center><a href='javascript:void(0);' class='item_edit' data-id_sup='$data3->id_sup' data-sai='$data3->sai' data-gct='$data3->gct' data-toggle='modal' data-target='#exampleModalCenter1'>
+                                            <button class='btn  btn-primary fa fa-trash-o' style='width:50px' >Edit</button></a>
+                                            <a href='#' onclick='delete_a(".$data3->id_sup.")' class='btn  btn-warning fa fa-trash-o' style='width:60px'>
+                                            Delete</a></center></td>";
                                             echo "</tr>";
                                             $i++;
                                         }

@@ -119,7 +119,8 @@ class Import extends CI_Controller {
 			//echo count($sheet);
 
 			foreach($sheet as $row){
-				$strs = $row['V'];
+				$kalimat_new = strtoupper($row['V']);
+				$strs = $kalimat_new;
 				$strs = str_replace("IRC INOAC","PASI",$strs);
 				$strs = str_replace("NIDEC","PASI",$strs);
 				$strs = str_replace("NIFCO","PASI",$strs);
@@ -155,16 +156,17 @@ class Import extends CI_Controller {
 					}else if($month >= 6 && $month <= 11){
 						$periode = "Jun ".$tahun." - Nov ".$tahun;
 					}
-					$total = (int)$row['Q']/(int)$row['J'];
+					$koma = str_replace(",","",$row['J']);
+					$total = doubleval($row['Q'])/doubleval($koma);
 					$invoiceValue = $row['Q'];
 					if(stripos($invoiceValue,",") !== false){
-						$InvoiceValue = round($invoiceValue,2);
+						$InvoiceValue = round($invoiceValue,4);
 					}
 
 
 					array_push($data, array(
 						'ProductID' => $row['E'], // Ambil data ProductID
-						'QuantityUnit' => $row['J'], // Ambil data QuantityUnit
+						'QuantityUnit' => $koma, // Ambil data QuantityUnit
 						'UnitCode' => $row['K'], // Ambil data UnitCode
 						'InvoiceNumber' => $row['O'], // Ambil data InvoiceNumber
 						'InvoiceDate' => $tanggal, // Ambil data kind

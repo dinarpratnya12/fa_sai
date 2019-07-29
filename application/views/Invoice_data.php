@@ -1,6 +1,4 @@
-<html>
-    <head>
-    <meta charset="UTF-8">
+<head>
         <title>Data Invoice</title>
         <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
         <!-- Load File jquery.min.js yang ada difolder js -->
@@ -165,10 +163,10 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <h5 align="left">Quantity Unit : </h5>
+                                                        <h5 align="left">Qty Invoice : </h5>
                                                     </div>
                                                     <div class="col-lg-8">
-                                                        <input type="text" name="quantityunit" id="quantityunit" class="form-control" required/>
+                                                        <input type="number" name="quantityunit" id="quantityunit" class="form-control" required/>
                                                         <?php echo form_error('quantityunit'); ?>
                                                     </div>
                                                 </div>
@@ -177,7 +175,7 @@
                                                         <h5 align="left">Invoice Value :</h5>
                                                     </div>
                                                     <div class="col-lg-8">
-                                                        <input type="text" name="invoicevalue" id="invoicevalue" class="form-control" required/>
+                                                        <input type="number" step="any" name="invoicevalue" id="invoicevalue" class="form-control" required/>
                                                         <?php echo form_error('invoicevalue'); ?>
                                                     </div>
                                                 </div>
@@ -266,17 +264,21 @@
                                                     $strs = str_replace("TAP-VT","TAP",$strs);
                                                     echo "<td>".$strs."</td>";
                                                     if(stripos($data->kalkulasi_per_pcs,".") !== false){
-                                                        echo "<td>".number_format($data->kalkulasi_per_pcs,2)."</td>";
+                                                        echo "<td>".number_format($data->kalkulasi_per_pcs,4)."</td>";
                                                     }else{
                                                         echo "<td>".$data->kalkulasi_per_pcs."</td>";
                                                     }
                                                     echo "<td>".$data->currencycode."</td>";
                                                     echo "<td>".$data->quantityunit."</td>";
+
                                                     if(stripos($data->invoicevalue,".") !== false){
-                                                        echo "<td>".number_format($data->invoicevalue,2)."</td>";
+                                                        $ya = number_format($data->invoicevalue,2);
+                                                        $invoice = str_replace(",","",$ya);
+                                                        echo "<td>".$invoice."</td>";
                                                     }else{
                                                         echo "<td>".$data->invoicevalue."</td>";
                                                     }
+
                                                     echo "<td>".$data->unitcode."</td>";
                                                     echo "<td>".$data->ordernumber."</td>";
                                                     echo "<td>".$data->invoicedate."</td>";
@@ -355,10 +357,11 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-4">
-                                                            <h5 align="left">Quantity Unit : </h5>
+                                                            <h5 align="left">Qty Invoice : </h5>
                                                         </div>
                                                         <div class="col-lg-8">
-                                                            <input type="number" name="quantityunit" id="quantityunit" class="form-control" required/>
+                                                        <input type="number" step="any" name="quantityunit" id="quantityunit" class="form-control" required/>
+                                                             <!-- <input type="number" step="any" name="quantityunit" id="quantityunit" class="form-control" required/> -->
                                                             <?php echo form_error('quantityunit'); ?>
                                                         </div>
                                                     </div>
@@ -367,7 +370,7 @@
                                                             <h5 align="left">Invoice Value :</h5>
                                                         </div>
                                                         <div class="col-lg-8">
-                                                            <input type="number" name="invoicevalue" id="invoicevalue" class="form-control" required/>
+                                                            <input type="number" step="any" name="invoicevalue" id="invoicevalue" class="form-control" required/>
                                                             <?php echo form_error('invoicevalue'); ?>
                                                         </div>
                                                     </div>
@@ -444,13 +447,11 @@
                     var invoicenumber = $(this).data('invoicenumber');
                     var supplier = $(this).data('supplier');
                     var kalkulasi_per_pcs = $(this).data('kalkulasi_per_pcs');
-                    var currencycode = $(this).data('currencycode');
                     var quantityunit = $(this).data('quantityunit');
                     var invoicevalue = $(this).data('invoicevalue');
                     var unitcode = $(this).data('unitcode');
                     var ordernumber = $(this).data('ordernumber');
                     var invoicedate = $(this).data('invoicedate');
-                    var periode = $(this).data('periode');
 
 
                     $('[name="id_"]').val(id_);
@@ -458,13 +459,11 @@
                     $('[name="invoicenumber"]').val(invoicenumber);
                     $('[name="supplier"]').val(supplier);
                     $('[name="kalkulasi_per_pcs"]').val(kalkulasi_per_pcs);
-                    $('[name="currencycode"]').val(currencycode);
-                    $('[name="quantityunit"]').val(quantityunit);
+                    $('[name="quantityunit"]').val(parseInt(quantityunit));
                     $('[name="invoicevalue"]').val(invoicevalue);
                     $('[name="unitcode"]').val(unitcode);
                     $('[name="ordernumber"]').val(ordernumber);
                     $('[name="invoicedate"]').val(invoicedate);
-                    $('[name="periode"]').val(periode);
 
                 });
                 var table = $('#example1').DataTable(

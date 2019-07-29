@@ -1,4 +1,3 @@
-<html>
 <head>
     <title>Data Penawaran</title>
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
@@ -117,7 +116,13 @@
                                         foreach($data_penawaran as $data){ // Lakukan looping pada variabel siswa dari controller
                                             echo "<tr>";
                                             echo "<td style='position: sticky;left:0px; background-color:white'>".$data->partnumber."</td>";
-                                            echo "<td>".$data->base_price."</td>";
+                                            if(stripos($data->base_price,".") !== false){
+                                                $ya = number_format($data->base_price,4);
+                                                $penawaran = str_replace(",","",$ya);
+                                                echo "<td>".$penawaran."</td>";
+                                            }else{
+                                                echo "<td>".$data->base_price."</td>";
+                                            }
                                             echo "<td>".$data->base_crcy."</td>";
                                             echo "<td>".$data->base_uom."</td>";
                                             $strsup = $data->supplier;
@@ -188,7 +193,7 @@
                                                             <h5 align="left">Price @pcs :</h5>
                                                         </div>
                                                         <div class="col-lg-8">
-                                                            <input type="number" name="base_price" id="base_price" class="form-control" required/>
+                                                            <input type="number" step="any" name="base_price" id="base_price" class="form-control" required/>
                                                             <?php echo form_error('base_price'); ?>
                                                         </div>
                                                     </div>
