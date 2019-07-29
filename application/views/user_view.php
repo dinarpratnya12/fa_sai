@@ -1,11 +1,5 @@
-    <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
-    <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
-<body class="theme-orange">
-
-    <!-- Ada di note -->
 <div style="background-color: #fff;">
-        <div class="container-fluid">
+    <div class="container-fluid">
         <div class="container" >
           <div class="row">
             <div class="col-md-8 ">

@@ -1,61 +1,3 @@
-<head>
-    <title>Data Penawaran</title>
-    <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
-    <!-- Load File jquery.min.js yang ada difolder js -->
-
-    <script>
-        $(document).ready(function(){
-            // Sembunyikan alert validasi kosong
-            $("#kosong").hide();
-        });
-    </script>
-
-    <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
-
-    <style>
-        .table-condensed{
-            font-size: 10px;
-        }
-        .datatable{
-            font-family:Verdana;
-            font-size:2px;
-        }
-        .text{
-            font-family:Verdana;
-            font-size:12px;
-        }
-        .text2{
-            font-family:Verdana;
-            font-size:12px;
-        }
-        table.dataTable thead .sorting:after,
-        table.dataTable thead .sorting:before,
-        table.dataTable thead .sorting_asc:after,
-        table.dataTable thead .sorting_asc:before,
-        table.dataTable thead .sorting_asc_disabled:after,
-        table.dataTable thead .sorting_asc_disabled:before,
-        table.dataTable thead .sorting_desc:after,
-        table.dataTable thead .sorting_desc:before,
-        table.dataTable thead .sorting_desc_disabled:after,
-        table.dataTable thead .sorting_desc_disabled:before {
-            bottom: .5em;
-        }
-
-        .warnain {
-            border-collapse: separate;
-            /* border-style: solid; */
-            border-color: #4d4a46;
-        }
-    </style>
-
-
-    <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
-    <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
-
-</head>
-<body>
 <div style="background-color: #f0f0f0;">
       <section class="content">
         <div class="container-fluid">
@@ -223,9 +165,9 @@
                                                             <select class="form-control show-tick" name="supplier">
                                                                 <option selected disabled>-- Pilih Supplier --</option>
                                                                 <?php
-                                                                    $supplier = $this->db->query('SELECT DISTINCT supplier.sai FROM supplier')->result();
+                                                                    $supplier = $this->db->query('SELECT DISTINCT supplier.sai as supplier FROM supplier union SELECT DISTINCT supplier.gct as supplier FROM supplier')->result();
                                                                     foreach($supplier as $row) {?>
-                                                                <option value="<?= $row->sai;?>" ><?= $row->sai;?></option>
+                                                                <option value="<?= $row->supplier?>"><?=$row->supplier?></option>
                                                                 <?php } ?>
                                                             </select>
                                                             <?php echo form_error('supplier'); ?>
@@ -269,12 +211,8 @@
         </div>
     </div>
 
-    <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
 
-    <?php if(validation_errors() != null){ ?>
 
-    <?php } ?>
     <script>
         $(document).ready(function() {
             $('#example2 thead tr').clone(true).appendTo( '#example2 thead' );

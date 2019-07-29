@@ -20,6 +20,10 @@
 
 
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
+
+    <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
+
 </head>
 <body class="theme-orange" >
 

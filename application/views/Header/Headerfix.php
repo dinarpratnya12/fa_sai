@@ -2,10 +2,11 @@
 <html>
 
 <head>
+    <title>Compare Invoice Quotation</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- <title>Compare Invoice Quotation</title> -->
+
     <!-- Favicon-->
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 
@@ -20,6 +21,60 @@
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/themes/all-themes.css');?>" rel="stylesheet" />
 
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
+
+    <!-- Load File jquery.min.js yang ada difolder js -->
+
+    <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
+
+    <link href="<?php echo base_url('assets/export/jquery.dataTables.min.css');?>">
+    <link href="<?php echo base_url('assets/export/buttons.dataTables.min.css');?>"><div class="row">
+
+    <script>
+	$(document).ready(function(){
+		// Sembunyikan alert validasi kosong
+		$("#kosong").hide();
+	});
+    </script>
+
+    <!-- Style -->
+    <style>
+        .table-condensed{
+            font-size: 10px;
+        }
+        .datatable{
+            font-family:Verdana;
+            font-size:2px;
+        }
+        .text{
+            font-family:Verdana;
+            font-size:12px;
+        }
+        .text2{
+            font-family:Verdana;
+            font-size:12px;
+        }
+        table.dataTable thead .sorting:after,
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting_asc:after,
+        table.dataTable thead .sorting_asc:before,
+        table.dataTable thead .sorting_asc_disabled:after,
+        table.dataTable thead .sorting_asc_disabled:before,
+        table.dataTable thead .sorting_desc:after,
+        table.dataTable thead .sorting_desc:before,
+        table.dataTable thead .sorting_desc_disabled:after,
+        table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
+        }
+
+        .warnain {
+            border-collapse: separate;
+            /* border-style: solid; */
+            border-color: #4d4a46;
+        }
+
+    </style>
+
 </head>
 
 <body class="theme-orange" style="background-color: #f0f0f0;">

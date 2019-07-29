@@ -176,7 +176,7 @@ class Lihat_data extends CI_Controller{
     $where = array(
       "id_penawaran"=>$_POST['id_penawaran'],
     );
-    $this->Invoice_models->edit($data,$where);
+    $this->Penawaran_models->edit($data,$where);
     $this->session->set_flashdata('swal','Success|Successful Edit Penawaran|success');
     redirect('Lihat_data/penawaran','refresh');
   }

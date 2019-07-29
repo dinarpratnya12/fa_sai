@@ -12,7 +12,7 @@ class Import extends CI_Controller {
 	}
 
 	public function index(){
-		unset($_SESSION['swal']);
+		// unset($_SESSION['swal']);
 		$data['level'] = $this->session->userdata('level');
 		if($data['level']=='1'){
 			$this->load->view('Header/headerfix');
@@ -37,7 +37,7 @@ class Import extends CI_Controller {
 				$this->load->view('Header/headerstaff');
 			}
 			$data = array(); // Buat variabel $data sebagai array
-			// $data['data_penawaran'] = $this->db->get('data_penawaran')->result();
+
 			if(isset($_POST['preview'])){ // Jika user menekan tombol Preview pada form
 				// lakukan upload file dengan memanggil function upload yang ada di SiswaModel.php
 				$upload = $this->Invoice_models->upload_file($this->filename);
@@ -54,11 +54,15 @@ class Import extends CI_Controller {
 						// Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
 					$data['sheet'] = $sheet;
 					if($loadexcel->getActiveSheet()->getCell('E1')->getValue() != "ProductID"){
+
 						$data['data_error'] = "Format Tidak Sesuai";
 						$this->session->set_flashdata('swal','Format Tidak Sesuai!|Periksa Kembali Data Anda!|error');
 						$data['sheet'] = [];
+					} else {
+						unset($_SESSION['swal']);
 					}
 				}else{ // Jika proses upload gagal
+
 					$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
 				}
 			}
@@ -75,7 +79,7 @@ class Import extends CI_Controller {
 				$this->load->view('Header/headerstaff');
 			}
 			$data = array(); // Buat variabel $data sebagai array
-			// $data['data_penawaran'] = $this->db->get('data_penawaran')->result();
+
 			if(isset($_POST['preview2'])){ // Jika user menekan tombol Preview pada form
 				// lakukan upload file dengan memanggil function upload yang ada di SiswaModel.php
 				$upload = $this->Penawaran_models->upload_file($this->filename);
@@ -116,7 +120,6 @@ class Import extends CI_Controller {
 			//$numrow = 1;
 			unset($sheet[1]);
 			unset($sheet[2]);
-			//echo count($sheet);
 
 			foreach($sheet as $row){
 				$kalimat_new = strtoupper($row['V']);
@@ -127,20 +130,19 @@ class Import extends CI_Controller {
 				);
 
 				$result = $this->db->select('sai,gct')->from('supplier')->where($where)->get()->result();
-				//var_dump($result[0]->gct);
+
 				$where2 = array(
 					'gct' => $result[0]->gct
 				);
 				$num = $this->db->select('gct')->from('supplier')->where($where2)->get()->num_rows();
-				// var_dump($num);
+
 				if($num>1){
 					$strs = str_replace($result[0]->sai,$result[0]->gct,$strs);
 
 				}else{
 					$strs = str_replace($result[0]->gct,$result[0]->sai,$strs);
 				}
-				//var_dump($strs);
-				// exit();
+
 				// $result[0]->gct;
 				// $strs = str_replace("IRC INOAC","PASI",$strs);
 				// $strs = str_replace("NIDEC","PASI",$strs);
@@ -162,11 +164,9 @@ class Import extends CI_Controller {
 				// $strs = str_replace("TAP-INJ","TAP",$strs);
 				// $strs = str_replace("TAP-VT","TAP",$strs);
 				if($row['E'] != "" || $row['E'] != null){
-					// $date = $row['B'];
-					// var_dump($row['B']);
+
 					$tanggal = date('Y-m-d',strtotime($row['P']));
-					// var_dump($tanggal);exit();
-					// echo $tanggal;
+
 					$tahun = date('Y',strtotime($row['P']));
 					$month = date('m',strtotime($row['P']));
 					$periode = "";
@@ -186,20 +186,20 @@ class Import extends CI_Controller {
 
 
 					array_push($data, array(
-						'ProductID' => $row['E'], // Ambil data ProductID
-						'QuantityUnit' => $koma, // Ambil data QuantityUnit
-						'UnitCode' => $row['K'], // Ambil data UnitCode
-						'InvoiceNumber' => $row['O'], // Ambil data InvoiceNumber
-						'InvoiceDate' => $tanggal, // Ambil data kind
-						'InvoiceValue' => $invoiceValue, // Ambil data InvoiceValue
-						'CurrencyCode' => $row['R'], // Ambil data CurrencyCode
-						'OrderNumber' => $row['U'], // Ambil data OrderNumber
+						'productid' => $row['E'], // Ambil data ProductID
+						'quantityunit' => $koma, // Ambil data QuantityUnit
+						'unitcode' => $row['K'], // Ambil data UnitCode
+						'invoicenumber' => $row['O'], // Ambil data InvoiceNumber
+						'invoicedate' => $tanggal, // Ambil data kind
+						'invoicevalue' => $invoiceValue, // Ambil data InvoiceValue
+						'currencycode' => $row['R'], // Ambil data CurrencyCode
+						'ordernumber' => $row['U'], // Ambil data OrderNumber
 						'supplier' => $strs, // Ambil data supplier
 						'kalkulasi_per_pcs' => $total, // Ambil data price total
 						'periode' => $periode, // Ambil data periode
 					));
 				}
-					//$numrow++; // Tambah 1 setiap kali looping
+
 			}
 
 				// Panggil fungsi insert_multiple yg telah kita buat sebelumnya di model
@@ -217,9 +217,7 @@ class Import extends CI_Controller {
 			$data2 = array();
 			$numrow = 0;
 			unset($sheet2[1]);
-			// unset($sheet2[2]);
-			// echo $highesColumn;
-			// exit();
+
 			foreach($sheet2 as $row2){
 				$strsup = strtoupper($row2['P']);
 				$strsup_new = str_replace(' ','',$strsup);
@@ -229,7 +227,7 @@ class Import extends CI_Controller {
 
 				$result = $this->db->select('gct,sai')->from('supplier')->where($where)->get()->result();
 				var_dump(count($result));
-				//exit();
+
 				if(count($result)>1){
 					$strsup = strtoupper($row2['P']);
 				}else if(count($result) == 0){
@@ -243,23 +241,21 @@ class Import extends CI_Controller {
 							'gct' => $gct_new
 						);
 						$num = $this->db->select('gct')->from('supplier')->where($where3)->get()->num_rows();
-						// var_dump($num);
+
 						if($num>1){
 							$strsup = str_replace($result2[0]->sai,$result2[0]->gct,$strsup);
 							var_dump($strsup);
-							//exit();
+
 
 						}else{
 							$strsup = str_replace($result2[0]->gct,$result2[0]->sai,$strsup);
 							var_dump($strsup);
-							//exit();
+
 						}
 					}
-				// var_dump($num);
 				}else if(count($result) == 1){
 					$strsup = str_replace($strsup,$result[0]->sai,$strsup);
 				}
-				//var_dump($result[0]->gct);
 				// $strsup = str_replace("YC Purchasing","HIB",$strsup);
 				// $strsup = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);
 				// $strsup = str_replace("Elcom", "COMBU-E", $strsup);
@@ -283,12 +279,12 @@ class Import extends CI_Controller {
 				if($gct_implode != ""){
 					array_push($data2, array(
 						'partnumber' => $gct_implode, // Ambil data nomor
-						'BASE_PRICE' => $row2['K'], // Ambil data base price
-						'BASE_CRCY' => $row2['L'], // Ambil data base crcy
-						'BASE_UOM' => $row2['M'], // Ambil data base uom
+						'base_price' => $row2['K'], // Ambil data base price
+						'base_crcy' => $row2['L'], // Ambil data base crcy
+						'base_uom' => $row2['M'], // Ambil data base uom
 						'supplier' => $strsup, // Ambil data sppl nm
-						'CNTRY_CD' => $row2['Q'], // Ambil data cntry cd
-						'PERIOD' => $row2['AC'], // Ambil data periode
+						'cntry_cd' => $row2['Q'], // Ambil data cntry cd
+						'period' => $row2['AC'], // Ambil data periode
 					));
 				}
 				$numrow++; // Tambah 1 setiap kali looping

@@ -1,14 +1,4 @@
-<head>
-	<title>Form Compare</title>
-    <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
-	<!-- Load File jquery.min.js yang ada difolder js -->
-
-    <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
-
-    <link href="<?php echo base_url('assets/export/buttons.dataTables.min.css');?>"><div class="row">
-    <br>
-    <!-- Select -->
+<!-- Select -->
     <div style="background-color: #f0f0f0;">
       <section class="content">
         <div class="container-fluid">
@@ -23,17 +13,6 @@
                         <div class="body">
                             <div class="row clearfix">
                             <form method="post">
-                                <!-- <div class="col-sm-5">
-                                    <select class="form-control show-tick">
-                                        <option selected disabled>-- Pilih Invoice Number --</option>
-                                        <option
-                                        <?php
-                                            $invoicenumber = $this->db->query('SELECT DISTINCT data_invoice.invoicenumber FROM data_invoice')->result();
-                                            foreach($invoicenumber as $row) {?>
-                                        <option value="<?= $row->invoicenumber;?>"><?= $row->invoicenumber;?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div> -->
                                 <div class="col-sm-6">
                                     <select class="form-control show-tick" name="periode">
                                         <option selected disabled>-- Pilih Periode --</option>
@@ -145,8 +124,8 @@
                 </div>
             </div>
             <!-- #END# Select -->
-<script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
+<!-- <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script> -->
 
 <script>
 	$(document).ready(function(){
