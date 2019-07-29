@@ -121,25 +121,46 @@ class Import extends CI_Controller {
 			foreach($sheet as $row){
 				$kalimat_new = strtoupper($row['V']);
 				$strs = $kalimat_new;
-				$strs = str_replace("IRC INOAC","PASI",$strs);
-				$strs = str_replace("NIDEC","PASI",$strs);
-				$strs = str_replace("NIFCO","PASI",$strs);
-				$strs = str_replace("PLASSES","PASI",$strs);
-				$strs = str_replace("PT. CATURINDO AGUNG","PASI",$strs);
-				$strs = str_replace("PT. INDONESIA KYOUEI","PASI",$strs);
-				$strs = str_replace("PT. KMK PLASTICS IND","PASI",$strs);
-				$strs = str_replace("PT. KOJIMA INDONESIA","PASI",$strs);
-				$strs = str_replace("PT. NANBU PLASTICS I","PASI",$strs);
-				$strs = str_replace("PT. OGATA INDONESIA","PASI",$strs);
-				$strs = str_replace("PT. PIOLAX INDONESIA","PASI",$strs);
-				$strs = str_replace("PT. SATO SEIKI","PASI",$strs);
-				$strs = str_replace("PT. TENMA INDONESIA","PASI",$strs);
-				$strs = str_replace("SCHLEMMER","PASI",$strs);
-				$strs = str_replace("TOKAI RIKA JP","PASI",$strs);
-				$strs = str_replace("YAMANASHI INDONESIA","PASI",$strs);
-				$strs = str_replace("TAP-AW","TAP",$strs);
-				$strs = str_replace("TAP-INJ","TAP",$strs);
-				$strs = str_replace("TAP-VT","TAP",$strs);
+				$strsup_new = str_replace(' ','',$strs);
+				$where = array(
+					'sai' => $strs
+				);
+
+				$result = $this->db->select('sai,gct')->from('supplier')->where($where)->get()->result();
+				//var_dump($result[0]->gct);
+				$where2 = array(
+					'gct' => $result[0]->gct
+				);
+				$num = $this->db->select('gct')->from('supplier')->where($where2)->get()->num_rows();
+				// var_dump($num);
+				if($num>1){
+					$strs = str_replace($result[0]->sai,$result[0]->gct,$strs);
+
+				}else{
+					$strs = str_replace($result[0]->gct,$result[0]->sai,$strs);
+				}
+				//var_dump($strs);
+				// exit();
+				// $result[0]->gct;
+				// $strs = str_replace("IRC INOAC","PASI",$strs);
+				// $strs = str_replace("NIDEC","PASI",$strs);
+				// $strs = str_replace("NIFCO","PASI",$strs);
+				// $strs = str_replace("PLASSES","PASI",$strs);
+				// $strs = str_replace("PT. CATURINDO AGUNG","PASI",$strs);
+				// $strs = str_replace("PT. INDONESIA KYOUEI","PASI",$strs);
+				// $strs = str_replace("PT. KMK PLASTICS IND","PASI",$strs);
+				// $strs = str_replace("PT. KOJIMA INDONESIA","PASI",$strs);
+				// $strs = str_replace("PT. NANBU PLASTICS I","PASI",$strs);
+				// $strs = str_replace("PT. OGATA INDONESIA","PASI",$strs);
+				// $strs = str_replace("PT. PIOLAX INDONESIA","PASI",$strs);
+				// $strs = str_replace("PT. SATO SEIKI","PASI",$strs);
+				// $strs = str_replace("PT. TENMA INDONESIA","PASI",$strs);
+				// $strs = str_replace("SCHLEMMER","PASI",$strs);
+				// $strs = str_replace("TOKAI RIKA JP","PASI",$strs);
+				// $strs = str_replace("YAMANASHI INDONESIA","PASI",$strs);
+				// $strs = str_replace("TAP-AW","TAP",$strs);
+				// $strs = str_replace("TAP-INJ","TAP",$strs);
+				// $strs = str_replace("TAP-VT","TAP",$strs);
 				if($row['E'] != "" || $row['E'] != null){
 					// $date = $row['B'];
 					// var_dump($row['B']);
@@ -200,57 +221,73 @@ class Import extends CI_Controller {
 			// echo $highesColumn;
 			// exit();
 			foreach($sheet2 as $row2){
-				$strsup = $row2['P'];
-				$strsup = str_replace("YC Purchasing","HIB",$strsup);
-				$strsup = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);
-				$strsup = str_replace("Elcom", "COMBU-E", $strsup);
-				$strsup = str_replace("Federal Mogul (Thailand) Ltd.","FMTH", $strsup);
-				$strsup = str_replace("Hellermann Tyton","HELLERMANN TYTON", $strsup);
-				$strsup = str_replace("Molex Singapore","ARROW ELECTRONICS AS", $strsup);
-				$strsup = str_replace("PT INDOWIRE PRIMA INDUSTRINDO","PT. INDOWIRE PRIMA", $strsup);
-				$strsup = str_replace("PT Nitto Materials Indonesia","PT. NMI", $strsup);
-				$strsup = str_replace("Sugity PT.SUGITY CREATEIVES","SUGITY", $strsup);
-				$strsup = str_replace("TBD Supplier","J/A", $strsup);
-				$strsup = str_replace("PEMI","PEMI-AW", $strsup);
-				$strsup = str_replace("Tesa Tape Asia Pacific Pte Ltd","TESA", $strsup);
-				$strsup = str_replace("YAZAKI (CHINA) INVESTMENT CORPORATION","YCIC", $strsup);
-				$strsup = str_replace("YGP PTE. LTD.","YGP", $strsup);
-				$strsup = str_replace("YZK AMERICAS.","YNA", $strsup);
+				$strsup = strtoupper($row2['P']);
+				$strsup_new = str_replace(' ','',$strsup);
+				$where = array(
+					'gct' => $strsup
+				);
+
+				$result = $this->db->select('gct,sai')->from('supplier')->where($where)->get()->result();
+				var_dump(count($result));
+				//exit();
+				if(count($result)>1){
+					$strsup = strtoupper($row2['P']);
+				}else if(count($result) == 0){
+					$where2 = array(
+						'sai' => $strsup
+					);
+					$result2 = $this->db->select('sai,gct')->from('supplier')->where($where2)->get()->result();
+					if(count($result2)== 1){
+						$gct_new = $result2[0]->gct;
+						$where3 = array(
+							'gct' => $gct_new
+						);
+						$num = $this->db->select('gct')->from('supplier')->where($where3)->get()->num_rows();
+						// var_dump($num);
+						if($num>1){
+							$strsup = str_replace($result2[0]->sai,$result2[0]->gct,$strsup);
+							var_dump($strsup);
+							//exit();
+
+						}else{
+							$strsup = str_replace($result2[0]->gct,$result2[0]->sai,$strsup);
+							var_dump($strsup);
+							//exit();
+						}
+					}
+				// var_dump($num);
+				}else if(count($result) == 1){
+					$strsup = str_replace($strsup,$result[0]->sai,$strsup);
+				}
+				//var_dump($result[0]->gct);
+				// $strsup = str_replace("YC Purchasing","HIB",$strsup);
+				// $strsup = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);
+				// $strsup = str_replace("Elcom", "COMBU-E", $strsup);
+				// $strsup = str_replace("Federal Mogul (Thailand) Ltd.","FMTH", $strsup);
+				// $strsup = str_replace("Hellermann Tyton","HELLERMANN TYTON", $strsup);
+				// $strsup = str_replace("Molex Singapore","ARROW ELECTRONICS AS", $strsup);
+				// $strsup = str_replace("PT INDOWIRE PRIMA INDUSTRINDO","PT. INDOWIRE PRIMA", $strsup);
+				// $strsup = str_replace("PT Nitto Materials Indonesia","PT. NMI", $strsup);
+				// $strsup = str_replace("Sugity PT.SUGITY CREATEIVES","SUGITY", $strsup);
+				// $strsup = str_replace("TBD Supplier","J/A", $strsup);
+				// $strsup = str_replace("PEMI","PEMI-AW", $strsup);
+				// $strsup = str_replace("Tesa Tape Asia Pacific Pte Ltd","TESA", $strsup);
+				// $strsup = str_replace("YAZAKI (CHINA) INVESTMENT CORPORATION","YCIC", $strsup);
+				// $strsup = str_replace("YGP PTE. LTD.","YGP", $strsup);
+				// $strsup = str_replace("YZK AMERICAS.","YNA", $strsup);
 				$gct = $row2['A'];
                 $gct_split = str_split($gct,4);
                 $gct_implode = implode("-",$gct_split);
-				$GCT_COMP_NO = $gct_implode;
+				$partnumber = $gct_implode;
 
 				if($gct_implode != ""){
 					array_push($data2, array(
-						'GCT_COMP_NO' => $gct_implode, // Ambil data nomor
-						'OW_ID' => $row2['B'], // Ambil data ow id
-						'PRICE_ID' => $row2['C'], // Ambil data price id
-						'PriceIdDesc' => $row2['D'], // Ambil data periode desc
-						'EFFECT_DT' => $row2['E'], // Ambil data effect dt
-						'EXPIRE_DT' => $row2['F'], // Ambil data expire dt
-						'TENTATIVE_FL' => $row2['G'], // Ambil data tentative el
-						'CLASS_CD' => $row2['H'], // Ambil data class cd
-						'FIS_PRICE' => $row2['I'], // Ambil data fis price
-						'FIS_CRCY' => $row2['J'], // Ambil data fis crcy
+						'partnumber' => $gct_implode, // Ambil data nomor
 						'BASE_PRICE' => $row2['K'], // Ambil data base price
 						'BASE_CRCY' => $row2['L'], // Ambil data base crcy
 						'BASE_UOM' => $row2['M'], // Ambil data base uom
-						'SHT_NO' => $row2['N'], // Ambil data sht no
-						'SPPLY_ID' => $row2['O'], // Ambil data sppl id
-						'SPPLY_NM' => $strsup, // Ambil data sppl nm
+						'supplier' => $strsup, // Ambil data sppl nm
 						'CNTRY_CD' => $row2['Q'], // Ambil data cntry cd
-						'INCO' => $row2['R'], // Ambil data inco
-						'DUTY_FL' => $row2['S'], // Ambil data duty fl
-						'CU_BASE_QUOTE' => $row2['T'], // Ambil data cu base quote
-						'CU_BASE_UOM' => $row2['U'], // Ambil data cu base uom
-						'CU_BASE_CRCY' => $row2['V'], // Ambil data cu base crcy
-						'TOOL_COST_FL' => $row2['W'], // Ambil data tool cost fl
-						'ONLY_TEST_FL' => $row2['X'], // Ambil data only test fl
-						'MARK1' => $row2['Y'], // Ambil data mark1
-						'MARK2' => $row2['Z'], // Ambil data mark2
-						'MARK3' => $row2['AA'], // Ambil data mark3
-						'NOTE' => $row2['AB'], // Ambil data note
 						'PERIOD' => $row2['AC'], // Ambil data periode
 					));
 				}

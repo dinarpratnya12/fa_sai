@@ -65,7 +65,7 @@
                                             <th>Price Quatition (pcs)</th>
                                             <th>Price Different</th>
                                             <th>Remark</th>
-                                            <th>Qty material di Invoice</th>
+                                            <th>Qty Material di Invoice</th>
                                             <th>Amount</th>
                                         </tr>
                                     </thead>
