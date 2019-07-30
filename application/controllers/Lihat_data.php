@@ -141,11 +141,50 @@ class Lihat_data extends CI_Controller{
 							$periode = "Dec ".($tahun-1)." - May ".$tahun;
 						}else if($month >= 6 && $month <= 11){
 							$periode = "Jun ".$tahun." - Nov ".$tahun;
-						}
+            }
+            $split = str_split($this->input->post('productid'),4);
+            $implode = implode("-",$split);
+            $productid = $implode;
+      $kalimat_new = strtoupper($this->input->post('supplier'));
+            $strs = $kalimat_new;
+
+      $where = array(
+        'gct' => $strs
+      );
+
+      $result = $this->db->select('gct,sai')->from('supplier')->where($where)->get()->result();
+       //var_dump(count($result));
+
+      if(count($result)>1){
+        $strs = strtoupper($this->input->post('supplier'));
+        //var_dump($strs);
+
+      }else if(count($result) == 0){
+        $where2 = array(
+          'sai' => $strs
+        );
+        $result2 = $this->db->select('sai,gct')->from('supplier')->where($where2)->get()->result();
+        if(count($result2)== 1){
+          $gct_new = $result2[0]->gct;
+          $where3 = array(
+            'gct' => $gct_new
+          );
+          $num = $this->db->select('gct')->from('supplier')->where($where3)->get()->num_rows();
+
+          if($num>1){
+            $strs = str_replace($result2[0]->sai,$result2[0]->gct,$strs);
+          }else{
+            $strs = str_replace($result2[0]->gct,$result2[0]->sai,$strs);
+
+          }
+        }
+      }else if(count($result) == 1){
+        $strs = str_replace($strs,$result[0]->sai,$strs);
+      }
 
 			$data2['invoicenumber'] = $this->input->post('invoicenumber');
-			$data2['productid'] = $this->input->post('productid');
-			$data2['supplier'] = $this->input->post('supplier');
+			$data2['productid'] = $productid;
+			$data2['supplier'] = $strs;
 			$data2['kalkulasi_per_pcs'] = (int)$this->input->post('invoicevalue')/(int)$this->input->post('quantityunit');
 			$data2['currencycode'] = $this->input->post('currencycode');
 			$data2['quantityunit'] = $this->input->post('quantityunit');
@@ -159,6 +198,79 @@ class Lihat_data extends CI_Controller{
 
 			$this->session->set_flashdata('swal','Success|Successful Add Invoice|success');
 			redirect('Lihat_data/invoice','refresh');
+		}
+		$this->load->view('Header/footerfix');
+  }
+
+  function tambahpenawaran(){
+
+		$data['level'] = $this->session->userdata('level');
+				if($data['level']=='1'){
+					$this->load->view('Header/headerfix');
+				}else{
+					$this->load->view('Header/headerstaff');
+				}
+    $data1['data_penawaran'] = $this->Penawaran_models->tampil_data()->result();
+
+		$this->form_validation->set_rules('partnumber', 'partnumber','required');
+		$this->form_validation->set_rules('base_price','base_price','required');
+		$this->form_validation->set_rules('base_crcy','base_crcy','required');
+		$this->form_validation->set_rules('base_uom','base_uom','required');
+    $this->form_validation->set_rules('supplier','supplier','required');
+		$this->form_validation->set_rules('cntry_cd','cntry_cd','required');
+		$this->form_validation->set_rules('period','period','required');
+		if($this->form_validation->run() == FALSE) {
+			redirect('Lihat_data/penawaran','refresh');
+		}else{
+      $kalimat_new = strtoupper($this->input->post('supplier'));
+      $strsup = $kalimat_new;
+
+      $where = array(
+        'gct' => $strsup
+      );
+
+      $result = $this->db->select('gct,sai')->from('supplier')->where($where)->get()->result();
+       //var_dump(count($result));
+
+      if(count($result)>1){
+        $strsup = strtoupper($this->input->post('supplier'));
+        //var_dump($strsup);
+
+      }else if(count($result) == 0){
+        $where2 = array(
+          'sai' => $strsup
+        );
+        $result2 = $this->db->select('sai,gct')->from('supplier')->where($where2)->get()->result();
+        if(count($result2)== 1){
+          $gct_new = $result2[0]->gct;
+          $where3 = array(
+            'gct' => $gct_new
+          );
+          $num = $this->db->select('gct')->from('supplier')->where($where3)->get()->num_rows();
+
+          if($num>1){
+            $strsup = str_replace($result2[0]->sai,$result2[0]->gct,$strsup);
+          }else{
+            $strsup = str_replace($result2[0]->gct,$result2[0]->sai,$strsup);
+
+          }
+        }
+      }else if(count($result) == 1){
+        $strsup = str_replace($strsup,$result[0]->sai,$strsup);
+      }
+
+			$data2['partnumber'] = $this->input->post('partnumber');
+			$data2['base_price'] = $this->input->post('base_price');
+      $data2['base_crcy'] = $this->input->post('base_crcy');
+      $data2['base_uom'] = $this->input->post('base_uom');
+			$data2['supplier'] = $strsup;
+			$data2['cntry_cd'] = $this->input->post('cntry_cd');
+			$data2['period'] = $this->input->post('period');
+
+			$this->Penawaran_models->input_data($data2);
+
+			$this->session->set_flashdata('swal','Success|Successful Add Quatition|success');
+			redirect('Lihat_data/penawaran','refresh');
 		}
 		$this->load->view('Header/footerfix');
   }

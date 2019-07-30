@@ -6,7 +6,6 @@
             <div class="container-fluid" >
                     <h3>LIST DATA INVOICE</h3>
                 <div class="card col-lg-12">
-
                     <div class = "row">
                         <!-- Form invoice -->
                         <div class="col-lg-12">
@@ -61,6 +60,15 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                 <?php echo form_open('lihat_data/tambahinvoice');?>
+                                                <div class="col-lg-4">
+                                                        <h5 align="left">Part Number : </h5>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <input type="text" name="productid" id="productid" class="form-control" required/>
+                                                        <?php echo form_error('productid'); ?>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
                                                     <div class="col-lg-4">
                                                         <h5 align="left">Invoice Number : </h5>
                                                     </div>
@@ -71,24 +79,15 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <h5 align="left">Product ID : </h5>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" name="productid" id="productid" class="form-control" required/>
-                                                        <?php echo form_error('productid'); ?>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-4">
                                                         <h5 align="left">Supplier :</h5>
                                                     </div>
                                                     <div class="col-lg-8">
                                                         <select class="form-control show-tick" name="supplier">
                                                             <option selected disabled>-- Pilih Supplier --</option>
                                                             <?php
-                                                                $supplier = $this->db->query('SELECT DISTINCT supplier.sai FROM supplier')->result();
+                                                                $supplier = $this->db->query('SELECT DISTINCT supplier.sai as supplier FROM supplier union SELECT DISTINCT supplier.gct as supplier FROM supplier ORDER BY supplier ASC')->result();
                                                                 foreach($supplier as $row) {?>
-                                                            <option value="<?= $row->sai;?>" ><?= $row->sai;?></option>
+                                                                <option value="<?= $row->supplier?>"><?=$row->supplier?></option>
                                                             <?php } ?>
                                                         </select>
                                                         <?php echo form_error('supplier'); ?>
@@ -182,35 +181,21 @@
                                             if( ! empty($data_invoice)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
                                                 foreach($data_invoice as $data){ // Lakukan looping pada variabel siswa dari controller
                                                     echo "<tr>";
-                                                    echo "<td style='position: sticky;left:0px; background-color:white'>".$data->productid."</td>";
-                                                    echo "<td>".$data->invoicenumber."</td>";
-                                                    $strs = $data->supplier;
-                                                    $strs = str_replace("IRC INOAC","PASI",$strs);
-                                                    $strs = str_replace("NIDEC","PASI",$strs);
-                                                    $strs = str_replace("NIFCO","PASI",$strs);
-                                                    $strs = str_replace("PLASSES","PASI",$strs);
-                                                    $strs = str_replace("PT. CATURINDO AGUNG","PASI",$strs);
-                                                    $strs = str_replace("PT. INDONESIA KYOUEI","PASI",$strs);
-                                                    $strs = str_replace("PT. KMK PLASTICS IND","PASI",$strs);
-                                                    $strs = str_replace("PT. KOJIMA INDONESIA","PASI",$strs);
-                                                    $strs = str_replace("PT. NANBU PLASTICS I","PASI",$strs);
-                                                    $strs = str_replace("PT. OGATA INDONESIA","PASI",$strs);
-                                                    $strs = str_replace("PT. PIOLAX INDONESIA","PASI",$strs);
-                                                    $strs = str_replace("PT. SATO SEIKI","PASI",$strs);
-                                                    $strs = str_replace("PT. TENMA INDONESIA","PASI",$strs);
-                                                    $strs = str_replace("SCHLEMMER","PASI",$strs);
-                                                    $strs = str_replace("TOKAI RIKA JP","PASI",$strs);
-                                                    $strs = str_replace("YAMANASHI INDONESIA","PASI",$strs);
-                                                    $strs = str_replace("TAP-AW","TAP",$strs);
-                                                    $strs = str_replace("TAP-INJ","TAP",$strs);
-                                                    $strs = str_replace("TAP-VT","TAP",$strs);
-                                                    echo "<td>".$strs."</td>";
+                                                    $productid = strtoupper($data->productid);
+                                                    $invoicenumber = strtoupper($data->invoicenumber);
+                                                    $supplier = strtoupper($data->supplier);
+                                                    $currencycode = strtoupper($data->currencycode);
+                                                    $unitcode = strtoupper($data->unitcode);
+                                                    $ordernumber = strtoupper($data->ordernumber);
+                                                    echo "<td style='position: sticky;left:0px; background-color:white'>".$productid."</td>";
+                                                    echo "<td>".$invoicenumber."</td>";
+                                                    echo "<td>".$supplier."</td>";
                                                     if(stripos($data->kalkulasi_per_pcs,".") !== false){
                                                         echo "<td>".number_format($data->kalkulasi_per_pcs,4)."</td>";
                                                     }else{
                                                         echo "<td>".$data->kalkulasi_per_pcs."</td>";
                                                     }
-                                                    echo "<td>".$data->currencycode."</td>";
+                                                    echo "<td>".$currencycode."</td>";
                                                     echo "<td>".$data->quantityunit."</td>";
 
                                                     if(stripos($data->invoicevalue,".") !== false){
@@ -221,8 +206,8 @@
                                                         echo "<td>".$data->invoicevalue."</td>";
                                                     }
 
-                                                    echo "<td>".$data->unitcode."</td>";
-                                                    echo "<td>".$data->ordernumber."</td>";
+                                                    echo "<td>".$unitcode."</td>";
+                                                    echo "<td>".$ordernumber."</td>";
                                                     echo "<td>".$data->invoicedate."</td>";
                                                     echo "<td>".$data->periode."</td>";
                                                     echo "<td style='position: sticky;right:-10px; background-color:white;'>
@@ -263,22 +248,22 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                     <?php echo form_open('lihat_data/editinvoice',['id' => 'form-update']);?>
-                                                        <div class="col-lg-4">
-                                                            <h5 align="left">Invoice Number : </h5>
+                                                    <div class="col-lg-4">
+                                                            <h5 align="left">Part Number :</h5>
                                                         </div>
                                                         <div class="col-lg-8">
                                                             <input type="hidden" name="id_" id="id_" class="form-control"/>
-                                                            <input type="text" name="invoicenumber" id="invoicenumber" class="form-control" required/>
-                                                            <?php echo form_error('invoicenumber'); ?>
+                                                            <input type="text" name="productid" id="productid" class="form-control" required/>
+                                                            <?php echo form_error('productid'); ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <h5 align="left">Product ID :</h5>
+                                                    <div class="col-lg-4">
+                                                            <h5 align="left">Invoice Number : </h5>
                                                         </div>
                                                         <div class="col-lg-8">
-                                                            <input type="text" name="productid" id="productid" class="form-control" required/>
-                                                            <?php echo form_error('productid'); ?>
+                                                            <input type="text" name="invoicenumber" id="invoicenumber" class="form-control" required/>
+                                                            <?php echo form_error('invoicenumber'); ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -289,9 +274,9 @@
                                                             <select class="form-control show-tick" name="supplier">
                                                                 <option selected disabled>-- Pilih Supplier --</option>
                                                                 <?php
-                                                                    $supplier = $this->db->query('SELECT DISTINCT supplier.sai FROM supplier')->result();
+                                                                    $supplier = $this->db->query('SELECT DISTINCT supplier.sai as supplier FROM supplier union SELECT DISTINCT supplier.gct as supplier FROM supplier ORDER BY supplier ASC')->result();
                                                                     foreach($supplier as $row) {?>
-                                                                <option value="<?= $row->sai;?>" ><?= $row->sai;?></option>
+                                                                <option value="<?= $row->supplier?>"><?=$row->supplier?></option>
                                                                 <?php } ?>
                                                             </select>
                                                             <?php echo form_error('supplier'); ?>
@@ -302,8 +287,7 @@
                                                             <h5 align="left">Qty Invoice : </h5>
                                                         </div>
                                                         <div class="col-lg-8">
-                                                        <input type="number" step="any" name="quantityunit" id="quantityunit" class="form-control" required/>
-                                                             <!-- <input type="number" step="any" name="quantityunit" id="quantityunit" class="form-control" required/> -->
+                                                            <input type="number" step="any" name="quantityunit" id="quantityunit" class="form-control" required/>
                                                             <?php echo form_error('quantityunit'); ?>
                                                         </div>
                                                     </div>

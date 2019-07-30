@@ -53,7 +53,7 @@ class Import extends CI_Controller {
 						// Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
 						// Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
 					$data['sheet'] = $sheet;
-					if($loadexcel->getActiveSheet()->getCell('E1')->getValue() != "ProductID"){
+					if($loadexcel->getActiveSheet()->getCell('O1')->getValue() != "InvoiceNumber"){
 
 						$data['data_error'] = "Format Tidak Sesuai";
 						$this->session->set_flashdata('swal','Format Tidak Sesuai!|Periksa Kembali Data Anda!|error');
@@ -124,45 +124,41 @@ class Import extends CI_Controller {
 			foreach($sheet as $row){
 				$kalimat_new = strtoupper($row['V']);
 				$strs = $kalimat_new;
-				$strsup_new = str_replace(' ','',$strs);
 				$where = array(
-					'sai' => $strs
+					'gct' => $strs
 				);
 
-				$result = $this->db->select('sai,gct')->from('supplier')->where($where)->get()->result();
+				$result = $this->db->select('gct,sai')->from('supplier')->where($where)->get()->result();
+				 //var_dump(count($result));
 
-				$where2 = array(
-					'gct' => $result[0]->gct
-				);
-				$num = $this->db->select('gct')->from('supplier')->where($where2)->get()->num_rows();
+				if(count($result)>1){
+					$strs = strtoupper($row['V']);
+					//var_dump($strs);
 
-				if($num>1){
-					$strs = str_replace($result[0]->sai,$result[0]->gct,$strs);
+				}else if(count($result) == 0){
+					$where2 = array(
+						'sai' => $strs
+					);
+					$result2 = $this->db->select('sai,gct')->from('supplier')->where($where2)->get()->result();
+					if(count($result2)== 1){
+						$gct_new = $result2[0]->gct;
+						$where3 = array(
+							'gct' => $gct_new
+						);
+						$num = $this->db->select('gct')->from('supplier')->where($where3)->get()->num_rows();
 
-				}else{
-					$strs = str_replace($result[0]->gct,$result[0]->sai,$strs);
+						if($num>1){
+							$strs = str_replace($result2[0]->sai,$result2[0]->gct,$strs);
+
+						}else{
+							$strs = str_replace($result2[0]->gct,$result2[0]->sai,$strs);
+
+						}
+					}
+				}else if(count($result) == 1){
+					$strs = str_replace($strs,$result[0]->sai,$strs);
+			
 				}
-
-				// $result[0]->gct;
-				// $strs = str_replace("IRC INOAC","PASI",$strs);
-				// $strs = str_replace("NIDEC","PASI",$strs);
-				// $strs = str_replace("NIFCO","PASI",$strs);
-				// $strs = str_replace("PLASSES","PASI",$strs);
-				// $strs = str_replace("PT. CATURINDO AGUNG","PASI",$strs);
-				// $strs = str_replace("PT. INDONESIA KYOUEI","PASI",$strs);
-				// $strs = str_replace("PT. KMK PLASTICS IND","PASI",$strs);
-				// $strs = str_replace("PT. KOJIMA INDONESIA","PASI",$strs);
-				// $strs = str_replace("PT. NANBU PLASTICS I","PASI",$strs);
-				// $strs = str_replace("PT. OGATA INDONESIA","PASI",$strs);
-				// $strs = str_replace("PT. PIOLAX INDONESIA","PASI",$strs);
-				// $strs = str_replace("PT. SATO SEIKI","PASI",$strs);
-				// $strs = str_replace("PT. TENMA INDONESIA","PASI",$strs);
-				// $strs = str_replace("SCHLEMMER","PASI",$strs);
-				// $strs = str_replace("TOKAI RIKA JP","PASI",$strs);
-				// $strs = str_replace("YAMANASHI INDONESIA","PASI",$strs);
-				// $strs = str_replace("TAP-AW","TAP",$strs);
-				// $strs = str_replace("TAP-INJ","TAP",$strs);
-				// $strs = str_replace("TAP-VT","TAP",$strs);
 				if($row['E'] != "" || $row['E'] != null){
 
 					$tanggal = date('Y-m-d',strtotime($row['P']));
@@ -207,6 +203,7 @@ class Import extends CI_Controller {
 			$this->session->set_flashdata('swal','Success|Success Upload Invoice|success');
 			redirect("Import"); // Redirect ke halaman awal (ke controller siswa fungsi index)
 		}
+
 		public function import2(){
 			// Load plugin PHPExcel nya
 			include APPPATH.'third_party/PHPExcel/PHPExcel.php';
@@ -220,16 +217,18 @@ class Import extends CI_Controller {
 
 			foreach($sheet2 as $row2){
 				$strsup = strtoupper($row2['P']);
-				$strsup_new = str_replace(' ','',$strsup);
+				$strsup = $kalimat_new;
 				$where = array(
 					'gct' => $strsup
 				);
 
 				$result = $this->db->select('gct,sai')->from('supplier')->where($where)->get()->result();
-				var_dump(count($result));
+				 //var_dump(count($result));
 
 				if(count($result)>1){
-					$strsup = strtoupper($row2['P']);
+					$strsup = strtoupper($row['V']);
+					//var_dump($strsup);
+
 				}else if(count($result) == 0){
 					$where2 = array(
 						'sai' => $strsup
@@ -244,17 +243,21 @@ class Import extends CI_Controller {
 
 						if($num>1){
 							$strsup = str_replace($result2[0]->sai,$result2[0]->gct,$strsup);
-							var_dump($strsup);
+							//var_dump($strsup);
+							//exit();
 
 
 						}else{
 							$strsup = str_replace($result2[0]->gct,$result2[0]->sai,$strsup);
-							var_dump($strsup);
+							//var_dump($strsup);
+							//exit();
 
 						}
 					}
 				}else if(count($result) == 1){
 					$strsup = str_replace($strsup,$result[0]->sai,$strsup);
+					//var_dump($strsup);
+					//exit();
 				}
 				// $strsup = str_replace("YC Purchasing","HIB",$strsup);
 				// $strsup = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);

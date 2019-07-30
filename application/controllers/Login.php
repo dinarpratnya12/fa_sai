@@ -35,7 +35,7 @@ class Login extends CI_Controller{
 
                 // access login for author
             }else{
-                redirect('page/author');
+                redirect('login');
             }
         }else{
             echo $this->session->set_flashdata('msg','Username or Password is Wrong');

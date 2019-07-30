@@ -39,6 +39,107 @@
 
                                 <?php echo form_close();?>
                                 <br>
+                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter">
+                                Tambah Invoice
+                                </a>
+                                <br>
+                                <br>
+                                <br>
+
+                                <!-- Modal Add Penawaran-->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="exampleModalLongTitle">Tambah User</h3>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                <?php echo form_open('lihat_data/tambahpenawaran');?>
+                                                <div class="col-lg-4">
+                                                            <h5 align="left">Part Number : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="hidden" name="id_penawaran" id="id_penawaran" class="form-control"/>
+                                                            <input type="text" name="partnumber" id="partnumber" class="form-control" required/>
+                                                            <?php echo form_error('partnumber'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Price @pcs :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="number" step="any" name="base_price" id="base_price" class="form-control" required/>
+                                                            <?php echo form_error('base_price'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Currency Code : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="base_crcy" style="text-transform: uppercase" id="base_crcy" class="form-control" required/>
+                                                            <?php echo form_error('base_crcy'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">BASE UOM : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="base_uom" style="text-transform: uppercase" id="base_uom" class="form-control" required/>
+                                                            <?php echo form_error('base_uom'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Supplier :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <select class="form-control show-tick" name="supplier">
+                                                                <option selected disabled>-- Pilih Supplier --</option>
+                                                                <?php
+                                                                    $supplier = $this->db->query('SELECT DISTINCT supplier.sai as supplier FROM supplier union SELECT DISTINCT supplier.gct as supplier FROM supplier ORDER BY supplier ASC')->result();
+                                                                    foreach($supplier as $row) {?>
+                                                                <option value="<?= $row->supplier?>"><?=$row->supplier?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                            <?php echo form_error('supplier'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">Country CD :</h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="cntry_cd" id="cntry_cd" style="text-transform: uppercase" class="form-control" required/>
+                                                            <?php echo form_error('cntry_cd'); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <h5 align="left">periode : </h5>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="period" id="period" class="form-control" required/>
+                                                            <?php echo form_error('period'); ?>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="reset" class="btn btn-info">Reset</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                            <?php echo form_close();?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Modal Add Data -->
                             <div class="table-responsive-sm">
                                 <table class="table warnain text2" cellpadding="" id="example2" style="width:100%">
                                     <thead>
@@ -57,7 +158,9 @@
                                     if( ! empty($data_penawaran)){ // Jika data pada database tidak sama dengan empty (alias ada datanya)
                                         foreach($data_penawaran as $data){ // Lakukan looping pada variabel siswa dari controller
                                             echo "<tr>";
-                                            echo "<td style='position: sticky;left:0px; background-color:white'>".$data->partnumber."</td>";
+
+                                            $partnumber = strtoupper($data->partnumber);
+                                            echo "<td style='position: sticky;left:0px; background-color:white'>".$partnumber."</td>";
                                             if(stripos($data->base_price,".") !== false){
                                                 $ya = number_format($data->base_price,4);
                                                 $penawaran = str_replace(",","",$ya);
@@ -65,27 +168,16 @@
                                             }else{
                                                 echo "<td>".$data->base_price."</td>";
                                             }
-                                            echo "<td>".$data->base_crcy."</td>";
-                                            echo "<td>".$data->base_uom."</td>";
-                                            $strsup = $data->supplier;
-                                            $strsup = str_replace("YC Purchasing","HIB",$strsup);
-                                            $strsup = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);
-                                            $strsup = str_replace("Elcom", "COMBU-E", $strsup);
-                                            $strsup = str_replace("Federal Mogul (Thailand) Ltd.","FMTH", $strsup);
-                                            $strsup = str_replace("Hellermann Tyton","HELLERMANN TYTON", $strsup);
-                                            $strsup = str_replace("Molex Singapore","ARROW ELECTRONICS AS", $strsup);
-                                            $strsup = str_replace("PT INDOWIRE PRIMA INDUSTRINDO","PT. INDOWIRE PRIMA", $strsup);
-                                            $strsup = str_replace("PT Nitto Materials Indonesia","PT. NMI", $strsup);
-                                            $strsup = str_replace("Sugity PT.SUGITY CREATEIVES","SUGITY", $strsup);
-                                            $strsup = str_replace("TBD Supplier","J/A", $strsup);
-                                            $strsup = str_replace("PEMI","PEMI-AW", $strsup);
-                                            $strsup = str_replace("Tesa Tape Asia Pacific Pte Ltd","TESA", $strsup);
-                                            $strsup = str_replace("YAZAKI (CHINA) INVESTMENT CORPORATION","YGP", $strsup);
-                                            $strsup = str_replace("YGP PTE. LTD.","YGP", $strsup);
-                                            $strsup = str_replace("YZK AMERICAS.","YNA", $strsup);
-                                            echo "<td>".$strsup."</td>";
-                                            echo "<td>".$data->cntry_cd."</td>";
-                                            echo "<td>".$data->period."</td>";
+                                            $crcy = strtoupper($data->base_crcy);
+                                            echo "<td>".$crcy."</td>";
+                                            $uom = strtoupper($data->base_uom);
+                                            echo "<td>".$uom."</td>";
+                                            $supplier = strtoupper($data->supplier);
+                                            echo "<td>".$supplier."</td>";
+                                            $cntry_cd = strtoupper($data->cntry_cd);
+                                            echo "<td>".$cntry_cd."</td>";
+                                            $period = strtoupper($data->period);
+                                            echo "<td>".$period."</td>";
                                             echo "<td style='position: sticky;right:0px; background-color:white'>
                                             <a href='javascript:void(0)' class='item_edit1'
                                                 data-id_penawaran='".$data->id_penawaran."'
@@ -165,7 +257,7 @@
                                                             <select class="form-control show-tick" name="supplier">
                                                                 <option selected disabled>-- Pilih Supplier --</option>
                                                                 <?php
-                                                                    $supplier = $this->db->query('SELECT DISTINCT supplier.sai as supplier FROM supplier union SELECT DISTINCT supplier.gct as supplier FROM supplier')->result();
+                                                                    $supplier = $this->db->query('SELECT DISTINCT supplier.sai as supplier FROM supplier union SELECT DISTINCT supplier.gct as supplier FROM supplier ORDER BY supplier ASC')->result();
                                                                     foreach($supplier as $row) {?>
                                                                 <option value="<?= $row->supplier?>"><?=$row->supplier?></option>
                                                                 <?php } ?>
@@ -252,10 +344,11 @@
                 });
                 var table = $('#example2').DataTable(
                     {
+
                         "scrollY": "400px",
-                        "scrollX": true,
                         "scrollCollapse": true,
-                        "paging": false
+                        "scrollX": true,
+                        "paging": false,
                     }
                 );
             } );

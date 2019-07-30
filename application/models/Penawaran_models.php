@@ -32,6 +32,13 @@ class Penawaran_models extends CI_Model {
 		$this->db->insert_batch('data_penawaran', $data);
 	}
 
+	function tampil_data(){
+		return $this->db->get('data_penawaran');
+	}
+	function input_data($data2){
+		$this->db->insert('data_penawaran',$data2);
+	}
+
 	public function hapuspenawaran($id_penawaran){
         $this->db->where('id_penawaran',$id_penawaran); //pencocokan id
         $this->db->delete('data_penawaran'); //eksekusi
