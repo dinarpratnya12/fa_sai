@@ -40,7 +40,7 @@
 
                                 <?php echo form_close();?>
                                 <br>
-                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter">
+                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter"><i class='material-icons'>add</i>
                                 Tambah Invoice
                                 </a>
                                 <br>
@@ -160,7 +160,7 @@
                                 <!-- End Modal Add Data -->
 
                                 <div class="table-responsive-sm">
-                                <table class="table warnain text" cellpadding="" id="example1" style="width:100%">
+                                <table class="table warnain text nowrap" cellpadding="" id="example1" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
@@ -225,9 +225,9 @@
                                                         data-kalkulasi_per_pcs='".$data->kalkulasi_per_pcs."'
                                                         data-periode='".$data->periode."'
                                                         data-toggle='modal' data-target='#exampleModalCenter1'>
-                                                    <button class='btn  btn-primary fa fa-trash-o pull-left' style='width:80px' >Edit</button></a>
-                                                    <a href='#' onclick='delete_c(".$data->id_.")' class='btn btn-warning fa fa-trash-o pull-right' style='width:80px'>
-                                                    Delete</a></td>";
+                                                    <button class='btn btn-primary btn-circle waves-effect waves-circle waves-float'><i class='material-icons'>create</i></button></a>
+                                                    <a href='#' onclick='delete_c(".$data->id_.")' class='btn bg-orange btn-circle waves-effect waves-circle waves-float' >
+                                                    <i class='material-icons'>delete_forever</i></a></td>";
                                                     echo "</tr>";
                                                 }
                                             }else{ // Jika data tidak ada
@@ -356,15 +356,19 @@
                 $('#example1 thead tr').clone(true).appendTo( '#example1 thead' );
                 $('#example1 thead tr:eq(1) th').each( function (i) {
                     var title = $(this).text();
-                    $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-                    $( 'input', this ).on( 'keyup change', function () {
-                        if ( table.column(i).search() !== this.value ) {
-                            table
-                                .column(i)
-                                .search( this.value )
-                                .draw();
-                            }
+                    if(i !== 11){
+                        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+                        $( 'input', this ).on( 'keyup change', function () {
+                            if ( table.column(i).search() !== this.value ) {
+                                table
+                                    .column(i)
+                                    .search( this.value )
+                                    .draw();
+                                }
                         } );
+                    }else{
+                        $(this).html("");
+                    }
                 });
                 $('#example1').on('click','.item_edit1',function() {
                     var id_ = $(this).data('id_');
@@ -394,6 +398,7 @@
                 });
                 var table = $('#example1').DataTable(
                     {
+                        orderCellsTop : true,
                         "sDom": "lrtip",
                         "scrollY": "400px",
                         "scrollX": true,

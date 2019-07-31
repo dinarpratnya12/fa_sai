@@ -1,11 +1,10 @@
 <div style="background-color: #f0f0f0;">
-      <section class="content">
+    <section class="content">
         <div class="container-fluid">
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
             <div class="container-fluid">
                 <h3>LIST SUPPLIER</h3>
-                <hr>
                 <div class="card col-lg-10">
                     <div class="row">
                     <!-- Form Supplier SAI -->
@@ -16,11 +15,10 @@
                             <hr>
                             <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter">
                                 Tambah Supplier
-                                </a>
-                                <br>
-                                <br>
-                                <br>
-
+                            </a>
+                            <br>
+                            <br>
+                            <br>
                                 <!-- Modal Add Form-->
                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -63,7 +61,7 @@
                                 </div>
                                 <!-- End Add Form -->
                             <div class="table-responsive">
-                                <table class="table table-bordered" cellpadding="" id="example2" style="width:100%">
+                                <table class="table" cellpadding="" id="example2" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th class = text-center>No</th>
@@ -86,9 +84,9 @@
                                             echo "<td style='position: sticky;right:0px; background-color:white'>
 
                                             <center><a href='javascript:void(0);' class='item_edit' data-id_sup='$data3->id_sup' data-sai='$data3->sai' data-gct='$data3->gct' data-toggle='modal' data-target='#exampleModalCenter1'>
-                                            <button class='btn  btn-primary fa fa-trash-o' style='width:50px' >Edit</button></a>
-                                            <a href='#' onclick='delete_a(".$data3->id_sup.")' class='btn  btn-warning fa fa-trash-o' style='width:60px'>
-                                            Delete</a></center></td>";
+                                            <button class='btn btn-primary btn-circle waves-effect waves-circle waves-float'><i class='material-icons'>create</i></button></a>
+                                            <a href='#' onclick='delete_a(".$data3->id_sup.")' class='btn bg-orange btn-circle waves-effect waves-circle waves-float' >
+                                            <i class='material-icons'>delete_forever</i></a></center></td>";
                                             echo "</tr>";
                                             $i++;
                                         }
@@ -116,6 +114,7 @@
                                                                 <h5 align="left">Nama Supplier SAI : </h5>
                                                             </div>
                                                             <div class="col-lg-8">
+                                                                <input type="hidden" name="id_sup" id="id_sup" class="form-control"/>
                                                                 <input type="text" name="sai" style="text-transform: uppercase" class="form-control" value="<?php echo set_value('sai'); ?>"/>
                                                                 <?php echo form_error('sai'); ?>
                                                             </div>
@@ -160,11 +159,28 @@
     <?php } ?>
     <script>
           $(document).ready(function() {
+            $('#example2 thead tr').clone(true).appendTo( '#example2 thead' );
+            $('#example2 thead tr:eq(1) th').each( function (i) {
+                var title = $(this).text();
+                if(i == 1 || i == 2){
+                    $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+                $( 'input', this ).on( 'keyup change', function () {
+                    if ( table.column(i).search() !== this.value ) {
+                        table
+                            .column(i)
+                            .search( this.value )
+                            .draw();
+                        }
+                    } );
+                }else{
+                    $(this).html("");
+                }
+                });
             $('#example2').on('click','.item_edit',function() {
                 var id_sup = $(this).data('id_sup');
                 var sai = $(this).data('sai');
                 var gct = $(this).data('gct');
-
+                // alert(id_sup);
                 $('[name="sai"]').val(sai);
                 $('[name="gct"]').val(gct);
                 $('[name="id_sup"]').val(id_sup);
@@ -172,6 +188,8 @@
 
                 $('#example2').DataTable(
                     {
+                        orderCellsTop : true,
+                        "sDom": "lrtip",
                         "scrollY": "400px",
                         "scrollX": true,
                         "scrollCollapse": true,

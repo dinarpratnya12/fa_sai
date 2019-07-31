@@ -10,34 +10,35 @@ class Lihat_data extends CI_Controller{
 	}
 
 	public function index(){
-		$this->load->view('Header/headerfix');
+		$data['level'] = $this->session->userdata('level');
+				if($data['level']=='1'){
+					$this->load->view('Header/headerfix');
+				}else{
+					$this->load->view('Header/headerstaff');
+				}
 		$this->load->view('Header/footerfix');
 
   }
 
   public function invoice(){
-    $this->load->view('Header/headerfix');
+    $data['level'] = $this->session->userdata('level');
+				if($data['level']=='1'){
+					$this->load->view('Header/headerfix');
+				}else{
+					$this->load->view('Header/headerstaff');
+				}
 		$data['data_invoice'] = $this->Invoice_models->view();
     $this->load->view('invoice_data', $data);
     $this->load->view('Header/footerfix');
   }
 
   public function penawaran(){
-    $this->load->view('Header/headerfix');
-      $data['data_penawaran'] = $this->Penawaran_models->view();
-      $this->load->view('penawaran_data', $data);
-      $this->load->view('Header/footerfix');
-  }
-
-  public function invoice2(){
-    $this->load->view('Header/headerstaff');
-      $data['data_invoice'] = $this->Invoice_models->view();
-      $this->load->view('invoice_data', $data);
-      $this->load->view('Header/footerfix');
-  }
-
-  public function penawaran2(){
-      $this->load->view('Header/headerstaff');
+      $data['level'] = $this->session->userdata('level');
+				if($data['level']=='1'){
+					$this->load->view('Header/headerfix');
+				}else{
+					$this->load->view('Header/headerstaff');
+				}
       $data['data_penawaran'] = $this->Penawaran_models->view();
       $this->load->view('penawaran_data', $data);
       $this->load->view('Header/footerfix');
@@ -347,7 +348,9 @@ class Lihat_data extends CI_Controller{
     $where = array(
       "id_sup"=>$_POST['id_sup'],
     );
+
     $this->Sup_models->editsai($data3,$where);
+    redirect('Lihat_data/supsai','refresh');
     // $this->session->set_flashdata('swal','Success|Successful Edit Supplier|success');
     // redirect('Lihat_data/supsai','refresh');
   }

@@ -2,28 +2,17 @@
 <html>
 
 <head>
+    <title>Compare Invoice Quotation</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- <title>SAI</title> -->
+
     <!-- Favicon-->
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 
     <!-- Google Fonts -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/css.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/icon.css');?>" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core Css -->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/bootstrap/css/bootstrap.css');?>" rel="stylesheet">
-
-    <!-- Waves Effect Css -->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/node-waves/waves.css');?>" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/animate-css/animate.css');?>" rel="stylesheet" />
-
-    <!-- Morris Chart Css-->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/morrisjs/morris.css');?>" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css');?>" rel="stylesheet">
@@ -32,6 +21,60 @@
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/themes/all-themes.css');?>" rel="stylesheet" />
 
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
+
+    <!-- Load File jquery.min.js yang ada difolder js -->
+
+    <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
+
+    <link href="<?php echo base_url('assets/export/jquery.dataTables.min.css');?>">
+    <link href="<?php echo base_url('assets/export/buttons.dataTables.min.css');?>"><div class="row">
+
+    <script>
+	$(document).ready(function(){
+		// Sembunyikan alert validasi kosong
+		$("#kosong").hide();
+	});
+    </script>
+
+    <!-- Style -->
+    <style>
+        .table-condensed{
+            font-size: 10px;
+        }
+        .datatable{
+            font-family:Verdana;
+            font-size:2px;
+        }
+        .text{
+            font-family:Verdana;
+            font-size:12px;
+        }
+        .text2{
+            font-family:Verdana;
+            font-size:12px;
+        }
+        table.dataTable thead .sorting:after,
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting_asc:after,
+        table.dataTable thead .sorting_asc:before,
+        table.dataTable thead .sorting_asc_disabled:after,
+        table.dataTable thead .sorting_asc_disabled:before,
+        table.dataTable thead .sorting_desc:after,
+        table.dataTable thead .sorting_desc:before,
+        table.dataTable thead .sorting_desc_disabled:after,
+        table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
+        }
+
+        .warnain {
+            border-collapse: separate;
+            /* border-style: solid; */
+            border-color: #4d4a46;
+        }
+
+    </style>
+
 </head>
 
 <body class="theme-orange" style="background-color: #f0f0f0;">
@@ -75,17 +118,17 @@
                     <img src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/images/user.png');?>" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('username');?></div>
+                    <div class="name" style="font-size:20px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('name');?></div>
                     <div class="username" style="font-size:12px;color:#f0f0f0"><?php echo 'Username : '.$this->session->userdata('username');?></div>
                 </div>
             </div>
             <!-- #User Info -->
             <!-- Menu -->
             <div class="menu">
-                <li class="list">
+                <ul class="list">
                     <li>
                         <a href="<?php echo site_url('import/index');?>">
-                            <i class="material-icons">swap_calls</i>
+                            <i class="material-icons">file_upload</i>
                             <span>Import Data</span>
                         </a>
                     </li>
@@ -96,30 +139,32 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?php echo site_url('lihat_data/invoice2');?>" class="menu-toggle">
+                                <a href="<?php echo site_url('lihat_data/invoice');?>" class="menu-toggle">
                                     <span>Data Invoice</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('lihat_data/penawaran2');?>" class="menu-toggle">
+                                <a href="<?php echo site_url('lihat_data/penawaran');?>" class="menu-toggle">
                                     <span>Data Penawaran</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('lihat_data/supsai');?>">
-                            <i class="material-icons">assignment</i>
-                            <span>List Supplier</span>
-                        </a>
-                    </li>
+                    <a href="<?php echo site_url('lihat_data/supsai');?>">
+                        <i class="material-icons">assignment</i>
+                        <span>List Supplier</span>
+                    </a>
+                </li>
+                <li>
                     <li>
                         <a href="<?php echo site_url('compare/index');?>">
                             <i class="material-icons">swap_horiz</i>
                             <span>Compare Data</span>
                         </a>
                     </li>
-                </li>
+                </ul>
+
             </div>
             <!-- #Menu -->
             <!-- Footer -->
@@ -137,13 +182,3 @@
     </section>
 
     <!-- DASHBOARD -->
-    <!-- <div style="background-color: #f0f0f0;">
-    <section class="content">
-        <div class="container-fluid"> -->
-
-            <!-- CPU Usage -->
-            <!-- <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-                    <div class="body"> -->
-                        <!-- <div id="real_time_chart" class="dashboard-flot-chart"> -->

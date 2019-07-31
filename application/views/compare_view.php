@@ -153,6 +153,7 @@
                 });
             var table = $('#example3').DataTable(
                 {
+                    orderCellsTop : true,
                     "scrollY": "400px",
                     "scrollCollapse": true,
                     "scrollX": true,

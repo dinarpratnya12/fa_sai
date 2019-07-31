@@ -157,7 +157,7 @@ class Import extends CI_Controller {
 					}
 				}else if(count($result) == 1){
 					$strs = str_replace($strs,$result[0]->sai,$strs);
-			
+
 				}
 				if($row['E'] != "" || $row['E'] != null){
 
@@ -216,7 +216,7 @@ class Import extends CI_Controller {
 			unset($sheet2[1]);
 
 			foreach($sheet2 as $row2){
-				$strsup = strtoupper($row2['P']);
+				$kalimat_new = strtoupper($row2['P']);
 				$strsup = $kalimat_new;
 				$where = array(
 					'gct' => $strsup
@@ -226,7 +226,7 @@ class Import extends CI_Controller {
 				 //var_dump(count($result));
 
 				if(count($result)>1){
-					$strsup = strtoupper($row['V']);
+					$strsup = strtoupper($row2['P']);
 					//var_dump($strsup);
 
 				}else if(count($result) == 0){
@@ -278,6 +278,8 @@ class Import extends CI_Controller {
                 $gct_split = str_split($gct,4);
                 $gct_implode = implode("-",$gct_split);
 				$partnumber = $gct_implode;
+				$periode = ucwords($row2['AC']);
+
 
 				if($gct_implode != ""){
 					array_push($data2, array(
@@ -287,7 +289,7 @@ class Import extends CI_Controller {
 						'base_uom' => $row2['M'], // Ambil data base uom
 						'supplier' => $strsup, // Ambil data sppl nm
 						'cntry_cd' => $row2['Q'], // Ambil data cntry cd
-						'period' => $row2['AC'], // Ambil data periode
+						'period' => $periode, // Ambil data periode
 					));
 				}
 				$numrow++; // Tambah 1 setiap kali looping

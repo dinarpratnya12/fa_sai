@@ -39,8 +39,8 @@
 
                                 <?php echo form_close();?>
                                 <br>
-                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter">
-                                Tambah Invoice
+                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter"><i class='material-icons'>add</i>
+                                Tambah Penawaran
                                 </a>
                                 <br>
                                 <br>
@@ -141,7 +141,7 @@
                                 </div>
                                 <!-- End Modal Add Data -->
                             <div class="table-responsive-sm">
-                                <table class="table warnain text2" cellpadding="" id="example2" style="width:100%">
+                                <table class="table warnain text2 nowrap" cellpadding="" id="example2" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
@@ -176,7 +176,7 @@
                                             echo "<td>".$supplier."</td>";
                                             $cntry_cd = strtoupper($data->cntry_cd);
                                             echo "<td>".$cntry_cd."</td>";
-                                            $period = strtoupper($data->period);
+                                            $period = ucwords($data->period);
                                             echo "<td>".$period."</td>";
                                             echo "<td style='position: sticky;right:0px; background-color:white'>
                                             <a href='javascript:void(0)' class='item_edit1'
@@ -190,9 +190,9 @@
                                                 data-period='".$data->period."'
                                                 data-toggle='modal'
                                                 data-target='#exampleModalCenter1'>
-                                            <button class='btn btn-primary fa fa-trash-o pull-left' style='width:80px'>Edit</button></a>
-                                            <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn  btn-warning fa fa-trash-o pull-right' style='width:80px'>
-                                            Delete</a></td>";
+                                            <button class='btn btn-primary btn-circle waves-effect waves-circle waves-float'><i class='material-icons'>create</i></button></a>
+                                            <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn bg-orange btn-circle waves-effect waves-circle waves-float' >
+                                            <i class='material-icons'>delete_forever</i></a></td>";
                                             echo "</tr>";
                                         }
                                     }else{ // Jika data tidak ada
@@ -310,15 +310,19 @@
             $('#example2 thead tr').clone(true).appendTo( '#example2 thead' );
             $('#example2 thead tr:eq(1) th').each( function (i) {
                 var title = $(this).text();
-                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-                $( 'input', this ).on( 'keyup change', function () {
-                    if ( table.column(i).search() !== this.value ) {
-                        table
-                            .column(i)
-                            .search( this.value )
-                            .draw();
-                        }
-                    } );
+                    if(i !== 7){
+                        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+                        $( 'input', this ).on( 'keyup change', function () {
+                            if ( table.column(i).search() !== this.value ) {
+                                table
+                                    .column(i)
+                                    .search( this.value )
+                                    .draw();
+                                }
+                        } );
+                    }else{
+                        $(this).html("");
+                    }
                 });
                 $('#example2').on('click','.item_edit1',function() {
                     var id_penawaran = $(this).data('id_penawaran');
@@ -344,7 +348,7 @@
                 });
                 var table = $('#example2').DataTable(
                     {
-
+                        orderCellsTop : true,
                         "scrollY": "400px",
                         "scrollCollapse": true,
                         "scrollX": true,
