@@ -4,46 +4,49 @@
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
             <div class="container-fluid">
-                <h3>LIST DATA PENAWARAN</h3>
                 <div class="card col-lg-12">
                 <div class="row">
                     <!-- Form penawaran -->
                     <div class="col-lg-12">
                         <div style="background-color: #ffffff; padding: 10px">
                             <center><h2>Data Penawaran</h2></center>
-                            <hr>
-                                <?php echo form_open('Lihat_data/hapusperiode');?>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <br>
+                                <?php echo form_open('Lihat_data/hapusperiode',['id'=>'form-hapusperiode']);?>
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
                                         <br>
                                         <label>Pilih periode yang akan dihapus :</label>
                                         <div class="row">
-                                        <div class="col-md-11">
-                                        <select class="form-control show-tick" name="selectperiode">
-                                            <option selected disabled>-- Pilih Periode --</option>
-                                            <option
-                                            <?php
-                                                $PERIOD = $this->db->query('SELECT DISTINCT data_penawaran.period FROM data_penawaran')->result();
-                                                foreach($PERIOD as $row) {?>
-                                                <option value="<?= $row->period;?>"><?= $row->period;?></option>
-                                            <?php } ?>
-                                        </select>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <input type='submit' value="Delete" class='btn  btn-warning fa fa-trash-o'>
-                                        </div>
+                                            <div class="col-md-5">
+                                                <select class="form-control show-tick" name="selectperiode">
+                                                    <option selected disabled>-- Pilih Periode --</option>
+                                                    <option
+                                                    <?php
+                                                        $PERIOD = $this->db->query('SELECT DISTINCT data_penawaran.period FROM data_penawaran')->result();
+                                                        foreach($PERIOD as $row) {?>
+                                                        <option value="<?= $row->period;?>"><?= $row->period;?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" value="Delete" name="Delete">
+                                            <div class="col-md-1">
+                                            <button type="button" class='btn btn-warning' id="btn-submit-hapusperiode">Delete</button>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-offset-10 pull-right" data-toggle="modal" data-target="#exampleModalCenter">
+                                                    Tambah Penawaran
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <?php echo form_close();?>
                                 <br>
-                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter"><i class='material-icons'>add</i>
+                                <!-- <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter">
                                 Tambah Penawaran
                                 </a>
                                 <br>
-                                <br>
+                                <br> -->
                                 <br>
 
                                 <!-- Modal Add Penawaran-->
@@ -190,8 +193,8 @@
                                                 data-period='".$data->period."'
                                                 data-toggle='modal'
                                                 data-target='#exampleModalCenter1'>
-                                            <button class='btn btn-primary btn-circle waves-effect waves-circle waves-float'><i class='material-icons'>create</i></button></a>
-                                            <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn bg-orange btn-circle waves-effect waves-circle waves-float' >
+                                            <button class='btn btn-primary'><i class='material-icons'>create</i></button></a>
+                                            <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn bg-orange' >
                                             <i class='material-icons'>delete_forever</i></a></td>";
                                             echo "</tr>";
                                         }
@@ -303,8 +306,6 @@
         </div>
     </div>
 
-
-
     <script>
         $(document).ready(function() {
             $('#example2 thead tr').clone(true).appendTo( '#example2 thead' );
@@ -356,6 +357,27 @@
                         "paging": false,
                     }
                 );
+
+                $('#btn-submit-hapusperiode').on('click',function(){
+                    swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $('#form-hapusperiode').submit();
+                    } else {
+                        swal({
+                            title: "Data Aman!",
+                            icon: "info",
+                        })
+                    }
+                });
+                });
+
             } );
             function delete_a(id){
 

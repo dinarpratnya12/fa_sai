@@ -84,8 +84,8 @@
                                             echo "<td style='position: sticky;right:0px; background-color:white'>
 
                                             <center><a href='javascript:void(0);' class='item_edit' data-id_sup='$data3->id_sup' data-sai='$data3->sai' data-gct='$data3->gct' data-toggle='modal' data-target='#exampleModalCenter1'>
-                                            <button class='btn btn-primary btn-circle waves-effect waves-circle waves-float'><i class='material-icons'>create</i></button></a>
-                                            <a href='#' onclick='delete_a(".$data3->id_sup.")' class='btn bg-orange btn-circle waves-effect waves-circle waves-float' >
+                                            <button class='btn btn-primary'><i class='material-icons'>create</i></button></a>
+                                            <a href='#' onclick='delete_a(".$data3->id_sup.")' class='btn bg-orange' >
                                             <i class='material-icons'>delete_forever</i></a></center></td>";
                                             echo "</tr>";
                                             $i++;

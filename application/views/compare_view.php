@@ -26,7 +26,7 @@
                                     <br>
                                 </div>
                                 <input type="hidden" name="compare" value="Compare">
-                                <center><button type="submit" class="btn btn-success btn-lg waves-effect">Submit</button></center>
+                                <center><button type="submit" class="btn btn-success btn-lg">Submit</button></center>
                             </form>
                             </div>
                             <br>

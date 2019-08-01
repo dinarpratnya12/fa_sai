@@ -1,50 +1,51 @@
-<div style="background-color: #f0f0f;">
+<div style="background-color: #f0f0f0;">
       <section class="content">
-        <div class="container-fluid">
+        <!-- <div class="container-fluid"> -->
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
-            <!-- <div class="container-fluid" > -->
-                    <h3>LIST DATA INVOICE</h3>
+            <div class="container-fluid" >
                 <div class="card col-lg-12">
                     <div class = "row">
                         <!-- Form invoice -->
                         <div class="col-lg-12">
                         <div style="background-color: #ffffff; padding: 10px">
                                 <center><h2>Data Invoice</h2></center>
-                                <hr>
+                                <!-- <hr> -->
                                 <?php echo form_open('Lihat_data/hapusnumber',['id'=>'form-hapusnumber']);?>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <br>
+                                <div class="row clearfix">
+                                    <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
                                         <br>
                                         <label>Pilih Invoice Number yang akan dihapus :</label>
                                         <div class="row">
-                                        <div class="col-md-11">
-                                        <select class="form-control show-tick" name="selectinvoice">
-                                            <option selected disabled>-- Pilih Invoice Number --</option>
-                                            <option
-                                            <?php
-                                                $invoicenumber = $this->db->query('SELECT DISTINCT data_invoice.invoicenumber FROM data_invoice')->result();
-                                                foreach($invoicenumber as $row) {?>
-                                            <option value="<?= $row->invoicenumber;?>"><?= $row->invoicenumber;?></option>
-                                            <?php } ?>
-                                        </select>
-                                        </div>
-                                        <input type="hidden" value="Delete" name="Delete">
-                                        <div class="col-md-1">
-                                            <button type="button" class='btn  btn-warning' id="btn-submit-hapusnumber">delete</button>
+                                            <div class="col-md-5">
+                                                <select class="form-control show-tick" name="selectinvoice">
+                                                    <option selected disabled>-- Pilih Invoice Number --</option>
+                                                    <option
+                                                    <?php
+                                                        $invoicenumber = $this->db->query('SELECT DISTINCT data_invoice.invoicenumber FROM data_invoice')->result();
+                                                        foreach($invoicenumber as $row) {?>
+                                                    <option value="<?= $row->invoicenumber;?>"><?= $row->invoicenumber;?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" value="Delete" name="Delete">
+                                            <div class="col-md-1">
+                                                <button type="button" class='btn  btn-warning' id="btn-submit-hapusnumber">Delete</button>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-offset-10 pull-right"  data-toggle="modal" data-target="#exampleModalCenter">
+                                                    Tambah Invoice
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
 
                                 <?php echo form_close();?>
                                 <br>
-                                <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter"><i class='material-icons'>add</i>
+                                <!-- <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter"><i class='material-icons'>add</i>
                                 Tambah Invoice
-                                </a>
-                                <br>
-                                <br>
+                                </a> -->
                                 <br>
 
                                 <!-- Modal Add Invoice-->
@@ -225,8 +226,8 @@
                                                         data-kalkulasi_per_pcs='".$data->kalkulasi_per_pcs."'
                                                         data-periode='".$data->periode."'
                                                         data-toggle='modal' data-target='#exampleModalCenter1'>
-                                                    <button class='btn btn-primary btn-circle waves-effect waves-circle waves-float'><i class='material-icons'>create</i></button></a>
-                                                    <a href='#' onclick='delete_c(".$data->id_.")' class='btn bg-orange btn-circle waves-effect waves-circle waves-float' >
+                                                    <button class='btn btn-primary'><i class='material-icons'>create</i></button></a>
+                                                    <a href='#' onclick='delete_c(".$data->id_.")' class='btn bg-orange' >
                                                     <i class='material-icons'>delete_forever</i></a></td>";
                                                     echo "</tr>";
                                                 }

@@ -235,13 +235,9 @@
     $swal_data = $this->session->flashdata('swal');
     // $swa = explode('|',$swal_data);
     ?>
-
         <script>
                 swal("<?= $swa[0] ?>", "<?= $swa[1] ?>", "<?= $swa[2] ?>");
         </script>
     <?php } ?>
-
-
 </body>
-
 </html>
