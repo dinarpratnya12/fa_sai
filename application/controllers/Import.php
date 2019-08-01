@@ -10,7 +10,6 @@ class Import extends CI_Controller {
 		$this->load->model('Penawaran_models');
 		$this->load->model(array('Komper_model'));
 	}
-
 	public function index(){
 		// unset($_SESSION['swal']);
 		$data['level'] = $this->session->userdata('level');
@@ -29,6 +28,7 @@ class Import extends CI_Controller {
 		$this->load->view('Header/footerfix');
 
 	}
+
 	public function form(){
 		$data['level'] = $this->session->userdata('level');
 			if($data['level']=='1'){

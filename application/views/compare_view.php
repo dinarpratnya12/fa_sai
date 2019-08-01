@@ -38,6 +38,7 @@
                                         <tr>
                                             <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
                                             <th>Invoice Number</th>
+                                            <th>Tanggal</th>
                                             <th>Periode</th>
                                             <th>Supplier</th>
                                             <th>Price Invoice (pcs)</th>
@@ -55,6 +56,7 @@
                                         <tr>
                                             <td style='position: sticky;left:0px; background-color:white'><?=$row->productid ?></td>
                                             <td><?=$row->invoicenumber?></td>
+                                            <td><?=$row->invoicedate?></td>
                                             <td><?=$row->period ?></td>
                                             <td><?=$row->supplier ?></td>
                                             <td>
@@ -77,8 +79,8 @@
                                                 <?php
                                                     $sisa = $row->kalkulasi_per_pcs - $row->base_price;
                                                     $str3 = str_replace("-","",$sisa);
-                                                    if(stripos($sisa,".") !== false){
-                                                        echo "".number_format($sisa,4);
+                                                    if(stripos($str3,".") !== false){
+                                                        echo "".number_format($str3,4);
                                                     }else if(stripos($str3,".") !== false){
                                                         echo "".$str3;
                                                     }else{

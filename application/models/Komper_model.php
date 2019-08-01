@@ -17,6 +17,7 @@ class Komper_model extends CI_Model{
       data_invoice.productid,
       data_invoice.kalkulasi_per_pcs,
       data_invoice.supplier,
+      data_invoice.invoicedate,
       data_invoice.quantityunit,
       data_penawaran.partnumber,
       data_penawaran.period,

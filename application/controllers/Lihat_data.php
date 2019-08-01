@@ -19,7 +19,7 @@ class Lihat_data extends CI_Controller{
 		$this->load->view('Header/footerfix');
 
   }
-
+  
   public function invoice(){
     $data['level'] = $this->session->userdata('level');
 				if($data['level']=='1'){

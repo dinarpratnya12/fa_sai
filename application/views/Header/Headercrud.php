@@ -12,6 +12,7 @@
     <!-- Google Fonts -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/css.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/icon.css');?>" rel="stylesheet" type="text/css">
+
     <!-- Custom Css -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css');?>" rel="stylesheet">
 
@@ -74,7 +75,12 @@
         <!-- Menu -->
         <div class="menu">
             <ul class="list">
-
+                <li>
+                    <a href="<?php echo site_url('awal/index');?>">
+                        <i class="material-icons">home</i>
+                        <span>Home</span>
+                    </a>
+                </li>
                 <li>
                     <a href="<?php echo site_url('import/index');?>">
                         <i class="material-icons">swap_calls</i>

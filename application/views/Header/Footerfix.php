@@ -10,6 +10,19 @@
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/bootstrap/js/bootstrap.js');?>"></script>
 
+    <!-- ChartJs -->
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/chartjs/Chart.bundle.js');?>"></script>
+
+    <!-- Flot Charts Plugin Js -->
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.js');?>"></script>
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.resize.js');?>"></script>
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.pie.js');?>"></script>
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.categories.js');?>"></script>
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/flot-charts/jquery.flot.time.js');?>"></script>
+
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery-sparkline/jquery.sparkline.js');?>"></script>
+
     <!-- Custom Js -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/js/admin.js');?>"></script>
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/js/pages/index.js');?>"></script>
@@ -47,6 +60,8 @@
         // function openModal(){
         //     $(".modal-backdrop").remove();
         // }
+
+        $('a[href="<?= current_url() ?>"]').parent().addClass('active');
     </script>
 
 

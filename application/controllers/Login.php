@@ -27,11 +27,11 @@ class Login extends CI_Controller{
             $this->session->set_userdata($sesdata);
             // access login for admin
             if($level === '1'){
-                redirect('import');
+                redirect('awal');
 
                 // access login for staff
             }elseif($level === '2'){
-                redirect('import');
+                redirect('awal');
 
                 // access login for author
             }else{

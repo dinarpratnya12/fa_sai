@@ -1,6 +1,6 @@
 <div style="background-color: #f0f0f0;">
       <section class="content">
-        <div class="container-fluid">
+        <!-- <div class="container-fluid"> -->
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
             <div class="container-fluid">
@@ -145,12 +145,12 @@
                                     <thead>
                                         <tr>
                                             <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
-                                            <th class="th-sm">Price @pcs</th>
-                                            <th class="th-sm">Currency Code</th>
-                                            <th class="th-sm">BASE UOM</th>
-                                            <th class="th-sm">Supplier</th>
-                                            <th class="th-sm">Country CD</th>
-                                            <th class="th-sm">Periode</th>
+                                            <th class = text-center>Price @pcs</th>
+                                            <th class = text-center>Currency Code</th>
+                                            <th class = text-center>Base Uom</th>
+                                            <th class = text-center>Supplier</th>
+                                            <th class = text-center>Country CD</th>
+                                            <th class = text-center>Periode</th>
                                             <th style="position: sticky;right:0px;background-color:white;">Action</th>
                                         </tr>
                                     </thead>
@@ -164,20 +164,20 @@
                                             if(stripos($data->base_price,".") !== false){
                                                 $ya = number_format($data->base_price,4);
                                                 $penawaran = str_replace(",","",$ya);
-                                                echo "<td>".$penawaran."</td>";
+                                                echo "<td class = text-center>".$penawaran."</td>";
                                             }else{
-                                                echo "<td>".$data->base_price."</td>";
+                                                echo "<td class = text-center>".$data->base_price."</td>";
                                             }
                                             $crcy = strtoupper($data->base_crcy);
-                                            echo "<td>".$crcy."</td>";
+                                            echo "<td class = text-center>".$crcy."</td>";
                                             $uom = strtoupper($data->base_uom);
-                                            echo "<td>".$uom."</td>";
+                                            echo "<td class = text-center>".$uom."</td>";
                                             $supplier = strtoupper($data->supplier);
-                                            echo "<td>".$supplier."</td>";
+                                            echo "<td class = text-center>".$supplier."</td>";
                                             $cntry_cd = strtoupper($data->cntry_cd);
-                                            echo "<td>".$cntry_cd."</td>";
+                                            echo "<td class = text-center>".$cntry_cd."</td>";
                                             $period = ucwords($data->period);
-                                            echo "<td>".$period."</td>";
+                                            echo "<td class = text-center>".$period."</td>";
                                             echo "<td style='position: sticky;right:0px; background-color:white'>
                                             <a href='javascript:void(0)' class='item_edit1'
                                                 data-id_penawaran='".$data->id_penawaran."'
@@ -349,6 +349,7 @@
                 var table = $('#example2').DataTable(
                     {
                         orderCellsTop : true,
+                        "sDom": "lrtip",
                         "scrollY": "400px",
                         "scrollCollapse": true,
                         "scrollX": true,

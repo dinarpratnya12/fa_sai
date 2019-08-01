@@ -11,7 +11,7 @@
                     </div>
                     <!-- Widgets -->
                     <div class="row clearfix">
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <a href="<?php echo site_url('lihat_data/invoice');?>" style="text-decoration : none">
                             <div class="info-box bg-pink hover-expand-effect">
                                 <div class="icon">
@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             </a>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <a href="<?php echo site_url('lihat_data/penawaran');?>" style="text-decoration : none">
                             <div class="info-box bg-cyan hover-expand-effect">
                                 <div class="icon">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         </a>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <a href="<?php echo site_url('lihat_data/supsai');?>" style="text-decoration : none">
                             <div class="info-box bg-light-green hover-expand-effect">
                                 <div class="icon">
@@ -50,19 +50,7 @@
                             </div>
                             </a>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <a href="<?php echo site_url('crud/index');?>" style="text-decoration : none">
-                            <div class="info-box bg-orange hover-expand-effect">
-                                <div class="icon">
-                                    <i class="material-icons">account_box</i>
-                                </div>
-                                <div class="content">
-                                    <div class="text">DATA USER</div>
-                                    <div class="number count-to"><?= $tbl_users[0]->total_record;?> User</div>
-                                </div>
-                            </div>
-                        </a>
-                        </div>
+
                         <!-- #END# Widgets -->
                         <!-- Browser Usage -->
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

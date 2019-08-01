@@ -14,8 +14,23 @@
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/css.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/icon.css');?>" rel="stylesheet" type="text/css">
 
+    <!-- Bootstrap Core Css -->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/bootstrap/css/bootstrap.css');?>" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css');?>" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/node-waves/waves.css');?>" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/animate-css/animate.css');?>" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/morrisjs/morris.css');?>" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css" rel="stylesheet');?>">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/themes/all-themes.css');?>" rel="stylesheet" />
@@ -127,6 +142,12 @@
             <div class="menu">
                 <ul class="list">
                     <li>
+                        <a href="<?php echo site_url('awal/index');?>">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo site_url('import/index');?>">
                             <i class="material-icons">file_upload</i>
                             <span>Import Data</span>
@@ -170,7 +191,6 @@
                         </a>
                     </li>
                 </ul>
-
             </div>
             <!-- #Menu -->
             <!-- Footer -->

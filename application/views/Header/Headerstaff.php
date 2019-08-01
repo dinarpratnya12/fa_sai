@@ -127,6 +127,12 @@
             <div class="menu">
                 <ul class="list">
                     <li>
+                        <a href="<?php echo site_url('awal/index');?>">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo site_url('import/index');?>">
                             <i class="material-icons">file_upload</i>
                             <span>Import Data</span>

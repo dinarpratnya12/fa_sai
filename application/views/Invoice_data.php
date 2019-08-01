@@ -3,7 +3,7 @@
         <div class="container-fluid">
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
-            <div class="container-fluid" >
+            <!-- <div class="container-fluid" > -->
                     <h3>LIST DATA INVOICE</h3>
                 <div class="card col-lg-12">
                     <div class = "row">
@@ -164,16 +164,16 @@
                                         <thead>
                                             <tr>
                                                 <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
-                                                <th>Invoice Number</th>
-                                                <th>Supplier</th>
-                                                <th>Price @pcs</th>
-                                                <th>Currency Code</th>
-                                                <th>Qty Invoice</th>
-                                                <th>Invoice Value</th>
-                                                <th>Unit Code</th>
-                                                <th>Order Number</th>
-                                                <th>Tanggal</th>
-                                                <th>Periode</th>
+                                                <th class = text-center>Invoice Number</th>
+                                                <th class = text-center>Supplier</th>
+                                                <th class = text-center>Price @pcs</th>
+                                                <th class = text-center>Currency Code</th>
+                                                <th class = text-center>Qty Invoice</th>
+                                                <th class = text-center>Invoice Value</th>
+                                                <th class = text-center>Unit Code</th>
+                                                <th class = text-center>Order Number</th>
+                                                <th class = text-center>Tanggal</th>
+                                                <th class = text-center>Periode</th>
                                                 <th class = text-center style="position: sticky;right:0px;background-color:white;">Action</th>
                                             </tr>
                                         </thead>
@@ -188,28 +188,28 @@
                                                     $unitcode = strtoupper($data->unitcode);
                                                     $ordernumber = strtoupper($data->ordernumber);
                                                     echo "<td style='position: sticky;left:0px; background-color:white'>".$productid."</td>";
-                                                    echo "<td>".$invoicenumber."</td>";
-                                                    echo "<td>".$supplier."</td>";
+                                                    echo "<td class = text-center>".$invoicenumber."</td>";
+                                                    echo "<td class = text-center>".$supplier."</td>";
                                                     if(stripos($data->kalkulasi_per_pcs,".") !== false){
-                                                        echo "<td>".number_format($data->kalkulasi_per_pcs,4)."</td>";
+                                                        echo "<td class = text-center>".number_format($data->kalkulasi_per_pcs,4)."</td>";
                                                     }else{
-                                                        echo "<td>".$data->kalkulasi_per_pcs."</td>";
+                                                        echo "<td class = text-center>".$data->kalkulasi_per_pcs."</td>";
                                                     }
-                                                    echo "<td>".$currencycode."</td>";
-                                                    echo "<td>".$data->quantityunit."</td>";
+                                                    echo "<td class = text-center>".$currencycode."</td>";
+                                                    echo "<td class = text-center>".$data->quantityunit."</td>";
 
                                                     if(stripos($data->invoicevalue,".") !== false){
                                                         $ya = number_format($data->invoicevalue,2);
                                                         $invoice = str_replace(",","",$ya);
-                                                        echo "<td>".$invoice."</td>";
+                                                        echo "<td class = text-center>".$invoice."</td>";
                                                     }else{
-                                                        echo "<td>".$data->invoicevalue."</td>";
+                                                        echo "<td class = text-center>".$data->invoicevalue."</td>";
                                                     }
 
-                                                    echo "<td>".$unitcode."</td>";
-                                                    echo "<td>".$ordernumber."</td>";
-                                                    echo "<td>".$data->invoicedate."</td>";
-                                                    echo "<td>".$data->periode."</td>";
+                                                    echo "<td class = text-center>".$unitcode."</td>";
+                                                    echo "<td class = text-center>".$ordernumber."</td>";
+                                                    echo "<td class = text-center>".$data->invoicedate."</td>";
+                                                    echo "<td class = text-center>".$data->periode."</td>";
                                                     echo "<td style='position: sticky;right:-10px; background-color:white;'>
                                                     <a href='javascript:void(0)' class='item_edit1'
                                                         data-id_='".$data->id_."'

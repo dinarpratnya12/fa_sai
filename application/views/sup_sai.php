@@ -3,7 +3,7 @@
         <div class="container-fluid">
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
-            <div class="container-fluid">
+            <!-- <div class="container-fluid"> -->
                 <h3>LIST SUPPLIER</h3>
                 <div class="card col-lg-10">
                     <div class="row">
