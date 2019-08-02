@@ -25,4 +25,19 @@ class Awal extends CI_Controller{
 		}
 		$this->load->view('Header/footerfix');
 	}
+
+	public function chart() {
+
+		$query =  $this->db->query("SELECT DISTINCT sai as sai, gct as gct COUNT(id_sup) as count  FROM supplier");
+
+		$record = $query->result();
+		$data = [];
+
+		foreach($record as $row) {
+			  $data['label'][] = $row->day_name;
+			  $data['data'][] = (int) $row->count;
+		}
+		$data['chart_data'] = json_encode($data);
+		$this->load->view('pie_chart',$data);
+	  }
 }

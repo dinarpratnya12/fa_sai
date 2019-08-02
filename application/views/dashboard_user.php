@@ -53,7 +53,7 @@
 
                         <!-- #END# Widgets -->
                         <!-- Browser Usage -->
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="card">
                                 <div class="header">
                                     <h2>BROWSER USAGE</h2>
@@ -62,7 +62,7 @@
                                     <div id="donut_chart" class="dashboard-donut-chart"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- #END# Browser Usage -->
                     </div>
                 </div>

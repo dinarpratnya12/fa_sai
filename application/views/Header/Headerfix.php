@@ -14,20 +14,17 @@
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/css.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/icon.css');?>" rel="stylesheet" type="text/css">
 
-    <!-- Bootstrap Core Css -->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/bootstrap/css/bootstrap.css');?>" rel="stylesheet">
-
     <!-- Custom Css -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css');?>" rel="stylesheet">
 
     <!-- Animation Css -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/animate-css/animate.css');?>" rel="stylesheet" />
 
+    <!-- Waves Effect Css -->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/node-waves/waves.css');?>" rel="stylesheet" />
+
     <!-- Morris Chart Css-->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/morrisjs/morris.css');?>" rel="stylesheet" />
-
-    <!-- Custom Css -->
-    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css" rel="stylesheet');?>">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/themes/all-themes.css');?>" rel="stylesheet" />
@@ -90,7 +87,23 @@
 </head>
 
 <body class="theme-orange" style="background-color: #f0f0f0;">
-
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-orange">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
     <!-- Top Bar -->
     <nav class="navbar" style="position:fixed">
         <div class="container-fluid">

@@ -26,11 +26,9 @@
                                     <br>
                                 </div>
                                 <input type="hidden" name="compare" value="Compare">
-                                <center><button type="submit" class="btn btn-success btn-lg">Submit</button></center>
+                                <button type="submit" class="btn btn-success btn-lg">Submit</button>
                             </form>
                             </div>
-                            <br>
-                            <br>
                             <?php if(isset($_POST['compare'])){ ?>
                             <div class="table-responsive">
                                 <table class="table table-striped text" cellpadding="" id="example3" bordered=>
@@ -126,9 +124,6 @@
                 </div>
             </div>
             <!-- #END# Select -->
-<!-- <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script> -->
-
 <script>
 	$(document).ready(function(){
 		// Sembunyikan alert validasi kosong

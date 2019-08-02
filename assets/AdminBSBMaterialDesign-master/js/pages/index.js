@@ -1,5 +1,6 @@
 ﻿$(function () {
     //Widgets count
+
     $('.count-to').countTo();
 
     //Sales count to
@@ -8,7 +9,6 @@
             return '$' + value.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, ' ').replace('.', ',');
         }
     });
-
     initRealTimeChart();
     initDonutChart();
     initSparkline();

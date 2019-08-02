@@ -100,6 +100,7 @@ class Import extends CI_Controller {
 						$data['sheet'] = [];
 					}
 				}else{ // Jika proses upload gagal
+					
 					$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
 				}
 			}
@@ -129,11 +130,10 @@ class Import extends CI_Controller {
 				);
 
 				$result = $this->db->select('gct,sai')->from('supplier')->where($where)->get()->result();
-				 //var_dump(count($result));
+
 
 				if(count($result)>1){
 					$strs = strtoupper($row['V']);
-					//var_dump($strs);
 
 				}else if(count($result) == 0){
 					$where2 = array(
@@ -259,21 +259,6 @@ class Import extends CI_Controller {
 					//var_dump($strsup);
 					//exit();
 				}
-				// $strsup = str_replace("YC Purchasing","HIB",$strsup);
-				// $strsup = str_replace("Daiwa Kasei (Thailand) Co. Ltd", "DAT", $strsup);
-				// $strsup = str_replace("Elcom", "COMBU-E", $strsup);
-				// $strsup = str_replace("Federal Mogul (Thailand) Ltd.","FMTH", $strsup);
-				// $strsup = str_replace("Hellermann Tyton","HELLERMANN TYTON", $strsup);
-				// $strsup = str_replace("Molex Singapore","ARROW ELECTRONICS AS", $strsup);
-				// $strsup = str_replace("PT INDOWIRE PRIMA INDUSTRINDO","PT. INDOWIRE PRIMA", $strsup);
-				// $strsup = str_replace("PT Nitto Materials Indonesia","PT. NMI", $strsup);
-				// $strsup = str_replace("Sugity PT.SUGITY CREATEIVES","SUGITY", $strsup);
-				// $strsup = str_replace("TBD Supplier","J/A", $strsup);
-				// $strsup = str_replace("PEMI","PEMI-AW", $strsup);
-				// $strsup = str_replace("Tesa Tape Asia Pacific Pte Ltd","TESA", $strsup);
-				// $strsup = str_replace("YAZAKI (CHINA) INVESTMENT CORPORATION","YCIC", $strsup);
-				// $strsup = str_replace("YGP PTE. LTD.","YGP", $strsup);
-				// $strsup = str_replace("YZK AMERICAS.","YNA", $strsup);
 				$gct = $row2['A'];
                 $gct_split = str_split($gct,4);
                 $gct_implode = implode("-",$gct_split);

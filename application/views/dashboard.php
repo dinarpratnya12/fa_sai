@@ -15,7 +15,7 @@
                             <a href="<?php echo site_url('lihat_data/invoice');?>" style="text-decoration : none">
                             <div class="info-box bg-pink hover-expand-effect">
                                 <div class="icon">
-                                    <i class="material-icons">attach_money</i>
+                                    <i class="material-icons">account_balance_wallet</i>
                                 </div>
                                 <div class="content">
                                     <div class="text">DATA INVOICE</div>
@@ -28,7 +28,7 @@
                         <a href="<?php echo site_url('lihat_data/penawaran');?>" style="text-decoration : none">
                             <div class="info-box bg-cyan hover-expand-effect">
                                 <div class="icon">
-                                    <i class="material-icons">low_priority</i>
+                                    <i class="material-icons">camera_rear</i>
                                 </div>
                                 <div class="content">
                                     <div class="text">DATA PENAWARAN</div>
@@ -71,7 +71,8 @@
                                     <h2>BROWSER USAGE</h2>
                                 </div>
                                 <div class="body">
-                                    <div id="donut_chart" class="dashboard-donut-chart"></div>
+                                    <div id="donut_chart" class="dashboard-donut-chart">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -80,3 +81,34 @@
                 </div>
             </div>
         </div>
+
+    <script>
+        $(document).ready(function()
+        initDonutChart(){
+            Morris.Donut({
+                element: 'donut_chart',
+                data: [{
+                    label: 'Chrome',
+                    value: 37
+                }, {
+                    label: 'Firefox',
+                    value: 30
+                }, {
+                    label: 'Safari',
+                    value: 18
+                }, {
+                    label: 'Opera',
+                    value: 12
+                },
+                {
+                    label: 'Other',
+                    value: 3
+                }],
+                colors: ['rgb(233, 30, 99)', 'rgb(0, 188, 212)', 'rgb(255, 152, 0)', 'rgb(0, 150, 136)', 'rgb(96, 125, 139)'],
+                formatter: function (y) {
+                    return y + '%'
+                }
+            });
+        });
+
+    </script>

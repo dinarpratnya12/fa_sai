@@ -351,7 +351,7 @@
                     {
                         orderCellsTop : true,
                         "sDom": "lrtip",
-                        "scrollY": "400px",
+                        "scrollY": "450px",
                         "scrollCollapse": true,
                         "scrollX": true,
                         "paging": false,

@@ -2,6 +2,11 @@
 
 class Awal_models extends CI_Model {
 
+    public function get_all_sup()
+    {
+        return $this->db->get('supplier')->result();
+    }
+
     function totalinvoice(){
         $query = $this->db->query('
         SELECT

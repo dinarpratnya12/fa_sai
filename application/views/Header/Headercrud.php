@@ -2,10 +2,14 @@
 <html>
 
 <head>
+
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>Manage User</title>
+
     <!-- Favicon-->
     <link rel="icon"type="image/png" href="<?php echo base_url('assets/logoaja.png');?>" />
 
@@ -13,21 +17,53 @@
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/css.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/icon.css');?>" rel="stylesheet" type="text/css">
 
+    <!-- Bootstrap Core Css -->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/bootstrap/css/bootstrap.css');?>" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css');?>" rel="stylesheet">
+
+    <!-- Animation Css -->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/animate-css/animate.css');?>" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/morrisjs/morris.css');?>" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/style.css" rel="stylesheet');?>">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url('assets/AdminBSBMaterialDesign-master/css/themes/all-themes.css');?>" rel="stylesheet" />
 
-
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
 
-    <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
+    <!-- Load File jquery.min.js yang ada difolder js -->
+
+    <link href="<?php echo base_url('assets/bootstrap.min.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/jquery.dataTables.min.css');?>" rel="stylesheet">
+
+    <link href="<?php echo base_url('assets/export/jquery.dataTables.min.css');?>">
+    <link href="<?php echo base_url('assets/export/buttons.dataTables.min.css');?>"><div class="row">
 
 </head>
 <body class="theme-orange" >
-
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-orange">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
 <!-- Top Bar -->
 <nav class="navbar" style="position:fixed">
     <div class="container-fluid" >

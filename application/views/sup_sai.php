@@ -4,19 +4,16 @@
     <div class="container" style="margin-top:0px !important;">
         <div class="row">
             <!-- <div class="container-fluid"> -->
-                <h3>LIST SUPPLIER</h3>
-                <div class="card col-lg-10">
+                <div class="card col-lg-12">
                     <div class="row">
                     <!-- Form Supplier SAI -->
                     <div class="col-lg-12">
                         <div style="background-color: #ffffff; padding: 10px">
                             <center><h2>Data Supplier</h2></center>
-
-                            <hr>
+                            <br>
                             <a href="#" onclick="openModal()" id="openModalInput" class="btn btn-primary col-md-2 col-md-offset-10" data-toggle="modal" data-target="#exampleModalCenter">
                                 Tambah Supplier
                             </a>
-                            <br>
                             <br>
                             <br>
                                 <!-- Modal Add Form-->
@@ -60,7 +57,7 @@
                                     </div>
                                 </div>
                                 <!-- End Add Form -->
-                            <div class="table-responsive">
+                            <div class="table-responsive nowrap">
                                 <table class="table" cellpadding="" id="example2" style="width:100%">
                                     <thead>
                                         <tr>
@@ -190,7 +187,7 @@
                     {
                         orderCellsTop : true,
                         "sDom": "lrtip",
-                        "scrollY": "400px",
+                        "scrollY": "500px",
                         "scrollX": true,
                         "scrollCollapse": true,
                         "paging": false

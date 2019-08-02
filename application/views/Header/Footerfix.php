@@ -7,8 +7,15 @@
     </section>
 
 
+    <!-- Jquery Core Js -->
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
+
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/bootstrap/js/bootstrap.js');?>"></script>
+
+    
+    <!-- Slimscroll Plugin Js -->
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery-slimscroll/jquery.slimscroll.js');?>"></script>
 
     <!-- ChartJs -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/chartjs/Chart.bundle.js');?>"></script>
@@ -23,9 +30,19 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery-sparkline/jquery.sparkline.js');?>"></script>
 
+    <!-- Morris Plugin Js -->
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/raphael/raphael.min.js');?>"></script>
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/morrisjs/morris.js');?>"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/node-waves/waves.js');?>"></script>
+
     <!-- Custom Js -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/js/admin.js');?>"></script>
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/js/pages/index.js');?>"></script>
+
+    <!-- Demo Js -->
+    <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/js/demo.js');?>"></script>
 
     <!-- Jquery DataTable Plugin Js -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery-datatable/jquery.dataTables.js');?>"></script>

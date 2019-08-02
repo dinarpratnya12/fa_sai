@@ -77,7 +77,6 @@
             <br>
             <div class="table-responsive-sm">
               <table class="table table-bordered text" cellpadding="" id="example">
-              <!-- <table class="table" style="margin:20px auto;" > -->
                 <tr>
                   <th>No</th>
                   <th>Nama</th>
