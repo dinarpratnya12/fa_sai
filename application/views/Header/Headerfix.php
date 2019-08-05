@@ -104,6 +104,9 @@
         </div>
     </div>
     <!-- #END# Page Loader -->
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
     <!-- Top Bar -->
     <nav class="navbar" style="position:fixed">
         <div class="container-fluid">
@@ -216,5 +219,3 @@
         </aside>
         <!-- #END# Left Sidebar -->
     </section>
-
-    <!-- DASHBOARD -->

@@ -64,51 +64,39 @@
                         </a>
                         </div>
                         <!-- #END# Widgets -->
-                        <!-- Browser Usage -->
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="card">
-                                <div class="header">
-                                    <h2>BROWSER USAGE</h2>
-                                </div>
                                 <div class="body">
-                                    <div id="donut_chart" class="dashboard-donut-chart">
+                                    <div class="row clearfix">
+                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="card">
+                                                <div class="body bg-pink">
+                                                  tess
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="card">
+                                                <div class="body bg-cyan">
+                                                    tessss
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                            <div class="card">
+                                                <div class="body bg-teal">
+                                                    tesss
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- #END# Browser Usage -->
                     </div>
                 </div>
             </div>
         </div>
 
-    <script>
-        $(document).ready(function()
-        initDonutChart(){
-            Morris.Donut({
-                element: 'donut_chart',
-                data: [{
-                    label: 'Chrome',
-                    value: 37
-                }, {
-                    label: 'Firefox',
-                    value: 30
-                }, {
-                    label: 'Safari',
-                    value: 18
-                }, {
-                    label: 'Opera',
-                    value: 12
-                },
-                {
-                    label: 'Other',
-                    value: 3
-                }],
-                colors: ['rgb(233, 30, 99)', 'rgb(0, 188, 212)', 'rgb(255, 152, 0)', 'rgb(0, 150, 136)', 'rgb(96, 125, 139)'],
-                formatter: function (y) {
-                    return y + '%'
-                }
-            });
-        });
 
-    </script>
