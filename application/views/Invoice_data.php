@@ -1,10 +1,10 @@
 <div style="background-color: #f0f0f0;">
       <section class="content">
         <!-- <div class="container-fluid"> -->
-    <div class="container" style="margin-top:0px !important;">
-        <div class="row">
+    <div class="container-fluid" style="margin-top:0px !important;">
+        <div class="row clearfix">
             <div class="container-fluid" >
-                <div class="card col-lg-12">
+                <div class="card col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class = "row">
                         <!-- Form invoice -->
                         <div class="col-lg-12">
@@ -175,7 +175,7 @@
                                                 <th class = text-center>Order Number</th>
                                                 <th class = text-center>Tanggal</th>
                                                 <th class = text-center>Periode</th>
-                                                <th class = text-center style="position: sticky;right:0px;background-color:white;">Action</th>
+                                                <!-- <th class = text-center style="position: sticky;right:0px;background-color:white;">Action</th> -->
                                             </tr>
                                         </thead>
                                         <?php
@@ -211,25 +211,25 @@
                                                     echo "<td class = text-center>".$ordernumber."</td>";
                                                     echo "<td class = text-center>".$data->invoicedate."</td>";
                                                     echo "<td class = text-center>".$data->periode."</td>";
-                                                    echo "<td style='position: sticky;right:-10px; background-color:white;'>
-                                                    <a href='javascript:void(0)' class='item_edit1'
-                                                        data-id_='".$data->id_."'
-                                                        data-productid='".$data->productid."'
-                                                        data-quantityunit='".$data->quantityunit."'
-                                                        data-unitcode='".$data->unitcode."'
-                                                        data-invoicenumber='".$data->invoicenumber."'
-                                                        data-invoicedate='".$data->invoicedate."'
-                                                        data-invoicevalue='".$data->invoicevalue."'
-                                                        data-currencycode='".$data->currencycode."'
-                                                        data-ordernumber='".$data->ordernumber."'
-                                                        data-supplier='".$data->supplier."'
-                                                        data-kalkulasi_per_pcs='".$data->kalkulasi_per_pcs."'
-                                                        data-periode='".$data->periode."'
-                                                        data-toggle='modal' data-target='#exampleModalCenter1'>
-                                                    <button class='btn btn-primary'><i class='material-icons'>create</i></button></a>
-                                                    <a href='#' onclick='delete_c(".$data->id_.")' class='btn bg-orange' >
-                                                    <i class='material-icons'>delete_forever</i></a></td>";
-                                                    echo "</tr>";
+                                                    // echo "<td style='position: sticky;right:-10px; background-color:white;'>
+                                                    // <a href='javascript:void(0)' class='item_edit1'
+                                                    //     data-id_='".$data->id_."'
+                                                    //     data-productid='".$data->productid."'
+                                                    //     data-quantityunit='".$data->quantityunit."'
+                                                    //     data-unitcode='".$data->unitcode."'
+                                                    //     data-invoicenumber='".$data->invoicenumber."'
+                                                    //     data-invoicedate='".$data->invoicedate."'
+                                                    //     data-invoicevalue='".$data->invoicevalue."'
+                                                    //     data-currencycode='".$data->currencycode."'
+                                                    //     data-ordernumber='".$data->ordernumber."'
+                                                    //     data-supplier='".$data->supplier."'
+                                                    //     data-kalkulasi_per_pcs='".$data->kalkulasi_per_pcs."'
+                                                    //     data-periode='".$data->periode."'
+                                                    //     data-toggle='modal' data-target='#exampleModalCenter1'>
+                                                    // <button class='btn btn-primary'><i class='material-icons'>create</i></button></a>
+                                                    // <a href='#' onclick='delete_c(".$data->id_.")' class='btn bg-orange' >
+                                                    // <i class='material-icons'>delete_forever</i></a></td>";
+                                                    // echo "</tr>";
                                                 }
                                             }else{ // Jika data tidak ada
                                                 echo "<tr><td colspan='14'>Data tidak ada</td></tr>";

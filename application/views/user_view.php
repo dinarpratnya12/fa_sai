@@ -181,6 +181,14 @@
           <?php }?>
           <script>
           $(document).ready(function() {
+            $("#exampleModalCenter").on('show.bs.modal',function(){
+                 $(".modal-backdrop").remove();
+            });
+
+             $("#exampleModalCenter1").on('show.bs.modal',function(){
+                 $(".modal-backdrop").remove();
+            });
+
             $('#example').on('click','.item_edit',function() {
             var userid = $(this).data('id');
             var name = $(this).data('name');
@@ -235,7 +243,7 @@
     // $swa = explode('|',$swal_data);
     ?>
         <script>
-                swal("<?= $swa[0] ?>", "<?= $swa[1] ?>", "<?= $swa[2] ?>");
+          swal("<?= $swa[0] ?>", "<?= $swa[1] ?>", "<?= $swa[2] ?>");
         </script>
     <?php } ?>
 </body>

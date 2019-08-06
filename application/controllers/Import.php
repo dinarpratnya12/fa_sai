@@ -100,7 +100,7 @@ class Import extends CI_Controller {
 						$data['sheet'] = [];
 					}
 				}else{ // Jika proses upload gagal
-					
+
 					$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
 				}
 			}
@@ -130,7 +130,6 @@ class Import extends CI_Controller {
 				);
 
 				$result = $this->db->select('gct,sai')->from('supplier')->where($where)->get()->result();
-
 
 				if(count($result)>1){
 					$strs = strtoupper($row['V']);
@@ -179,7 +178,6 @@ class Import extends CI_Controller {
 					if(stripos($invoiceValue,",") !== false){
 						$InvoiceValue = round($invoiceValue,4);
 					}
-
 
 					array_push($data, array(
 						'productid' => $row['E'], // Ambil data ProductID

@@ -75,10 +75,10 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                    $sisa = $row->kalkulasi_per_pcs - $row->base_price;
+                                                    $sisa = $row->base_price - $row->kalkulasi_per_pcs;
                                                     $str3 = str_replace("-","",$sisa);
                                                     if(stripos($str3,".") !== false){
-                                                        echo "".number_format($str3,4);
+                                                        echo "".number_format($str3,2);
                                                     }else if(stripos($str3,".") !== false){
                                                         echo "".$str3;
                                                     }else{
@@ -88,16 +88,16 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                    $sisa = $row->kalkulasi_per_pcs - $row->base_price;
-                                                    $str3 = str_replace("-","",$sisa);
-                                                    if($sisa > 0){
-                                                        echo "Price di Invoice Lebih Mahal";
-                                                    }else if($sisa < 0){
-                                                        echo "Price di Invoice Lebih Murah";
-                                                    }else{
+                                                    $sisa = ((double) number_format($row->base_price,4)) - ((double) number_format($row->kalkulasi_per_pcs,4));
+
+                                                    if($sisa == 0){
                                                         echo "Price Sama";
+                                                    }else if($sisa > 0){
+                                                        echo "Price di Invoice Lebih Murah";
+                                                    }else {
+                                                        echo "Price di Invoice Lebih Mahal";
                                                     }
-                                                ?>
+                                                    ?>
                                             </td>
                                             <td><?=$row->quantityunit ?></td>
                                             <td>

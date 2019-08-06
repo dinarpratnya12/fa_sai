@@ -1,7 +1,7 @@
 <div style="background-color: #f0f0f0;">
     <section class="content">
         <div class="container-fluid">
-    <div class="container" style="margin-top:0px !important;">
+    <div class="container-fluid" style="margin-top:0px !important;">
         <div class="row">
             <!-- <div class="container-fluid"> -->
                 <div class="card col-lg-12">

@@ -1,7 +1,7 @@
 <div style="background-color: #f0f0f0;">
-      <section class="content">
+    <section class="content">
         <!-- <div class="container-fluid"> -->
-    <div class="container" style="margin-top:0px !important;">
+    <div class="container-fluid" style="margin-top:0px !important;">
         <div class="row">
             <div class="container-fluid">
                 <div class="card col-lg-12">
@@ -154,7 +154,7 @@
                                             <th class = text-center>Supplier</th>
                                             <th class = text-center>Country CD</th>
                                             <th class = text-center>Periode</th>
-                                            <th style="position: sticky;right:0px;background-color:white;">Action</th>
+                                            <!-- <th style="position: sticky;right:0px;background-color:white;">Action</th> -->
                                         </tr>
                                     </thead>
                                     <?php
@@ -181,22 +181,22 @@
                                             echo "<td class = text-center>".$cntry_cd."</td>";
                                             $period = ucwords($data->period);
                                             echo "<td class = text-center>".$period."</td>";
-                                            echo "<td style='position: sticky;right:0px; background-color:white'>
-                                            <a href='javascript:void(0)' class='item_edit1'
-                                                data-id_penawaran='".$data->id_penawaran."'
-                                                data-partnumber='".$data->partnumber."'
-                                                data-base_price='".$data->base_price."'
-                                                data-base_crcy='".$data->base_crcy."'
-                                                data-base_uom='".$data->base_uom."'
-                                                data-supplier='".$data->supplier."'
-                                                data-cntry_cd='".$data->cntry_cd."'
-                                                data-period='".$data->period."'
-                                                data-toggle='modal'
-                                                data-target='#exampleModalCenter1'>
-                                            <button class='btn btn-primary'><i class='material-icons'>create</i></button></a>
-                                            <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn bg-orange' >
-                                            <i class='material-icons'>delete_forever</i></a></td>";
-                                            echo "</tr>";
+                                            // echo "<td style='position: sticky;right:0px; background-color:white'>
+                                            // <a href='javascript:void(0)' class='item_edit1'
+                                            //     data-id_penawaran='".$data->id_penawaran."'
+                                            //     data-partnumber='".$data->partnumber."'
+                                            //     data-base_price='".$data->base_price."'
+                                            //     data-base_crcy='".$data->base_crcy."'
+                                            //     data-base_uom='".$data->base_uom."'
+                                            //     data-supplier='".$data->supplier."'
+                                            //     data-cntry_cd='".$data->cntry_cd."'
+                                            //     data-period='".$data->period."'
+                                            //     data-toggle='modal'
+                                            //     data-target='#exampleModalCenter1'>
+                                            // <button class='btn btn-primary'><i class='material-icons'>create</i></button></a>
+                                            // <a href='#' onclick='delete_a(".$data->id_penawaran.")' class='btn bg-orange' >
+                                            // <i class='material-icons'>delete_forever</i></a></td>";
+                                            // echo "</tr>";
                                         }
                                     }else{ // Jika data tidak ada
                                         echo "<tr><td colspan='14'>Data tidak ada</td></tr>";

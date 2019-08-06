@@ -6,14 +6,13 @@
         </div>
     </section>
 
-
     <!-- Jquery Core Js -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery/jquery.min.js');?>"></script>
 
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/bootstrap/js/bootstrap.js');?>"></script>
 
-    
+
     <!-- Slimscroll Plugin Js -->
     <script src="<?php echo base_url('assets/AdminBSBMaterialDesign-master/plugins/jquery-slimscroll/jquery.slimscroll.js');?>"></script>
 
@@ -69,14 +68,19 @@
             // Sembunyikan alert validasi kosong
             $("#kosong").hide();
 
-            $("#openModalInput").click(function(){
-                $(".modal-backdrop").addClass('bg-primary');
-            });
+            // $("#openModalInput").click(function(){
+            //     // $(".modal-backdrop").addClass('bg-primary');
+            //     if($(".modal-backdrop").length > 1){
+            //         $('body').removeClass('modal-open');
+            //         $(".modal-backdrop").remove();
+            //     }
+
+            // });
         } );
 
-        // function openModal(){
-        //     $(".modal-backdrop").remove();
-        // }
+        function openModal(){
+            $(".modal-backdrop").removeClass('bg-primary');
+        }
 
         $('a[href="<?= current_url() ?>"]').parent().addClass('active');
     </script>
