@@ -75,12 +75,14 @@
                                             </td>
                                             <td>
                                                 <?php
-                                                    $sisa = $row->base_price - $row->kalkulasi_per_pcs;
-                                                    $str3 = str_replace("-","",$sisa);
-                                                    if(stripos($str3,".") !== false){
-                                                        echo "".number_format($str3,2);
-                                                    }else if(stripos($str3,".") !== false){
-                                                        echo "".$str3;
+                                                    // $sisa = $row->base_price - $row->kalkulasi_per_pcs;
+                                                    $sisa = ((double) number_format($row->base_price,4)) - ((double) number_format($row->kalkulasi_per_pcs,4));
+                                                    $str3 = preg_replace('/[^A-Za-z0-9\ ]/', '',$sisa);
+                                                    if(stripos($sisa,".") !== false){
+                                                        $a = number_format($sisa,3);
+                                                        echo "".$a;
+                                                    }else if(stripos($sisa,".") !== false){
+                                                        echo "".$sisa;
                                                     }else{
                                                         echo "0";
                                                 }?>
