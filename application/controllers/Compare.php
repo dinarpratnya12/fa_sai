@@ -14,7 +14,7 @@ class Compare extends CI_Controller{
 			$this->load->view('Header/headerstaff');
         }
         if(isset($_POST['compare'])){
-			$data['data_komper'] = $this->Komper_model->get_by_role($this->input->post('periode'),);
+			$data['data_komper'] = $this->Komper_model->get_by_role($this->input->post('periode'));
 
 			$data['data_komper2'] = $this->Komper_model->get_no_same($this->input->post('periode'));
 		}
