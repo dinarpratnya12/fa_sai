@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 26 Jul 2019 pada 03.59
+-- Waktu pembuatan: 08 Agu 2019 pada 06.28
 -- Versi server: 10.1.37-MariaDB
 -- Versi PHP: 7.3.0
 
@@ -39,12 +39,12 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`id_sup`, `sai`, `gct`) VALUES
-(1, 'DAT', 'Daiwa Kasei (Thailand) Co. Ltd'),
-(2, 'COMBU-E', 'Elcom'),
-(3, 'FMTH', 'Federal Mogul (Thailand) Ltd.'),
-(4, 'HELLERMANN TYTON', 'Hellermann Tyton'),
+(1, 'DAT', 'DAIWA KASEI (THAILAND) CO. LTD'),
+(2, 'COMBU-E', 'ELCOM'),
+(3, 'FMTH', 'FEDERAL MOGUL (THAILAND) LTD.'),
+(4, 'HELLERMANN TYTON', 'HELLERMANN TYTON'),
 (5, 'HZY', 'HZY'),
-(6, 'ARROW ELECTRONICS AS', 'Molex Singapore'),
+(6, 'ARROW ELECTRONICS AS', 'MOLEX SINGAPORE'),
 (7, 'IRC INOAC', 'PASI'),
 (8, 'NIDEC', 'PASI'),
 (9, 'NIFCO', 'PASI'),
@@ -63,7 +63,7 @@ INSERT INTO `supplier` (`id_sup`, `sai`, `gct`) VALUES
 (22, 'YAMANASHI INDONESIA', 'PASI'),
 (23, 'PEMI-AW', 'PEMI'),
 (24, 'PT. INDOWIRE PRIMA', 'PT INDOWIRE PRIMA INDUSTRINDO'),
-(25, 'PT. NMI', 'PT Nitto Materials Indonesia'),
+(25, 'PT. NMI', 'PT NITTO MATERIALS INDONESIA'),
 (26, 'SAMI', 'SAMI'),
 (27, 'SUGITY', 'Sugity PT.SUGITY CREATEIVES'),
 (28, 'TAP-AW', 'TAP'),
@@ -95,7 +95,7 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `id_sup` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_sup` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

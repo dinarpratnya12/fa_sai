@@ -19,7 +19,7 @@ class Lihat_data extends CI_Controller{
 		$this->load->view('Header/footerfix');
 
   }
-  
+
   public function invoice(){
     $data['level'] = $this->session->userdata('level');
 				if($data['level']=='1'){
@@ -56,7 +56,7 @@ class Lihat_data extends CI_Controller{
     $this->load->model('penawaran_models');;
     $this->penawaran_models->hapuspenawaran($id_penawaran);
     $this->session->set_flashdata('swal');
-    $this->session->set_flashdata('swal','Success|Successful Delete Quatition|success');
+    $this->session->set_flashdata('swal','Success|Successful Delete Quotation|success');
     redirect('Lihat_data/penawaran','refresh');
   }
 
@@ -270,7 +270,7 @@ class Lihat_data extends CI_Controller{
 
 			$this->Penawaran_models->input_data($data2);
 
-			$this->session->set_flashdata('swal','Success|Successful Add Quatition|success');
+			$this->session->set_flashdata('swal','Success|Successful Add Quotation|success');
 			redirect('Lihat_data/penawaran','refresh');
 		}
 		$this->load->view('Header/footerfix');

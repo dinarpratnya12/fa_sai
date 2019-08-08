@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="content">
                                     <div class="text">DATA PENAWARAN</div>
-                                    <div class="number count-to"><?= $data_penawaran[0]->total_record;?> Quatition</div>
+                                    <div class="number count-to"><?= $data_penawaran[0]->total_record;?> Quotation</div>
                                 </div>
                             </div>
                         </div>

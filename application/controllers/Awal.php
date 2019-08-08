@@ -40,4 +40,12 @@ class Awal extends CI_Controller{
 		$data['chart_data'] = json_encode($data);
 		$this->load->view('pie_chart',$data);
 	  }
+
+	  function hapusall($user_id){
+		$this->load->model('user_models');;
+		$this->user_models->hapus($user_id);
+		$this->session->set_flashdata('swal');
+		$this->session->set_flashdata('swal','Success|Successful Delete User|success');
+        redirect('Crud','refresh');
+    }
 }

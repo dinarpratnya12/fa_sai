@@ -154,6 +154,7 @@
             <!-- Menu -->
             <div class="menu">
                 <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
                     <li>
                         <a href="<?php echo site_url('awal/index');?>">
                             <i class="material-icons">home</i>
@@ -197,6 +198,14 @@
                             <span>Compare Data</span>
                         </a>
                     </li>
+                    <ul class="list">
+                        <li class="header">More Option</li>
+                            <a href="#">
+                                <i class="material-icons">delete</i>
+                                <span>Delete All Data</span>
+                            </a>
+                        </li>
+                    </ul>
                 </ul>
 
             </div>

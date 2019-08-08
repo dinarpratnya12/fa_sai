@@ -40,7 +40,7 @@
                                             <th>Periode</th>
                                             <th>Supplier</th>
                                             <th>Price Invoice (pcs)</th>
-                                            <th>Price Quatition (pcs)</th>
+                                            <th>Price Quotation (pcs)</th>
                                             <th>Price Different</th>
                                             <th>Remark</th>
                                             <th>Qty Material di Invoice</th>
