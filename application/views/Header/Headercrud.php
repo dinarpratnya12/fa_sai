@@ -159,14 +159,14 @@
                         <span>Manage People</span>
                     </a>
                 </li>
-                <ul class="list">
+                <!-- <ul class="list">
                     <li class="header">More Option</li>
                         <a href="#">
                             <i class="material-icons">delete</i>
                             <span>Delete All Data</span>
                         </a>
                     </li>
-                </ul>
+                </ul> -->
             </ul>
         </div>
         <!-- #Menu -->

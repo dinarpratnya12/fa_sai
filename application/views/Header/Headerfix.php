@@ -105,7 +105,7 @@
     </div>
     <!-- #END# Page Loader -->
         <!-- Overlay For Sidebars -->
-        <div class="overlay"></div>
+        <!-- <div class="overlay"></div> -->
     <!-- #END# Overlay For Sidebars -->
     <!-- Top Bar -->
     <nav class="navbar" style="position:fixed">
@@ -203,14 +203,14 @@
                             <span>Manage People</span>
                         </a>
                     </li>
-                    <ul class="list">
+                    <!-- <ul class="list">
                         <li class="header">MORE OPTION</li>
                             <a href="#">
                                 <i class="material-icons">delete</i>
                                 <span>Delete All Data</span>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </ul>
 
             </div>
