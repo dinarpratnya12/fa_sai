@@ -57,8 +57,8 @@
                                     </div>
                                 </div>
                                 <!-- End Add Form -->
-                            <div class="table-responsive nowrap">
-                                <table class="table" cellpadding="" id="example2" style="width:100%">
+                            <div class="table-responsive-sm">
+                                <table class="table nowrap" cellpadding="" id="example2" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th class = text-center>No</th>
@@ -104,7 +104,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
-                                                <div class="modal-body">
+                                                    <div class="modal-body">
                                                         <div class="row">
                                                         <?php echo form_open('lihat_data/editsai');?>
                                                             <div class="col-lg-4">
@@ -126,6 +126,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -145,15 +146,11 @@
         </div>
     </div>
 
-    <script src="<?php echo base_url('assets/jquery.dataTables.min.js'); ?>"></script>
-    <script src="<?php echo base_url('assets/dataTables.bootstrap.min.js'); ?>"></script>
 
-    <?php if(validation_errors() != null){ ?>
 
     <script>
         $('#exampleModalCenter').modal('show');
     </script>
-    <?php } ?>
     <script>
           $(document).ready(function() {
             $('#example2 thead tr').clone(true).appendTo( '#example2 thead' );
@@ -161,13 +158,13 @@
                 var title = $(this).text();
                 if(i == 1 || i == 2){
                     $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-                $( 'input', this ).on( 'keyup change', function () {
-                    if ( table.column(i).search() !== this.value ) {
-                        table
-                            .column(i)
-                            .search( this.value )
-                            .draw();
-                        }
+                    $( 'input', this ).on( 'keyup change', function () {
+                        if ( table.column(i).search() !== this.value ) {
+                            table
+                                .column(i)
+                                .search( this.value )
+                                .draw();
+                            }
                     } );
                 }else{
                     $(this).html("");
@@ -183,11 +180,11 @@
                 $('[name="id_sup"]').val(id_sup);
             });
 
-                $('#example2').DataTable(
+            var table = $('#example2').DataTable(
                     {
                         orderCellsTop : true,
                         "sDom": "lrtip",
-                        "scrollY": "500px",
+                        "scrollY": "450px",
                         "scrollX": true,
                         "scrollCollapse": true,
                         "paging": false

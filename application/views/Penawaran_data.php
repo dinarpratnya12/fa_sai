@@ -144,7 +144,7 @@
                                 </div>
                                 <!-- End Modal Add Data -->
                             <div class="table-responsive-sm">
-                                <table class="table warnain text2 nowrap" cellpadding="" id="example2" style="width:100%">
+                                <table class="table nowrap" cellpadding="" id="example2" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th style="position: sticky;left:0px;background-color:white;">Part Number</th>
@@ -245,7 +245,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-lg-4">
-                                                            <h5 align="left">BASE UOM : </h5>
+                                                            <h5 align="left">Base UOM : </h5>
                                                         </div>
                                                         <div class="col-lg-8">
                                                             <input type="text" name="base_uom" style="text-transform: uppercase" id="base_uom" class="form-control" required/>
