@@ -53,7 +53,7 @@
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h3 class="modal-title" id="exampleModalLongTitle">Tambah User</h3>
+                                                <h3 class="modal-title" id="exampleModalLongTitle">Tambah Invoice</h3>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -400,11 +400,14 @@
                 var table = $('#example1').DataTable(
                     {
                         orderCellsTop : true,
-                        "sDom": "lrtip",
                         "scrollY": "450px",
                         "scrollX": true,
                         "scrollCollapse": true,
                         "paging": false,
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copy', 'csv', 'excel', 'pdf', 'print'
+                        ]
                     }
                 );
 

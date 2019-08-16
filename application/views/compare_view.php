@@ -100,8 +100,8 @@
                                             <td><?=$row->quantityunit ?></td>
                                             <td>
                                                 <?php
-                                                    $sisa2 = $row->kalkulasi_per_pcs - $row->base_price;
-                                                    $amount = (int)$row->quantityunit * $sisa2;
+                                                    $sisa = ((double) number_format($row->base_price,4)) - ((double) number_format($row->kalkulasi_per_pcs,4));
+                                                    $amount = $row->quantityunit * $sisa;
                                                     $strqty = str_replace("-","",$amount);
                                                     if(stripos($strqty,".") !== false){
                                                         echo "".number_format($strqty,2);
