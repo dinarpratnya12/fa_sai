@@ -114,7 +114,7 @@ class Import extends CI_Controller {
 
 			$excelreader = new PHPExcel_Reader_Excel2007();
 			$loadexcel = PHPExcel_IOFactory::load('excel/'.$this->filename.'.xlsx'); // Load file yang telah diupload ke folder excel
-			$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
+			$sheet = $loadexcel->getSheet(0)->toArray(null, true, true ,true);
 
 			// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
 			$data = array();
@@ -207,7 +207,7 @@ class Import extends CI_Controller {
 			include APPPATH.'third_party/PHPExcel/PHPExcel.php';
 			$excelreader2 = new PHPExcel_Reader_Excel2007();
 			$loadexcel2 = $excelreader2->load('excel/'.$this->filename.'.xlsx'); // Load file yang telah diupload ke folder excel
-			$sheet2 = $loadexcel2->getActiveSheet()->toArray(null, true, true ,true);
+			$sheet2 = $loadexcel2->getSheet(0)->toArray(null, true, true ,true);
 			// Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
 			$data2 = array();
 			$numrow = 0;
